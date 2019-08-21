@@ -65,99 +65,33 @@ class __TwigTemplate_10b434e73ca82793871a28dc0717603fb8f004872297e1ac14c13ea38af
         // line 14
         echo "    </head>   
 <body>
-<nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">
-    <a class=\"navbar-brand \" href=\"#\"><img src=\"images/Logo/logo_tripAddict_blanco.png\" style=\"width:70px\"/></a>
-    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
-      <span class=\"navbar-toggler-icon\"></span>
-    </button>
-    
-    <div class=\"collapse navbar-collapse\" id=\"navbarColor01\">
-      <ul class=\"navbar-nav mr-auto\">
-        <li class=\"nav-item active\">
-          <a class=\"nav-link\" href=\"#\">Inicio <span class=\"sr-only\">(current)</span></a>
-        </li>
-        <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">Viaje Sorpresa</a>
-        </li>
-        <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">Contacto</a>
-        </li>
-        
-      </ul>
-  
-      <ul class=\"navbar-nav ml-auto\">
-        <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\"><i class=\"fa fa-shopping-cart fa-lg\" aria-hidden=\"true\"></i></a>
-        </li>
-  
-        <!--inicio DROPDOWN-->
-        <li class=\"nav-item dropdown\">
-            <a class=\"nav-link dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\"><i class=\"fa fa-user fa-lg\" aria-hidden=\"true\"> </i> Usuario</a>
-            <div class=\"dropdown-menu\">
-              <a class=\"dropdown-item\" href=\"#\">Mi cuenta</a>
-              <div class=\"dropdown-divider\"></div>
-              <a class=\"dropdown-item\" href=\"#\">Mis packs</a>
-              
-            </div>
-        </li>
-        
-        <!--final DROPDOWN-->
-  
-        <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\"><i class=\"fa fa-power-off fa-lg\" aria-hidden=\"true\"></i></a>
-        </li>
-        <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">Iniciar sesión</a>
-        </li>
-        
-      </ul>
-      
-    </div>
-  </nav>
-  <main role=\"main\">
-    ";
-        // line 66
+        <main role=\"main\">
+          
+          ";
+        // line 18
+        echo twig_include($this->env, $context, "menu.html.twig");
+        echo "
+          
+          ";
+        // line 20
         $this->displayBlock('body', $context, $blocks);
-        // line 67
-        echo "    <div class=\"card  bg-dark card-body\" style=\"min-width: 100%;  position: ; bottom: 0;\">
-  
-        <div class=\"card-body font-weight-bold\">
-        <div class=\"d-flex justify-content-center\">
-      
-          <div class=\"col-md-3 col-sm-12 text-sm-left \">
-              <h5 class=\"card-title \">Ayuda y servicios</h5>
-            <div class='links  text-left '>
-            <h6><a href='#'class=\"card-text text-primary  \" >Ayuda y contacto</a><br/></h6>
-            <h6><a href='#'class=\"card-text text-primary\">¿Como funciona?</a><br/></h6>
-            <h6><a href='#'class=\"card-text text-primary\">Condiciones generales</a><br/></h6>
-            </div>
-          </div>
-      
-          <div class=\"col-md-3 col-sm-12 text-left\">
-            <h5 class=\"card-title\">Empresa</h5>
-            <h6><a href='#'class=\"card-text text-primary\">¿Quienes somos?</a><br/></h6>
-            <h6><a href='#'class=\"card-text text-primary\">Politica de privacidad</a><br/></h6>
-            <h6><a href='#'class=\"card-text text-primary\">Nuestro compromiso</a><br/></h6>
-            <h6><a href='#'class=\"card-text text-primary\">Contacto</a><br/></h6>
-          </div>
-      
-          <div class=\"col-md-3 col-sm-12 text-left\">
-            <h5 class=\"card-title\">Redes sociales</h5>
-            <h6><a href='#'class=\"card-text text-primary\"><i class=\"fa fa-whatsapp\" style='width: 14px'></i>   +34 673409986</a><br/></h6>
-            <h6><a href='#'class=\"card-text text-primary\"><i class=\"fa fa-twitter\" style='width: 14px'></i>    @tripAddict</a><br/></h6>
-            <h6><a href='#'class=\"card-text text-primary\"><i class=\"fa fa-facebook\" style='width: 14px'></i>   tripAddict</a><br/></h6>
-          </div>
-        </div>
-  </main>
+        // line 21
+        echo "          
+          ";
+        // line 22
+        echo twig_include($this->env, $context, "footer.html.twig");
+        echo "
+
+        </main>
    
   
-  <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>
-  <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\" integrity=\"sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM\" crossorigin=\"anonymous\"></script>
+        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>
+        <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\" integrity=\"sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM\" crossorigin=\"anonymous\"></script>
        
         ";
-        // line 102
+        // line 30
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 105
+        // line 33
         echo "    </body>
 </html>
 ";
@@ -206,7 +140,7 @@ class __TwigTemplate_10b434e73ca82793871a28dc0717603fb8f004872297e1ac14c13ea38af
 
     }
 
-    // line 66
+    // line 20
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -224,7 +158,7 @@ class __TwigTemplate_10b434e73ca82793871a28dc0717603fb8f004872297e1ac14c13ea38af
 
     }
 
-    // line 102
+    // line 30
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -234,7 +168,7 @@ class __TwigTemplate_10b434e73ca82793871a28dc0717603fb8f004872297e1ac14c13ea38af
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 103
+        // line 31
         echo "        
         ";
         
@@ -250,9 +184,14 @@ class __TwigTemplate_10b434e73ca82793871a28dc0717603fb8f004872297e1ac14c13ea38af
         return "base.html.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  238 => 103,  228 => 102,  210 => 66,  192 => 13,  173 => 5,  161 => 105,  159 => 102,  122 => 67,  120 => 66,  66 => 14,  64 => 13,  53 => 5,  47 => 1,);
+        return array (  172 => 31,  162 => 30,  144 => 20,  126 => 13,  107 => 5,  95 => 33,  93 => 30,  82 => 22,  79 => 21,  77 => 20,  72 => 18,  66 => 14,  64 => 13,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -272,97 +211,25 @@ class __TwigTemplate_10b434e73ca82793871a28dc0717603fb8f004872297e1ac14c13ea38af
         {% block stylesheets %}{% endblock %}
     </head>   
 <body>
-<nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">
-    <a class=\"navbar-brand \" href=\"#\"><img src=\"images/Logo/logo_tripAddict_blanco.png\" style=\"width:70px\"/></a>
-    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
-      <span class=\"navbar-toggler-icon\"></span>
-    </button>
-    
-    <div class=\"collapse navbar-collapse\" id=\"navbarColor01\">
-      <ul class=\"navbar-nav mr-auto\">
-        <li class=\"nav-item active\">
-          <a class=\"nav-link\" href=\"#\">Inicio <span class=\"sr-only\">(current)</span></a>
-        </li>
-        <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">Viaje Sorpresa</a>
-        </li>
-        <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">Contacto</a>
-        </li>
-        
-      </ul>
-  
-      <ul class=\"navbar-nav ml-auto\">
-        <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\"><i class=\"fa fa-shopping-cart fa-lg\" aria-hidden=\"true\"></i></a>
-        </li>
-  
-        <!--inicio DROPDOWN-->
-        <li class=\"nav-item dropdown\">
-            <a class=\"nav-link dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\"><i class=\"fa fa-user fa-lg\" aria-hidden=\"true\"> </i> Usuario</a>
-            <div class=\"dropdown-menu\">
-              <a class=\"dropdown-item\" href=\"#\">Mi cuenta</a>
-              <div class=\"dropdown-divider\"></div>
-              <a class=\"dropdown-item\" href=\"#\">Mis packs</a>
-              
-            </div>
-        </li>
-        
-        <!--final DROPDOWN-->
-  
-        <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\"><i class=\"fa fa-power-off fa-lg\" aria-hidden=\"true\"></i></a>
-        </li>
-        <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">Iniciar sesión</a>
-        </li>
-        
-      </ul>
-      
-    </div>
-  </nav>
-  <main role=\"main\">
-    {% block body %}{% endblock %}
-    <div class=\"card  bg-dark card-body\" style=\"min-width: 100%;  position: ; bottom: 0;\">
-  
-        <div class=\"card-body font-weight-bold\">
-        <div class=\"d-flex justify-content-center\">
-      
-          <div class=\"col-md-3 col-sm-12 text-sm-left \">
-              <h5 class=\"card-title \">Ayuda y servicios</h5>
-            <div class='links  text-left '>
-            <h6><a href='#'class=\"card-text text-primary  \" >Ayuda y contacto</a><br/></h6>
-            <h6><a href='#'class=\"card-text text-primary\">¿Como funciona?</a><br/></h6>
-            <h6><a href='#'class=\"card-text text-primary\">Condiciones generales</a><br/></h6>
-            </div>
-          </div>
-      
-          <div class=\"col-md-3 col-sm-12 text-left\">
-            <h5 class=\"card-title\">Empresa</h5>
-            <h6><a href='#'class=\"card-text text-primary\">¿Quienes somos?</a><br/></h6>
-            <h6><a href='#'class=\"card-text text-primary\">Politica de privacidad</a><br/></h6>
-            <h6><a href='#'class=\"card-text text-primary\">Nuestro compromiso</a><br/></h6>
-            <h6><a href='#'class=\"card-text text-primary\">Contacto</a><br/></h6>
-          </div>
-      
-          <div class=\"col-md-3 col-sm-12 text-left\">
-            <h5 class=\"card-title\">Redes sociales</h5>
-            <h6><a href='#'class=\"card-text text-primary\"><i class=\"fa fa-whatsapp\" style='width: 14px'></i>   +34 673409986</a><br/></h6>
-            <h6><a href='#'class=\"card-text text-primary\"><i class=\"fa fa-twitter\" style='width: 14px'></i>    @tripAddict</a><br/></h6>
-            <h6><a href='#'class=\"card-text text-primary\"><i class=\"fa fa-facebook\" style='width: 14px'></i>   tripAddict</a><br/></h6>
-          </div>
-        </div>
-  </main>
+        <main role=\"main\">
+          
+          {{ include('menu.html.twig') }}
+          
+          {% block body %}{% endblock %}
+          
+          {{ include('footer.html.twig') }}
+
+        </main>
    
   
-  <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>
-  <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\" integrity=\"sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM\" crossorigin=\"anonymous\"></script>
+        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>
+        <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\" integrity=\"sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM\" crossorigin=\"anonymous\"></script>
        
         {% block javascripts %}
         
         {% endblock %}
     </body>
 </html>
-", "base.html.twig", "C:\\xampp\\htdocs\\tripAddict\\templates\\base.html.twig");
+", "base.html.twig", "C:\\xampp\\htdocs\\viajesRandom\\templates\\base.html.twig");
     }
 }

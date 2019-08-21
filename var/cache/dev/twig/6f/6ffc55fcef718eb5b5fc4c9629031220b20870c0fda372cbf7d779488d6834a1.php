@@ -175,6 +175,6 @@ class __TwigTemplate_9d8b3a6ca906583c04e8b3cc47afd9c2519cae748af3274af5fabe31fc1
   </a>
 </div>
 {% endblock %}
-", "ta/index.html.twig", "C:\\xampp\\htdocs\\tripAddict\\templates\\ta\\index.html.twig");
+", "ta/index.html.twig", "C:\\xampp\\htdocs\\viajesRandom\\templates\\ta\\index.html.twig");
     }
 }
