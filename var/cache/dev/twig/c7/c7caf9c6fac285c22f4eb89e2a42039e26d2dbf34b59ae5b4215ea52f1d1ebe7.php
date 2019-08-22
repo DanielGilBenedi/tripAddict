@@ -77,7 +77,7 @@ class __TwigTemplate_10b434e73ca82793871a28dc0717603fb8f004872297e1ac14c13ea38af
           <a class=\"nav-link\" href=\"#\">Inicio <span class=\"sr-only\">(current)</span></a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">Viaje Sorpresa</a>
+          <a class=\"nav-link\" href=\"\">Viaje Sorpresa</a>
         </li>
         <li class=\"nav-item\">
           <a class=\"nav-link\" href=\"#\">Contacto</a>
@@ -119,7 +119,7 @@ class __TwigTemplate_10b434e73ca82793871a28dc0717603fb8f004872297e1ac14c13ea38af
         // line 66
         $this->displayBlock('body', $context, $blocks);
         // line 67
-        echo "    <div class=\"card  bg-dark card-body\" style=\"min-width: 100%;  position: ; bottom: 0;\">
+        echo "    <div class=\"card  bg-dark card-body\" style=\"min-width: 100%; bottom: 0;\">
   
         <div class=\"card-body font-weight-bold\">
         <div class=\"d-flex justify-content-center\">
@@ -284,7 +284,7 @@ class __TwigTemplate_10b434e73ca82793871a28dc0717603fb8f004872297e1ac14c13ea38af
           <a class=\"nav-link\" href=\"#\">Inicio <span class=\"sr-only\">(current)</span></a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">Viaje Sorpresa</a>
+          <a class=\"nav-link\" href=\"\">Viaje Sorpresa</a>
         </li>
         <li class=\"nav-item\">
           <a class=\"nav-link\" href=\"#\">Contacto</a>
@@ -323,7 +323,7 @@ class __TwigTemplate_10b434e73ca82793871a28dc0717603fb8f004872297e1ac14c13ea38af
   </nav>
   <main role=\"main\">
     {% block body %}{% endblock %}
-    <div class=\"card  bg-dark card-body\" style=\"min-width: 100%;  position: ; bottom: 0;\">
+    <div class=\"card  bg-dark card-body\" style=\"min-width: 100%; bottom: 0;\">
   
         <div class=\"card-body font-weight-bold\">
         <div class=\"d-flex justify-content-center\">
@@ -363,6 +363,6 @@ class __TwigTemplate_10b434e73ca82793871a28dc0717603fb8f004872297e1ac14c13ea38af
         {% endblock %}
     </body>
 </html>
-", "base.html.twig", "C:\\xampp\\htdocs\\tripAddict\\templates\\base.html.twig");
+", "base.html.twig", "C:\\xampp\\htdocs\\tripAddict2\\templates\\base.html.twig");
     }
 }
