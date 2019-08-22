@@ -1,0 +1,4 @@
+composer install
+composer require symfony/maker-bundle --dev
+composer require doctrine/annotations --dev
+composer require symfony/twig-bundle
