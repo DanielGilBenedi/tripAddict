@@ -3,101 +3,27 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-
         <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>TripAddict</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-T5jhQKMh96HMkXwqVMSjF3CmLcL1nT9//tCqu9By5XSdj7CwR0r+F3LTzUdfkkQf" crossorigin="anonymous">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>TripAddict</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-T5jhQKMh96HMkXwqVMSjF3CmLcL1nT9//tCqu9By5XSdj7CwR0r+F3LTzUdfkkQf" crossorigin="anonymous">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         {% block stylesheets %}{% endblock %}
     </head>   
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand " href="#"><img src="images/Logo/logo_tripAddict_blanco.png" style="width:70px"/></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    
-    <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="">Viaje Sorpresa</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contacto</a>
-        </li>
-        
-      </ul>
-  
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i></a>
-        </li>
-  
-        <!--inicio DROPDOWN-->
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-lg" aria-hidden="true"> </i> Usuario</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Mi cuenta</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Mis packs</a>
-              
-            </div>
-        </li>
-        
-        <!--final DROPDOWN-->
-  
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa fa-power-off fa-lg" aria-hidden="true"></i></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Iniciar sesión</a>
-        </li>
-        
-      </ul>
-      
-    </div>
-  </nav>
-  <main role="main">
-    {% block body %}{% endblock %}
-    <div class="card  bg-dark card-body" style="min-width: 100%; bottom: 0;">
-  
-        <div class="card-body font-weight-bold">
-        <div class="d-flex justify-content-center">
-      
-          <div class="col-md-3 col-sm-12 text-sm-left ">
-              <h5 class="card-title ">Ayuda y servicios</h5>
-            <div class='links  text-left '>
-            <h6><a href='#'class="card-text text-primary  " >Ayuda y contacto</a><br/></h6>
-            <h6><a href='#'class="card-text text-primary">¿Como funciona?</a><br/></h6>
-            <h6><a href='#'class="card-text text-primary">Condiciones generales</a><br/></h6>
-            </div>
-          </div>
-      
-          <div class="col-md-3 col-sm-12 text-left">
-            <h5 class="card-title">Empresa</h5>
-            <h6><a href='#'class="card-text text-primary">¿Quienes somos?</a><br/></h6>
-            <h6><a href='#'class="card-text text-primary">Politica de privacidad</a><br/></h6>
-            <h6><a href='#'class="card-text text-primary">Nuestro compromiso</a><br/></h6>
-            <h6><a href='#'class="card-text text-primary">Contacto</a><br/></h6>
-          </div>
-      
-          <div class="col-md-3 col-sm-12 text-left">
-            <h5 class="card-title">Redes sociales</h5>
-            <h6><a href='#'class="card-text text-primary"><i class="fa fa-whatsapp" style='width: 14px'></i>   +34 673409986</a><br/></h6>
-            <h6><a href='#'class="card-text text-primary"><i class="fa fa-twitter" style='width: 14px'></i>    @tripAddict</a><br/></h6>
-            <h6><a href='#'class="card-text text-primary"><i class="fa fa-facebook" style='width: 14px'></i>   tripAddict</a><br/></h6>
-          </div>
-        </div>
-  </main>
+    <body>
+        <main role="main">
+          
+          {{ include('menu.html.twig') }}
+          
+          {% block body %}{% endblock %}
+          
+          {{ include('footer.html.twig') }}
+
+        </main>
    
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
        
         {% block javascripts %}
         
