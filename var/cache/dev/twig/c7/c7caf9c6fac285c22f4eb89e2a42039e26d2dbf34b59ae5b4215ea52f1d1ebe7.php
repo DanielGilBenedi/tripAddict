@@ -65,7 +65,6 @@ class __TwigTemplate_10b434e73ca82793871a28dc0717603fb8f004872297e1ac14c13ea38af
         // line 14
         echo "    </head>   
 <body>
-<<<<<<< HEAD
 <nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">
     <a class=\"navbar-brand \" href=\"#\"><img src=\"images/Logo/logo_tripAddict_blanco.png\" style=\"width:70px\"/></a>
     <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
@@ -150,26 +149,6 @@ class __TwigTemplate_10b434e73ca82793871a28dc0717603fb8f004872297e1ac14c13ea38af
           </div>
         </div>
   </main>
-=======
-        <main role=\"main\">
-          
-          ";
-        // line 18
-        echo twig_include($this->env, $context, "menu.html.twig");
-        echo "
-          
-          ";
-        // line 20
-        $this->displayBlock('body', $context, $blocks);
-        // line 21
-        echo "          
-          ";
-        // line 22
-        echo twig_include($this->env, $context, "footer.html.twig");
-        echo "
-
-        </main>
->>>>>>> 87f2cac66259219f47211cbf4a81227d3cf4bdae
    
   
         <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>
@@ -298,7 +277,6 @@ class __TwigTemplate_10b434e73ca82793871a28dc0717603fb8f004872297e1ac14c13ea38af
         {% block stylesheets %}{% endblock %}
     </head>   
 <body>
-<<<<<<< HEAD
 <nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">
     <a class=\"navbar-brand \" href=\"#\"><img src=\"images/Logo/logo_tripAddict_blanco.png\" style=\"width:70px\"/></a>
     <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
@@ -380,17 +358,6 @@ class __TwigTemplate_10b434e73ca82793871a28dc0717603fb8f004872297e1ac14c13ea38af
           </div>
         </div>
   </main>
-=======
-        <main role=\"main\">
-          
-          {{ include('menu.html.twig') }}
-          
-          {% block body %}{% endblock %}
-          
-          {{ include('footer.html.twig') }}
-
-        </main>
->>>>>>> 87f2cac66259219f47211cbf4a81227d3cf4bdae
    
   
         <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>
@@ -401,10 +368,6 @@ class __TwigTemplate_10b434e73ca82793871a28dc0717603fb8f004872297e1ac14c13ea38af
         {% endblock %}
     </body>
 </html>
-<<<<<<< HEAD
 ", "base.html.twig", "C:\\xampp\\htdocs\\tripAddict2\\templates\\base.html.twig");
-=======
-", "base.html.twig", "C:\\xampp\\htdocs\\viajesRandom\\templates\\base.html.twig");
->>>>>>> 87f2cac66259219f47211cbf4a81227d3cf4bdae
     }
 }
