@@ -635,6 +635,6 @@ class __TwigTemplate_206f8d4a0f286b1dd8195db1b1a92ee4e7c84e28cb17570eac789258653
     });
 
 /*]]>*/</script>
-", "@Twig/base_js.html.twig", "C:\\xampp\\htdocs\\tripAddict\\vendor\\symfony\\twig-bundle\\Resources\\views\\base_js.html.twig");
+", "@Twig/base_js.html.twig", "C:\\xampp\\htdocs\\proyectoviajes\\vendor\\symfony\\twig-bundle\\Resources\\views\\base_js.html.twig");
     }
 }

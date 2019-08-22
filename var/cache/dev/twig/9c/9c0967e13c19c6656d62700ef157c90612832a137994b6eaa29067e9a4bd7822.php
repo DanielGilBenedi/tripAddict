@@ -227,6 +227,6 @@ class __TwigTemplate_9fceaa2e23a6d3c319d076e77ba1bc45efa5d336e3001963109b4dc52cc
         {{ include('@Twig/base_js.html.twig') }}
     </body>
 </html>
-", "@Twig/layout.html.twig", "C:\\xampp\\htdocs\\tripAddict\\vendor\\symfony\\twig-bundle\\Resources\\views\\layout.html.twig");
+", "@Twig/layout.html.twig", "C:\\xampp\\htdocs\\proyectoviajes\\vendor\\symfony\\twig-bundle\\Resources\\views\\layout.html.twig");
     }
 }

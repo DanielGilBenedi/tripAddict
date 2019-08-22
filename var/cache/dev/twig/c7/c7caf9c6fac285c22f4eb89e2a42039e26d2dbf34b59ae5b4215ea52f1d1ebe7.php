@@ -363,6 +363,6 @@ class __TwigTemplate_10b434e73ca82793871a28dc0717603fb8f004872297e1ac14c13ea38af
         {% endblock %}
     </body>
 </html>
-", "base.html.twig", "C:\\xampp\\htdocs\\tripAddict\\templates\\base.html.twig");
+", "base.html.twig", "C:\\xampp\\htdocs\\proyectoviajes\\templates\\base.html.twig");
     }
 }
