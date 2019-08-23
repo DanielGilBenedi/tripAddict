@@ -1,0 +1,11 @@
+
+1. git fetch --all:
+2. git reset --hard origin/master
+3. composer install
+
+
+
+composer update
+composer require symfony/maker-bundle --dev
+composer require doctrine/annotations --dev
+composer require symfony/twig-bundle
