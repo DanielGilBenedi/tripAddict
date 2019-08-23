@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PackDentroController extends AbstractController
 {
     /**
-     * @Route("/pack/dentro", name="pack_dentro")
+     * @Route("/packdentro", name="packdentro")
      */
     public function index()
     {
