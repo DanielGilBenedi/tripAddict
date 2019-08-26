@@ -3,37 +3,46 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Usuario
- *
- * @ORM\Table(name="usuario")
- * @ORM\Entity(repositoryClass="App\Repository\UsuarioRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
-class Usuario
+class User implements UserInterface
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=180, unique=true)
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+    private $password;
+
+     /**
      * @var string|null
      *
      * @ORM\Column(name="usuario", type="string", length=50, nullable=true)
      */
     private $usuario;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="password", type="string", length=1000, nullable=true)
-     */
-    private $password;
+   
 
     /**
      * @var string|null
@@ -49,12 +58,7 @@ class Usuario
      */
     private $apellidos;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="correo", type="string", length=200, nullable=true)
-     */
-    private $correo;
+    
 
     /**
      * @var string|null
@@ -70,12 +74,7 @@ class Usuario
      */
     private $ciudad;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="rol", type="string", length=100, nullable=true)
-     */
-    private $rol;
+   
 
     /**
      * @var \DateTime|null
@@ -96,30 +95,62 @@ class Usuario
         return $this->id;
     }
 
-    public function getUsuario(): ?string
+    public function getEmail(): ?string
     {
-        return $this->usuario;
+        return $this->email;
     }
 
-    public function setUsuario(?string $usuario): self
+    public function setEmail(string $email): self
     {
-        $this->usuario = $usuario;
+        $this->email = $email;
+
+        return $this;
+    }
+    
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function getPassword(): ?string
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
     {
-        return $this->password;
+        return (string) $this->password;
     }
 
-    public function setPassword(?string $password): self
+    public function setPassword(string $password): self
     {
         $this->password = $password;
 
         return $this;
     }
-
     public function getNombre(): ?string
     {
         return $this->nombre;
@@ -144,17 +175,6 @@ class Usuario
         return $this;
     }
 
-    public function getCorreo(): ?string
-    {
-        return $this->correo;
-    }
-
-    public function setCorreo(?string $correo): self
-    {
-        $this->correo = $correo;
-
-        return $this;
-    }
 
     public function getDireccion(): ?string
     {
@@ -180,17 +200,7 @@ class Usuario
         return $this;
     }
 
-    public function getRol(): ?string
-    {
-        return $this->rol;
-    }
-
-    public function setRol(?string $rol): self
-    {
-        $this->rol = $rol;
-
-        return $this;
-    }
+ 
 
     public function getFechaNacimiento(): ?\DateTimeInterface
     {
@@ -214,5 +224,22 @@ class Usuario
         $this->fechaRegistro = $fechaRegistro;
 
         return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getSalt()
+    {
+        // not needed when using the "bcrypt" algorithm in security.yaml
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }
