@@ -5,15 +5,16 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CarritoController extends AbstractController
+class PaquetesController extends AbstractController
 {
     /**
-     * @Route("/carrito", name="carrito")
+     * @Route("/paquetes", name="paquetes")
      */
     public function index()
     {
-        return $this->render('carrito/compra.html.twig', [
-            'controller_name' => 'CarritoController',
+
+        return $this->render('paquetes/index.html.twig', [
+            'controller_name' => 'PaquetesController',
         ]);
     }
 }
