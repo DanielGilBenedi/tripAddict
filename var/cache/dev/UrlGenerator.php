@@ -19,6 +19,10 @@ return [
     'packdentro' => [[], ['_controller' => 'App\\Controller\\PackDentroController::index'], [], [['text', '/packdentro']], [], []],
     'packages' => [[], ['_controller' => 'App\\Controller\\PackagesController::index'], [], [['text', '/packages']], [], []],
     'paquetesgrupo' => [[], ['_controller' => 'App\\Controller\\PaquetesgrupoController::index'], [], [['text', '/paquetesgrupo']], [], []],
+    'app_register' => [[], ['_controller' => 'App\\Controller\\RegistrationController::register'], [], [['text', '/register']], [], []],
+    'registro_principal' => [[], ['_controller' => 'App\\Controller\\RegistroPrincipalController::index'], [], [['text', '/registro/principal']], [], []],
+    'app_login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], []],
+    'app_logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], []],
     'index' => [[], ['_controller' => 'App\\Controller\\TAController::index'], [], [['text', '/']], [], []],
     'contacto' => [[], ['_controller' => 'App\\Controller\\TAController::contacto'], [], [['text', '/contacto']], [], []],
 ];
