@@ -383,11 +383,18 @@
     <service id="EasyCorp\EasyLog\EasyLogHandler" class="EasyCorp\EasyLog\EasyLogHandler" public="false">
       <argument>C:\xampp\htdocs\proyectoviajes\var\log/dev.log</argument>
     </service>
-    <service id="App\Controller\BuscadorController" class="App\Controller\BuscadorController" public="true" autowire="true" autoconfigure="true">
+    <service id="App\Controller\CarritoController" class="App\Controller\CarritoController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
       <call method="setContainer">
-        <argument type="service" id=".service_locator.CDOTD6..App\Controller\BuscadorController"/>
+        <argument type="service" id=".service_locator.CDOTD6..App\Controller\CarritoController"/>
+      </call>
+    </service>
+    <service id="App\Controller\InfopaqueteController" class="App\Controller\InfopaqueteController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.CDOTD6..App\Controller\InfopaqueteController"/>
       </call>
     </service>
     <service id="App\Controller\PackDentroController" class="App\Controller\PackDentroController" public="true" autowire="true" autoconfigure="true">
@@ -417,6 +424,46 @@
       <call method="setContainer">
         <argument type="service" id=".service_locator.CDOTD6..App\Controller\TAController"/>
       </call>
+    </service>
+    <service id="App\Repository\EstanciaPackRepository" class="App\Repository\EstanciaPackRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\EstanciaRepository" class="App\Repository\EstanciaRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\HotelRepository" class="App\Repository\HotelRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\HotelServicioRepository" class="App\Repository\HotelServicioRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\ImagenRepository" class="App\Repository\ImagenRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\ImagenesHotelRepository" class="App\Repository\ImagenesHotelRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\PackRepository" class="App\Repository\PackRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\PedidoRepository" class="App\Repository\PedidoRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\ServicioRepository" class="App\Repository\ServicioRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\UsuarioRepository" class="App\Repository\UsuarioRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
     </service>
     <service id="controller_name_converter" class="Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser" public="false">
       <tag name="monolog.logger" channel="request"/>
@@ -2140,14 +2187,6 @@
         <argument>2048</argument>
       </call>
       <call method="addListener">
-        <argument>console.command</argument>
-        <argument type="collection">
-          <argument type="service" id="debug.debug_handlers_listener"/>
-          <argument>configure</argument>
-        </argument>
-        <argument>2048</argument>
-      </call>
-      <call method="addListener">
         <argument>kernel.exception</argument>
         <argument type="collection">
           <argument type="service" id="debug.debug_handlers_listener"/>
@@ -3382,7 +3421,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory" public="false">
-      <argument type="service" id=".service_locator.9_yeNH1"/>
+      <argument type="service" id=".service_locator.q1dQf43"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -4517,9 +4556,12 @@
         <argument>server:log</argument>
       </call>
     </service>
-    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\BuscadorController" class="App\Controller\BuscadorController" autowire="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\BuscadorController" class="App\Controller\BuscadorController" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Controller\BuscadorController" class="App\Controller\BuscadorController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CarritoController" class="App\Controller\CarritoController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CarritoController" class="App\Controller\CarritoController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\CarritoController" class="App\Controller\CarritoController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\InfopaqueteController" class="App\Controller\InfopaqueteController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\InfopaqueteController" class="App\Controller\InfopaqueteController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\InfopaqueteController" class="App\Controller\InfopaqueteController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PackDentroController" class="App\Controller\PackDentroController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PackDentroController" class="App\Controller\PackDentroController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\PackDentroController" class="App\Controller\PackDentroController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -4532,6 +4574,26 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\TAController" class="App\Controller\TAController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\TAController" class="App\Controller\TAController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\TAController" class="App\Controller\TAController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\EstanciaPackRepository" class="App\Repository\EstanciaPackRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\EstanciaPackRepository" class="App\Repository\EstanciaPackRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\EstanciaRepository" class="App\Repository\EstanciaRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\EstanciaRepository" class="App\Repository\EstanciaRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\HotelRepository" class="App\Repository\HotelRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\HotelRepository" class="App\Repository\HotelRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\HotelServicioRepository" class="App\Repository\HotelServicioRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\HotelServicioRepository" class="App\Repository\HotelServicioRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ImagenRepository" class="App\Repository\ImagenRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ImagenRepository" class="App\Repository\ImagenRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ImagenesHotelRepository" class="App\Repository\ImagenesHotelRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ImagenesHotelRepository" class="App\Repository\ImagenesHotelRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PackRepository" class="App\Repository\PackRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\PackRepository" class="App\Repository\PackRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PedidoRepository" class="App\Repository\PedidoRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\PedidoRepository" class="App\Repository\PedidoRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ServicioRepository" class="App\Repository\ServicioRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ServicioRepository" class="App\Repository\ServicioRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UsuarioRepository" class="App\Repository\UsuarioRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\UsuarioRepository" class="App\Repository\UsuarioRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="maker.auto_command.make_auth" class="Symfony\Bundle\MakerBundle\Command\MakerCommand" public="false">
       <tag name="console.command" command="make:auth"/>
       <argument type="service" id="maker.maker.make_authenticator"/>
@@ -4772,6 +4834,21 @@
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
       </argument>
     </service>
+    <service id=".service_locator.q1dQf43" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="App\Repository\EstanciaPackRepository" type="service" id="App\Repository\EstanciaPackRepository"/>
+        <argument key="App\Repository\EstanciaRepository" type="service" id="App\Repository\EstanciaRepository"/>
+        <argument key="App\Repository\HotelRepository" type="service" id="App\Repository\HotelRepository"/>
+        <argument key="App\Repository\HotelServicioRepository" type="service" id="App\Repository\HotelServicioRepository"/>
+        <argument key="App\Repository\ImagenRepository" type="service" id="App\Repository\ImagenRepository"/>
+        <argument key="App\Repository\ImagenesHotelRepository" type="service" id="App\Repository\ImagenesHotelRepository"/>
+        <argument key="App\Repository\PackRepository" type="service" id="App\Repository\PackRepository"/>
+        <argument key="App\Repository\PedidoRepository" type="service" id="App\Repository\PedidoRepository"/>
+        <argument key="App\Repository\ServicioRepository" type="service" id="App\Repository\ServicioRepository"/>
+        <argument key="App\Repository\UsuarioRepository" type="service" id="App\Repository\UsuarioRepository"/>
+      </argument>
+    </service>
     <service id="debug.security.voter.security.access.authenticated_voter" class="Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter">
       <argument type="service" id="security.access.authenticated_voter"/>
       <argument type="service" id="debug.event_dispatcher"/>
@@ -4990,9 +5067,15 @@
         <argument key="twig" type="service" id="twig" on-invalid="ignore"/>
       </argument>
     </service>
-    <service id=".service_locator.CDOTD6..App\Controller\BuscadorController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator_context" id="App\Controller\BuscadorController"/>
-      <argument>App\Controller\BuscadorController</argument>
+    <service id=".service_locator.CDOTD6..App\Controller\CarritoController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\CarritoController"/>
+      <argument>App\Controller\CarritoController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.CDOTD6." method="withContext"/>
+    </service>
+    <service id=".service_locator.CDOTD6..App\Controller\InfopaqueteController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\InfopaqueteController"/>
+      <argument>App\Controller\InfopaqueteController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.CDOTD6." method="withContext"/>
     </service>
