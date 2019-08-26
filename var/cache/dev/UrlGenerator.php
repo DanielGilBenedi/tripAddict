@@ -15,9 +15,10 @@ return [
     '_profiler_router' => [['token'], ['_controller' => 'web_profiler.controller.router::panelAction'], [], [['text', '/router'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
     '_profiler_exception' => [['token'], ['_controller' => 'web_profiler.controller.exception::showAction'], [], [['text', '/exception'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception::cssAction'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
-    'buscador' => [[], ['_controller' => 'App\\Controller\\BuscadorController::index'], [], [['text', '/buscador']], [], []],
-    'pack_dentro' => [[], ['_controller' => 'App\\Controller\\PackDentroController::index'], [], [['text', '/pack/dentro']], [], []],
+    'infopaquete' => [[], ['_controller' => 'App\\Controller\\InfopaqueteController::index'], [], [['text', '/infopaquete']], [], []],
+    'packdentro' => [[], ['_controller' => 'App\\Controller\\PackDentroController::index'], [], [['text', '/packdentro']], [], []],
     'packages' => [[], ['_controller' => 'App\\Controller\\PackagesController::index'], [], [['text', '/packages']], [], []],
     'paquetesgrupo' => [[], ['_controller' => 'App\\Controller\\PaquetesgrupoController::index'], [], [['text', '/paquetesgrupo']], [], []],
-    'ta' => [[], ['_controller' => 'App\\Controller\\TAController::index'], [], [['text', '/ta']], [], []],
+    'index' => [[], ['_controller' => 'App\\Controller\\TAController::index'], [], [['text', '/']], [], []],
+    'contacto' => [[], ['_controller' => 'App\\Controller\\TAController::contacto'], [], [['text', '/contacto']], [], []],
 ];
