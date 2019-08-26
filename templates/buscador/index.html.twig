@@ -1,10 +1,18 @@
 
+{% block stylesheets %}
+    <style>
+        .panel-transparent{
+            background-color:rgba(100,100,100,0.5);
+        }
+    </style>
+{% endblock %}
+
 
 {% block body %}
 
-<div class="container mb-3 mt-3">
-    <div class="card">
-        <div class="card-body">
+<div class="container mb-3 mt-3" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/9/9b/Cataratas_y_paisaje.jpg')">
+    <div  class='p-2'>
+        <div class="card-body panel-transparent">
             <div class='container'>
                 <form class="form-inline p-3 justify-content-around">
 
@@ -40,7 +48,7 @@
                     <button type="button" class="btn btn-info w-22"> ¡¡Encuentra tu viaje!! </button>
                 </form>
             </div>
-        </div>            
+        </div>   
     </div>
 </div>   
 {% endblock %}
