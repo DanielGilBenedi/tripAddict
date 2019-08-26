@@ -10,23 +10,31 @@
     <parameter key="kernel.logs_dir">C:\xampp\htdocs\proyectoviajes\var\log</parameter>
     <parameter key="kernel.bundles" type="collection">
       <parameter key="FrameworkBundle">Symfony\Bundle\FrameworkBundle\FrameworkBundle</parameter>
+      <parameter key="MakerBundle">Symfony\Bundle\MakerBundle\MakerBundle</parameter>
+      <parameter key="TwigBundle">Symfony\Bundle\TwigBundle\TwigBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="DoctrineCacheBundle">Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle</parameter>
       <parameter key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</parameter>
       <parameter key="DoctrineMigrationsBundle">Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle</parameter>
       <parameter key="SecurityBundle">Symfony\Bundle\SecurityBundle\SecurityBundle</parameter>
       <parameter key="SwiftmailerBundle">Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle</parameter>
-      <parameter key="TwigBundle">Symfony\Bundle\TwigBundle\TwigBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="MonologBundle">Symfony\Bundle\MonologBundle\MonologBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
-      <parameter key="MakerBundle">Symfony\Bundle\MakerBundle\MakerBundle</parameter>
       <parameter key="WebServerBundle">Symfony\Bundle\WebServerBundle\WebServerBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
         <parameter key="path">C:\xampp\htdocs\proyectoviajes\vendor\symfony\framework-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\FrameworkBundle</parameter>
+      </parameter>
+      <parameter key="MakerBundle" type="collection">
+        <parameter key="path">C:\xampp\htdocs\proyectoviajes\vendor\symfony\maker-bundle\src</parameter>
+        <parameter key="namespace">Symfony\Bundle\MakerBundle</parameter>
+      </parameter>
+      <parameter key="TwigBundle" type="collection">
+        <parameter key="path">C:\xampp\htdocs\proyectoviajes\vendor\symfony\twig-bundle</parameter>
+        <parameter key="namespace">Symfony\Bundle\TwigBundle</parameter>
       </parameter>
       <parameter key="SensioFrameworkExtraBundle" type="collection">
         <parameter key="path">C:\xampp\htdocs\proyectoviajes\vendor\sensio\framework-extra-bundle</parameter>
@@ -52,10 +60,6 @@
         <parameter key="path">C:\xampp\htdocs\proyectoviajes\vendor\symfony\swiftmailer-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\SwiftmailerBundle</parameter>
       </parameter>
-      <parameter key="TwigBundle" type="collection">
-        <parameter key="path">C:\xampp\htdocs\proyectoviajes\vendor\symfony\twig-bundle</parameter>
-        <parameter key="namespace">Symfony\Bundle\TwigBundle</parameter>
-      </parameter>
       <parameter key="WebProfilerBundle" type="collection">
         <parameter key="path">C:\xampp\htdocs\proyectoviajes\vendor\symfony\web-profiler-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\WebProfilerBundle</parameter>
@@ -67,10 +71,6 @@
       <parameter key="DebugBundle" type="collection">
         <parameter key="path">C:\xampp\htdocs\proyectoviajes\vendor\symfony\debug-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\DebugBundle</parameter>
-      </parameter>
-      <parameter key="MakerBundle" type="collection">
-        <parameter key="path">C:\xampp\htdocs\proyectoviajes\vendor\symfony\maker-bundle\src</parameter>
-        <parameter key="namespace">Symfony\Bundle\MakerBundle</parameter>
       </parameter>
       <parameter key="WebServerBundle" type="collection">
         <parameter key="path">C:\xampp\htdocs\proyectoviajes\vendor\symfony\web-server-bundle</parameter>
@@ -121,6 +121,11 @@
     <parameter key="request_listener.https_port">443</parameter>
     <parameter key="serializer.mapping.cache.file">C:\xampp\htdocs\proyectoviajes\var\cache\dev/serialization.php</parameter>
     <parameter key="serializer.mapping.cache.prefix"></parameter>
+    <parameter key="twig.exception_listener.controller">twig.controller.exception::showAction</parameter>
+    <parameter key="twig.form.resources" type="collection">
+      <parameter>form_div_layout.html.twig</parameter>
+    </parameter>
+    <parameter key="twig.default_path">C:\xampp\htdocs\proyectoviajes/templates</parameter>
     <parameter key="doctrine_cache.apc.class">Doctrine\Common\Cache\ApcCache</parameter>
     <parameter key="doctrine_cache.apcu.class">Doctrine\Common\Cache\ApcuCache</parameter>
     <parameter key="doctrine_cache.array.class">Doctrine\Common\Cache\ArrayCache</parameter>
@@ -261,11 +266,6 @@
       <parameter key="default">swiftmailer.mailer.default</parameter>
     </parameter>
     <parameter key="swiftmailer.default_mailer">default</parameter>
-    <parameter key="twig.exception_listener.controller">twig.controller.exception::showAction</parameter>
-    <parameter key="twig.form.resources" type="collection">
-      <parameter>form_div_layout.html.twig</parameter>
-    </parameter>
-    <parameter key="twig.default_path">C:\xampp\htdocs\proyectoviajes/templates</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
     <parameter key="web_profiler.debug_toolbar.mode">2</parameter>
     <parameter key="monolog.use_microseconds">true</parameter>
@@ -382,6 +382,27 @@
     <service id="service_container" class="Symfony\Component\DependencyInjection\ContainerInterface" public="true" synthetic="true"/>
     <service id="EasyCorp\EasyLog\EasyLogHandler" class="EasyCorp\EasyLog\EasyLogHandler" public="false">
       <argument>C:\xampp\htdocs\proyectoviajes\var\log/dev.log</argument>
+    </service>
+    <service id="App\Controller\BuscadorController" class="App\Controller\BuscadorController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.CDOTD6..App\Controller\BuscadorController"/>
+      </call>
+    </service>
+    <service id="App\Controller\PackDentroController" class="App\Controller\PackDentroController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.CDOTD6..App\Controller\PackDentroController"/>
+      </call>
+    </service>
+    <service id="App\Controller\PackagesController" class="App\Controller\PackagesController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.CDOTD6..App\Controller\PackagesController"/>
+      </call>
     </service>
     <service id="App\Controller\PaquetesgrupoController" class="App\Controller\PaquetesgrupoController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
@@ -1480,6 +1501,10 @@
           <argument>C:\xampp\htdocs\proyectoviajes/translations</argument>
           <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\framework-bundle/Resources/translations</argument>
           <argument>C:\xampp\htdocs\proyectoviajes\src/Resources/FrameworkBundle/translations</argument>
+          <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\maker-bundle\src/Resources/translations</argument>
+          <argument>C:\xampp\htdocs\proyectoviajes\src/Resources/MakerBundle/translations</argument>
+          <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\twig-bundle/Resources/translations</argument>
+          <argument>C:\xampp\htdocs\proyectoviajes\src/Resources/TwigBundle/translations</argument>
           <argument>C:\xampp\htdocs\proyectoviajes\vendor\sensio\framework-extra-bundle/Resources/translations</argument>
           <argument>C:\xampp\htdocs\proyectoviajes\src/Resources/SensioFrameworkExtraBundle/translations</argument>
           <argument>C:\xampp\htdocs\proyectoviajes\vendor\doctrine\doctrine-cache-bundle/Resources/translations</argument>
@@ -1492,16 +1517,12 @@
           <argument>C:\xampp\htdocs\proyectoviajes\src/Resources/SecurityBundle/translations</argument>
           <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\swiftmailer-bundle/Resources/translations</argument>
           <argument>C:\xampp\htdocs\proyectoviajes\src/Resources/SwiftmailerBundle/translations</argument>
-          <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\twig-bundle/Resources/translations</argument>
-          <argument>C:\xampp\htdocs\proyectoviajes\src/Resources/TwigBundle/translations</argument>
           <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\web-profiler-bundle/Resources/translations</argument>
           <argument>C:\xampp\htdocs\proyectoviajes\src/Resources/WebProfilerBundle/translations</argument>
           <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\monolog-bundle/Resources/translations</argument>
           <argument>C:\xampp\htdocs\proyectoviajes\src/Resources/MonologBundle/translations</argument>
           <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\debug-bundle/Resources/translations</argument>
           <argument>C:\xampp\htdocs\proyectoviajes\src/Resources/DebugBundle/translations</argument>
-          <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\maker-bundle\src/Resources/translations</argument>
-          <argument>C:\xampp\htdocs\proyectoviajes\src/Resources/MakerBundle/translations</argument>
           <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\web-server-bundle/Resources/translations</argument>
           <argument>C:\xampp\htdocs\proyectoviajes\src/Resources/WebServerBundle/translations</argument>
           <argument>C:\xampp\htdocs\proyectoviajes\src/Resources/translations</argument>
@@ -2119,6 +2140,14 @@
         <argument>2048</argument>
       </call>
       <call method="addListener">
+        <argument>console.command</argument>
+        <argument type="collection">
+          <argument type="service" id="debug.debug_handlers_listener"/>
+          <argument>configure</argument>
+        </argument>
+        <argument>2048</argument>
+      </call>
+      <call method="addListener">
         <argument>kernel.exception</argument>
         <argument type="collection">
           <argument type="service" id="debug.debug_handlers_listener"/>
@@ -2157,6 +2186,38 @@
           <argument>onKernelResponse</argument>
         </argument>
         <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>console.error</argument>
+        <argument type="collection">
+          <argument type="service" id="maker.console_error_listener"/>
+          <argument>onConsoleError</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>console.terminate</argument>
+        <argument type="collection">
+          <argument type="service" id="maker.console_error_listener"/>
+          <argument>onConsoleTerminate</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.exception</argument>
+        <argument type="collection">
+          <argument type="service" id="twig.exception_listener"/>
+          <argument>logKernelException</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.exception</argument>
+        <argument type="collection">
+          <argument type="service" id="twig.exception_listener"/>
+          <argument>onKernelException</argument>
+        </argument>
+        <argument>-128</argument>
       </call>
       <call method="addListener">
         <argument>kernel.controller</argument>
@@ -2295,22 +2356,6 @@
         <argument>0</argument>
       </call>
       <call method="addListener">
-        <argument>kernel.exception</argument>
-        <argument type="collection">
-          <argument type="service" id="twig.exception_listener"/>
-          <argument>logKernelException</argument>
-        </argument>
-        <argument>0</argument>
-      </call>
-      <call method="addListener">
-        <argument>kernel.exception</argument>
-        <argument type="collection">
-          <argument type="service" id="twig.exception_listener"/>
-          <argument>onKernelException</argument>
-        </argument>
-        <argument>-128</argument>
-      </call>
-      <call method="addListener">
         <argument>kernel.response</argument>
         <argument type="collection">
           <argument type="service" id="web_profiler.debug_toolbar"/>
@@ -2341,22 +2386,6 @@
           <argument>configure</argument>
         </argument>
         <argument>1024</argument>
-      </call>
-      <call method="addListener">
-        <argument>console.error</argument>
-        <argument type="collection">
-          <argument type="service" id="maker.console_error_listener"/>
-          <argument>onConsoleError</argument>
-        </argument>
-        <argument>0</argument>
-      </call>
-      <call method="addListener">
-        <argument>console.terminate</argument>
-        <argument type="collection">
-          <argument type="service" id="maker.console_error_listener"/>
-          <argument>onConsoleTerminate</argument>
-        </argument>
-        <argument>0</argument>
       </call>
     </service>
     <service id="debug.controller_resolver" class="Symfony\Component\HttpKernel\Controller\TraceableControllerResolver" public="false">
@@ -2693,6 +2722,434 @@
     <service id="mime_types" class="Symfony\Component\Mime\MimeTypes" public="false">
       <call method="setDefault">
         <argument type="service" id="mime_types"/>
+      </call>
+    </service>
+    <service id="maker.file_manager" class="Symfony\Bundle\MakerBundle\FileManager" public="false">
+      <argument type="service" id="filesystem"/>
+      <argument type="service" id="maker.autoloader_util"/>
+      <argument>C:\xampp\htdocs\proyectoviajes</argument>
+      <argument>C:\xampp\htdocs\proyectoviajes/templates</argument>
+    </service>
+    <service id="maker.autoloader_finder" class="Symfony\Bundle\MakerBundle\Util\ComposerAutoloaderFinder" public="false">
+      <argument>App</argument>
+    </service>
+    <service id="maker.autoloader_util" class="Symfony\Bundle\MakerBundle\Util\AutoloaderUtil" public="false">
+      <argument type="service" id="maker.autoloader_finder"/>
+    </service>
+    <service id="maker.event_registry" class="Symfony\Bundle\MakerBundle\EventRegistry" public="false">
+      <argument type="service" id="debug.event_dispatcher"/>
+    </service>
+    <service id="maker.console_error_listener" class="Symfony\Bundle\MakerBundle\Event\ConsoleErrorSubscriber" public="false">
+      <tag name="kernel.event_subscriber"/>
+    </service>
+    <service id="maker.doctrine_helper" class="Symfony\Bundle\MakerBundle\Doctrine\DoctrineHelper" public="false">
+      <argument>App\Entity</argument>
+      <argument type="service" id="doctrine" on-invalid="ignore"/>
+    </service>
+    <service id="maker.auto_command.abstract" class="Symfony\Bundle\MakerBundle\Command\MakerCommand" public="false" abstract="true">
+      <argument></argument>
+      <argument type="service" id="maker.file_manager"/>
+      <argument type="service" id="maker.generator"/>
+    </service>
+    <service id="maker.generator" class="Symfony\Bundle\MakerBundle\Generator" public="false">
+      <argument type="service" id="maker.file_manager"/>
+      <argument>App</argument>
+    </service>
+    <service id="maker.entity_class_generator" class="Symfony\Bundle\MakerBundle\Doctrine\EntityClassGenerator" public="false">
+      <argument type="service" id="maker.generator"/>
+    </service>
+    <service id="maker.user_class_builder" class="Symfony\Bundle\MakerBundle\Security\UserClassBuilder" public="false"/>
+    <service id="maker.security_config_updater" class="Symfony\Bundle\MakerBundle\Security\SecurityConfigUpdater" public="false"/>
+    <service id="maker.renderer.form_type_renderer" class="Symfony\Bundle\MakerBundle\Renderer\FormTypeRenderer" public="false">
+      <argument type="service" id="maker.generator"/>
+    </service>
+    <service id="maker.maker.make_authenticator" class="Symfony\Bundle\MakerBundle\Maker\MakeAuthenticator" public="false">
+      <tag name="maker.command"/>
+      <argument type="service" id="maker.file_manager"/>
+      <argument type="service" id="maker.security_config_updater"/>
+      <argument type="service" id="maker.generator"/>
+      <argument type="service" id="maker.doctrine_helper"/>
+    </service>
+    <service id="maker.maker.make_command" class="Symfony\Bundle\MakerBundle\Maker\MakeCommand" public="false">
+      <tag name="maker.command"/>
+    </service>
+    <service id="maker.maker.make_controller" class="Symfony\Bundle\MakerBundle\Maker\MakeController" public="false">
+      <tag name="maker.command"/>
+      <argument type="service" id="maker.file_manager"/>
+    </service>
+    <service id="maker.maker.make_crud" class="Symfony\Bundle\MakerBundle\Maker\MakeCrud" public="false">
+      <tag name="maker.command"/>
+      <argument type="service" id="maker.doctrine_helper"/>
+      <argument type="service" id="maker.renderer.form_type_renderer"/>
+    </service>
+    <service id="maker.maker.make_entity" class="Symfony\Bundle\MakerBundle\Maker\MakeEntity" public="false">
+      <tag name="maker.command"/>
+      <argument type="service" id="maker.file_manager"/>
+      <argument type="service" id="maker.doctrine_helper"/>
+      <argument>C:\xampp\htdocs\proyectoviajes</argument>
+      <argument type="service" id="maker.generator"/>
+    </service>
+    <service id="maker.maker.make_fixtures" class="Symfony\Bundle\MakerBundle\Maker\MakeFixtures" public="false">
+      <tag name="maker.command"/>
+    </service>
+    <service id="maker.maker.make_form" class="Symfony\Bundle\MakerBundle\Maker\MakeForm" public="false">
+      <tag name="maker.command"/>
+      <argument type="service" id="maker.doctrine_helper"/>
+      <argument type="service" id="maker.renderer.form_type_renderer"/>
+    </service>
+    <service id="maker.maker.make_functional_test" class="Symfony\Bundle\MakerBundle\Maker\MakeFunctionalTest" public="false">
+      <tag name="maker.command"/>
+    </service>
+    <service id="maker.maker.make_registration_form" class="Symfony\Bundle\MakerBundle\Maker\MakeRegistrationForm" public="false">
+      <tag name="maker.command"/>
+      <argument type="service" id="maker.file_manager"/>
+      <argument type="service" id="maker.renderer.form_type_renderer"/>
+      <argument type="service" id="router.default"/>
+    </service>
+    <service id="maker.maker.make_serializer_encoder" class="Symfony\Bundle\MakerBundle\Maker\MakeSerializerEncoder" public="false">
+      <tag name="maker.command"/>
+    </service>
+    <service id="maker.maker.make_serializer_normalizer" class="Symfony\Bundle\MakerBundle\Maker\MakeSerializerNormalizer" public="false">
+      <tag name="maker.command"/>
+    </service>
+    <service id="maker.maker.make_subscriber" class="Symfony\Bundle\MakerBundle\Maker\MakeSubscriber" public="false">
+      <tag name="maker.command"/>
+      <argument type="service" id="maker.event_registry"/>
+    </service>
+    <service id="maker.maker.make_twig_extension" class="Symfony\Bundle\MakerBundle\Maker\MakeTwigExtension" public="false">
+      <tag name="maker.command"/>
+    </service>
+    <service id="maker.maker.make_unit_test" class="Symfony\Bundle\MakerBundle\Maker\MakeUnitTest" public="false">
+      <tag name="maker.command"/>
+    </service>
+    <service id="maker.maker.make_validator" class="Symfony\Bundle\MakerBundle\Maker\MakeValidator" public="false">
+      <tag name="maker.command"/>
+    </service>
+    <service id="maker.maker.make_voter" class="Symfony\Bundle\MakerBundle\Maker\MakeVoter" public="false">
+      <tag name="maker.command"/>
+    </service>
+    <service id="maker.maker.make_user" class="Symfony\Bundle\MakerBundle\Maker\MakeUser" public="false">
+      <tag name="maker.command"/>
+      <argument type="service" id="maker.file_manager"/>
+      <argument type="service" id="maker.user_class_builder"/>
+      <argument type="service" id="maker.security_config_updater"/>
+    </service>
+    <service id="maker.maker.make_migration" class="Symfony\Bundle\MakerBundle\Maker\MakeMigration" public="false">
+      <tag name="maker.command"/>
+      <argument>C:\xampp\htdocs\proyectoviajes</argument>
+    </service>
+    <service id="twig" class="Twig\Environment" public="true">
+      <argument type="service" id="twig.loader.native_filesystem"/>
+      <argument type="collection">
+        <argument key="default_path">C:\xampp\htdocs\proyectoviajes/templates</argument>
+        <argument key="debug">true</argument>
+        <argument key="strict_variables">true</argument>
+        <argument key="exception_controller">twig.controller.exception::showAction</argument>
+        <argument key="form_themes" type="collection">
+          <argument>form_div_layout.html.twig</argument>
+        </argument>
+        <argument key="autoescape">name</argument>
+        <argument key="cache">C:\xampp\htdocs\proyectoviajes\var\cache\dev/twig</argument>
+        <argument key="charset">UTF-8</argument>
+        <argument key="paths" type="collection"/>
+        <argument key="date" type="collection">
+          <argument key="format">F j, Y H:i</argument>
+          <argument key="interval_format">%d days</argument>
+          <argument key="timezone">null</argument>
+        </argument>
+        <argument key="number_format" type="collection">
+          <argument key="decimals">0</argument>
+          <argument key="decimal_point">.</argument>
+          <argument key="thousands_separator">,</argument>
+        </argument>
+      </argument>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.security_csrf"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.profiler"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.trans"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.assets"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.code"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.routing"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.yaml"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.debug.stopwatch"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.expression"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.httpkernel"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.httpfoundation"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.weblink"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.form"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.logout_url"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.security"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.dump"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="doctrine.twig.doctrine_extension"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.webprofiler"/>
+      </call>
+      <call method="addGlobal">
+        <argument>app</argument>
+        <argument type="service" id="twig.app_variable"/>
+      </call>
+      <call method="addRuntimeLoader">
+        <argument type="service" id="twig.runtime_loader"/>
+      </call>
+      <configurator service="twig.configurator.environment" method="configure"/>
+    </service>
+    <service id="twig.app_variable" class="Symfony\Bridge\Twig\AppVariable" public="false">
+      <call method="setEnvironment">
+        <argument>dev</argument>
+      </call>
+      <call method="setDebug">
+        <argument>true</argument>
+      </call>
+      <call method="setTokenStorage">
+        <argument type="service" id="security.token_storage" on-invalid="ignore"/>
+      </call>
+      <call method="setRequestStack">
+        <argument type="service" id="request_stack" on-invalid="ignore"/>
+      </call>
+    </service>
+    <service id="twig.cache_warmer" class="Symfony\Bundle\TwigBundle\CacheWarmer\TemplateCacheCacheWarmer" public="false">
+      <tag name="kernel.cache_warmer"/>
+      <tag name="container.service_subscriber" id="twig"/>
+      <argument type="service" id=".service_locator.lSIKWsr.twig.cache_warmer"/>
+      <argument>null</argument>
+      <argument type="collection">
+        <argument key="C:\xampp\htdocs\proyectoviajes\vendor\symfony\twig-bridge/Resources/views/Form">null</argument>
+      </argument>
+    </service>
+    <service id="twig.template_iterator" class="Symfony\Bundle\TwigBundle\TemplateIterator" public="false">
+      <argument type="service" id="kernel"/>
+      <argument>C:\xampp\htdocs\proyectoviajes\src</argument>
+      <argument type="collection">
+        <argument key="C:\xampp\htdocs\proyectoviajes\vendor\symfony\twig-bridge/Resources/views/Form">null</argument>
+      </argument>
+      <argument>C:\xampp\htdocs\proyectoviajes/templates</argument>
+    </service>
+    <service id="twig.template_cache_warmer" class="Symfony\Bundle\TwigBundle\CacheWarmer\TemplateCacheWarmer" public="false">
+      <tag name="kernel.cache_warmer"/>
+      <tag name="container.service_subscriber" id="twig"/>
+      <argument type="service" id=".service_locator.lSIKWsr.twig.template_cache_warmer"/>
+      <argument type="service" id="twig.template_iterator"/>
+    </service>
+    <service id="twig.loader.native_filesystem" class="Symfony\Bundle\TwigBundle\Loader\NativeFilesystemLoader" public="false">
+      <tag name="twig.loader"/>
+      <argument type="collection"/>
+      <argument>C:\xampp\htdocs\proyectoviajes</argument>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\framework-bundle/Resources/views</argument>
+        <argument>Framework</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\framework-bundle/Resources/views</argument>
+        <argument>!Framework</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\twig-bundle/Resources/views</argument>
+        <argument>Twig</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\twig-bundle/Resources/views</argument>
+        <argument>!Twig</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\proyectoviajes\vendor\doctrine\doctrine-bundle/Resources/views</argument>
+        <argument>Doctrine</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\proyectoviajes\vendor\doctrine\doctrine-bundle/Resources/views</argument>
+        <argument>!Doctrine</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\security-bundle/Resources/views</argument>
+        <argument>Security</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\security-bundle/Resources/views</argument>
+        <argument>!Security</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\swiftmailer-bundle/Resources/views</argument>
+        <argument>Swiftmailer</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\swiftmailer-bundle/Resources/views</argument>
+        <argument>!Swiftmailer</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\web-profiler-bundle/Resources/views</argument>
+        <argument>WebProfiler</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\web-profiler-bundle/Resources/views</argument>
+        <argument>!WebProfiler</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\debug-bundle/Resources/views</argument>
+        <argument>Debug</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\debug-bundle/Resources/views</argument>
+        <argument>!Debug</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\proyectoviajes/templates</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\twig-bridge/Resources/views/Form</argument>
+      </call>
+    </service>
+    <service id="twig.loader.chain" class="Twig\Loader\ChainLoader" public="false"/>
+    <service id="twig.extension.profiler" class="Symfony\Bridge\Twig\Extension\ProfilerExtension" public="false">
+      <tag name="twig.extension"/>
+      <argument type="service" id="twig.profile"/>
+      <argument type="service" id="debug.stopwatch" on-invalid="null"/>
+    </service>
+    <service id="twig.profile" class="Twig\Profiler\Profile" public="false"/>
+    <service id="data_collector.twig" class="Symfony\Bridge\Twig\DataCollector\TwigDataCollector" public="false">
+      <tag name="data_collector" template="@WebProfiler/Collector/twig.html.twig" id="twig" priority="257"/>
+      <argument type="service" id="twig.profile"/>
+      <argument type="service" id="twig"/>
+    </service>
+    <service id="twig.extension.trans" class="Symfony\Bridge\Twig\Extension\TranslationExtension" public="false">
+      <tag name="twig.extension"/>
+      <argument type="service" id="translator.data_collector" on-invalid="null"/>
+    </service>
+    <service id="twig.extension.assets" class="Symfony\Bridge\Twig\Extension\AssetExtension" public="false">
+      <tag name="twig.extension"/>
+      <argument type="service" id="assets.packages"/>
+    </service>
+    <service id="twig.extension.code" class="Symfony\Bridge\Twig\Extension\CodeExtension" public="false">
+      <tag name="twig.extension"/>
+      <argument type="service" id="debug.file_link_formatter" on-invalid="ignore"/>
+      <argument>C:\xampp\htdocs\proyectoviajes</argument>
+      <argument>UTF-8</argument>
+    </service>
+    <service id="twig.extension.routing" class="Symfony\Bridge\Twig\Extension\RoutingExtension" public="false">
+      <tag name="twig.extension"/>
+      <argument type="service" id="router.default"/>
+    </service>
+    <service id="twig.extension.yaml" class="Symfony\Bridge\Twig\Extension\YamlExtension" public="false">
+      <tag name="twig.extension"/>
+    </service>
+    <service id="twig.extension.debug.stopwatch" class="Symfony\Bridge\Twig\Extension\StopwatchExtension" public="false">
+      <tag name="twig.extension"/>
+      <argument type="service" id="debug.stopwatch" on-invalid="ignore"/>
+      <argument>true</argument>
+    </service>
+    <service id="twig.extension.expression" class="Symfony\Bridge\Twig\Extension\ExpressionExtension" public="false">
+      <tag name="twig.extension"/>
+    </service>
+    <service id="twig.extension.httpkernel" class="Symfony\Bridge\Twig\Extension\HttpKernelExtension" public="false">
+      <tag name="twig.extension"/>
+    </service>
+    <service id="twig.runtime.httpkernel" class="Symfony\Bridge\Twig\Extension\HttpKernelRuntime" public="false">
+      <tag name="twig.runtime"/>
+      <argument type="service" id="fragment.handler"/>
+    </service>
+    <service id="twig.extension.httpfoundation" class="Symfony\Bridge\Twig\Extension\HttpFoundationExtension" public="false">
+      <tag name="twig.extension"/>
+      <argument type="service" id="url_helper"/>
+    </service>
+    <service id="twig.extension.debug" class="Twig\Extension\DebugExtension" public="false"/>
+    <service id="twig.extension.weblink" class="Symfony\Bridge\Twig\Extension\WebLinkExtension" public="false">
+      <tag name="twig.extension"/>
+      <argument type="service" id="request_stack"/>
+    </service>
+    <service id="twig.translation.extractor" class="Symfony\Bridge\Twig\Translation\TwigExtractor" public="false">
+      <tag name="translation.extractor" alias="twig"/>
+      <argument type="service" id="twig"/>
+    </service>
+    <service id="twig.exception_listener" class="Symfony\Component\HttpKernel\EventListener\ExceptionListener" public="false">
+      <tag name="kernel.event_subscriber"/>
+      <tag name="monolog.logger" channel="request"/>
+      <argument>twig.controller.exception::showAction</argument>
+      <argument type="service" id="monolog.logger.request" on-invalid="null"/>
+      <argument>true</argument>
+    </service>
+    <service id="twig.controller.exception" class="Symfony\Bundle\TwigBundle\Controller\ExceptionController" public="true">
+      <argument type="service" id="twig"/>
+      <argument>true</argument>
+    </service>
+    <service id="twig.controller.preview_error" class="Symfony\Bundle\TwigBundle\Controller\PreviewErrorController" public="true">
+      <argument type="service" id="http_kernel"/>
+      <argument>twig.controller.exception::showAction</argument>
+    </service>
+    <service id="twig.configurator.environment" class="Symfony\Bundle\TwigBundle\DependencyInjection\Configurator\EnvironmentConfigurator" public="false">
+      <argument>F j, Y H:i</argument>
+      <argument>%d days</argument>
+      <argument>null</argument>
+      <argument>0</argument>
+      <argument>.</argument>
+      <argument>,</argument>
+    </service>
+    <service id="twig.runtime_loader" class="Twig\RuntimeLoader\ContainerRuntimeLoader" public="false">
+      <argument type="service" id=".service_locator.uxa.tru"/>
+    </service>
+    <service id="twig.extension.form" class="Symfony\Bridge\Twig\Extension\FormExtension" public="false">
+      <tag name="twig.extension"/>
+      <argument type="collection">
+        <argument type="service" id="service_container"/>
+        <argument>twig.form.renderer</argument>
+      </argument>
+    </service>
+    <service id="twig.form.engine" class="Symfony\Bridge\Twig\Form\TwigRendererEngine" public="false">
+      <argument>%twig.form.resources%</argument>
+      <argument type="service" id="twig"/>
+    </service>
+    <service id="twig.form.renderer" class="Symfony\Component\Form\FormRenderer" public="false">
+      <tag name="twig.runtime"/>
+      <argument type="service" id="twig.form.engine"/>
+      <argument type="service" id="security.csrf.token_manager" on-invalid="null"/>
+    </service>
+    <service id="twig.command.debug" class="Symfony\Bridge\Twig\Command\DebugCommand" public="false">
+      <tag name="console.command" command="debug:twig"/>
+      <argument type="service" id="twig"/>
+      <argument>C:\xampp\htdocs\proyectoviajes</argument>
+      <argument>%kernel.bundles_metadata%</argument>
+      <argument>C:\xampp\htdocs\proyectoviajes/templates</argument>
+      <argument>C:\xampp\htdocs\proyectoviajes\src</argument>
+      <argument type="service" id="debug.file_link_formatter" on-invalid="null"/>
+      <call method="setName">
+        <argument>debug:twig</argument>
+      </call>
+    </service>
+    <service id="twig.command.lint" class="Symfony\Bundle\TwigBundle\Command\LintCommand" public="false">
+      <tag name="console.command" command="lint:twig"/>
+      <argument type="service" id="twig"/>
+      <call method="setName">
+        <argument>lint:twig</argument>
       </call>
     </service>
     <service id="sensio_framework_extra.controller.listener" class="Sensio\Bundle\FrameworkExtraBundle\EventListener\ControllerListener" public="false">
@@ -3817,320 +4274,6 @@
     <service id="swiftmailer.mailer.default.plugin.messagelogger" class="Swift_Plugins_MessageLogger" public="true">
       <tag name="swiftmailer.default.plugin"/>
     </service>
-    <service id="twig" class="Twig\Environment" public="true">
-      <argument type="service" id="twig.loader.native_filesystem"/>
-      <argument type="collection">
-        <argument key="default_path">C:\xampp\htdocs\proyectoviajes/templates</argument>
-        <argument key="debug">true</argument>
-        <argument key="strict_variables">true</argument>
-        <argument key="exception_controller">twig.controller.exception::showAction</argument>
-        <argument key="form_themes" type="collection">
-          <argument>form_div_layout.html.twig</argument>
-        </argument>
-        <argument key="autoescape">name</argument>
-        <argument key="cache">C:\xampp\htdocs\proyectoviajes\var\cache\dev/twig</argument>
-        <argument key="charset">UTF-8</argument>
-        <argument key="paths" type="collection"/>
-        <argument key="date" type="collection">
-          <argument key="format">F j, Y H:i</argument>
-          <argument key="interval_format">%d days</argument>
-          <argument key="timezone">null</argument>
-        </argument>
-        <argument key="number_format" type="collection">
-          <argument key="decimals">0</argument>
-          <argument key="decimal_point">.</argument>
-          <argument key="thousands_separator">,</argument>
-        </argument>
-      </argument>
-      <call method="addExtension">
-        <argument type="service" id="twig.extension.security_csrf"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="twig.extension.logout_url"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="twig.extension.security"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="twig.extension.profiler"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="twig.extension.trans"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="twig.extension.assets"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="twig.extension.code"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="twig.extension.routing"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="twig.extension.yaml"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="twig.extension.debug.stopwatch"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="twig.extension.expression"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="twig.extension.httpkernel"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="twig.extension.httpfoundation"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="twig.extension.weblink"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="twig.extension.form"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="twig.extension.dump"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="doctrine.twig.doctrine_extension"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="twig.extension.webprofiler"/>
-      </call>
-      <call method="addGlobal">
-        <argument>app</argument>
-        <argument type="service" id="twig.app_variable"/>
-      </call>
-      <call method="addRuntimeLoader">
-        <argument type="service" id="twig.runtime_loader"/>
-      </call>
-      <configurator service="twig.configurator.environment" method="configure"/>
-    </service>
-    <service id="twig.app_variable" class="Symfony\Bridge\Twig\AppVariable" public="false">
-      <call method="setEnvironment">
-        <argument>dev</argument>
-      </call>
-      <call method="setDebug">
-        <argument>true</argument>
-      </call>
-      <call method="setTokenStorage">
-        <argument type="service" id="security.token_storage" on-invalid="ignore"/>
-      </call>
-      <call method="setRequestStack">
-        <argument type="service" id="request_stack" on-invalid="ignore"/>
-      </call>
-    </service>
-    <service id="twig.cache_warmer" class="Symfony\Bundle\TwigBundle\CacheWarmer\TemplateCacheCacheWarmer" public="false">
-      <tag name="kernel.cache_warmer"/>
-      <tag name="container.service_subscriber" id="twig"/>
-      <argument type="service" id=".service_locator.lSIKWsr.twig.cache_warmer"/>
-      <argument>null</argument>
-      <argument type="collection">
-        <argument key="C:\xampp\htdocs\proyectoviajes\vendor\symfony\twig-bridge/Resources/views/Form">null</argument>
-      </argument>
-    </service>
-    <service id="twig.template_iterator" class="Symfony\Bundle\TwigBundle\TemplateIterator" public="false">
-      <argument type="service" id="kernel"/>
-      <argument>C:\xampp\htdocs\proyectoviajes\src</argument>
-      <argument type="collection">
-        <argument key="C:\xampp\htdocs\proyectoviajes\vendor\symfony\twig-bridge/Resources/views/Form">null</argument>
-      </argument>
-      <argument>C:\xampp\htdocs\proyectoviajes/templates</argument>
-    </service>
-    <service id="twig.template_cache_warmer" class="Symfony\Bundle\TwigBundle\CacheWarmer\TemplateCacheWarmer" public="false">
-      <tag name="kernel.cache_warmer"/>
-      <tag name="container.service_subscriber" id="twig"/>
-      <argument type="service" id=".service_locator.lSIKWsr.twig.template_cache_warmer"/>
-      <argument type="service" id="twig.template_iterator"/>
-    </service>
-    <service id="twig.loader.native_filesystem" class="Symfony\Bundle\TwigBundle\Loader\NativeFilesystemLoader" public="false">
-      <tag name="twig.loader"/>
-      <argument type="collection"/>
-      <argument>C:\xampp\htdocs\proyectoviajes</argument>
-      <call method="addPath">
-        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\framework-bundle/Resources/views</argument>
-        <argument>Framework</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\framework-bundle/Resources/views</argument>
-        <argument>!Framework</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\xampp\htdocs\proyectoviajes\vendor\doctrine\doctrine-bundle/Resources/views</argument>
-        <argument>Doctrine</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\xampp\htdocs\proyectoviajes\vendor\doctrine\doctrine-bundle/Resources/views</argument>
-        <argument>!Doctrine</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\security-bundle/Resources/views</argument>
-        <argument>Security</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\security-bundle/Resources/views</argument>
-        <argument>!Security</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\swiftmailer-bundle/Resources/views</argument>
-        <argument>Swiftmailer</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\swiftmailer-bundle/Resources/views</argument>
-        <argument>!Swiftmailer</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\twig-bundle/Resources/views</argument>
-        <argument>Twig</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\twig-bundle/Resources/views</argument>
-        <argument>!Twig</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\web-profiler-bundle/Resources/views</argument>
-        <argument>WebProfiler</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\web-profiler-bundle/Resources/views</argument>
-        <argument>!WebProfiler</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\debug-bundle/Resources/views</argument>
-        <argument>Debug</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\debug-bundle/Resources/views</argument>
-        <argument>!Debug</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\xampp\htdocs\proyectoviajes/templates</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\xampp\htdocs\proyectoviajes\vendor\symfony\twig-bridge/Resources/views/Form</argument>
-      </call>
-    </service>
-    <service id="twig.loader.chain" class="Twig\Loader\ChainLoader" public="false"/>
-    <service id="twig.extension.profiler" class="Symfony\Bridge\Twig\Extension\ProfilerExtension" public="false">
-      <tag name="twig.extension"/>
-      <argument type="service" id="twig.profile"/>
-      <argument type="service" id="debug.stopwatch" on-invalid="null"/>
-    </service>
-    <service id="twig.profile" class="Twig\Profiler\Profile" public="false"/>
-    <service id="data_collector.twig" class="Symfony\Bridge\Twig\DataCollector\TwigDataCollector" public="false">
-      <tag name="data_collector" template="@WebProfiler/Collector/twig.html.twig" id="twig" priority="257"/>
-      <argument type="service" id="twig.profile"/>
-      <argument type="service" id="twig"/>
-    </service>
-    <service id="twig.extension.trans" class="Symfony\Bridge\Twig\Extension\TranslationExtension" public="false">
-      <tag name="twig.extension"/>
-      <argument type="service" id="translator.data_collector" on-invalid="null"/>
-    </service>
-    <service id="twig.extension.assets" class="Symfony\Bridge\Twig\Extension\AssetExtension" public="false">
-      <tag name="twig.extension"/>
-      <argument type="service" id="assets.packages"/>
-    </service>
-    <service id="twig.extension.code" class="Symfony\Bridge\Twig\Extension\CodeExtension" public="false">
-      <tag name="twig.extension"/>
-      <argument type="service" id="debug.file_link_formatter" on-invalid="ignore"/>
-      <argument>C:\xampp\htdocs\proyectoviajes</argument>
-      <argument>UTF-8</argument>
-    </service>
-    <service id="twig.extension.routing" class="Symfony\Bridge\Twig\Extension\RoutingExtension" public="false">
-      <tag name="twig.extension"/>
-      <argument type="service" id="router.default"/>
-    </service>
-    <service id="twig.extension.yaml" class="Symfony\Bridge\Twig\Extension\YamlExtension" public="false">
-      <tag name="twig.extension"/>
-    </service>
-    <service id="twig.extension.debug.stopwatch" class="Symfony\Bridge\Twig\Extension\StopwatchExtension" public="false">
-      <tag name="twig.extension"/>
-      <argument type="service" id="debug.stopwatch" on-invalid="ignore"/>
-      <argument>true</argument>
-    </service>
-    <service id="twig.extension.expression" class="Symfony\Bridge\Twig\Extension\ExpressionExtension" public="false">
-      <tag name="twig.extension"/>
-    </service>
-    <service id="twig.extension.httpkernel" class="Symfony\Bridge\Twig\Extension\HttpKernelExtension" public="false">
-      <tag name="twig.extension"/>
-    </service>
-    <service id="twig.runtime.httpkernel" class="Symfony\Bridge\Twig\Extension\HttpKernelRuntime" public="false">
-      <tag name="twig.runtime"/>
-      <argument type="service" id="fragment.handler"/>
-    </service>
-    <service id="twig.extension.httpfoundation" class="Symfony\Bridge\Twig\Extension\HttpFoundationExtension" public="false">
-      <tag name="twig.extension"/>
-      <argument type="service" id="url_helper"/>
-    </service>
-    <service id="twig.extension.debug" class="Twig\Extension\DebugExtension" public="false"/>
-    <service id="twig.extension.weblink" class="Symfony\Bridge\Twig\Extension\WebLinkExtension" public="false">
-      <tag name="twig.extension"/>
-      <argument type="service" id="request_stack"/>
-    </service>
-    <service id="twig.translation.extractor" class="Symfony\Bridge\Twig\Translation\TwigExtractor" public="false">
-      <tag name="translation.extractor" alias="twig"/>
-      <argument type="service" id="twig"/>
-    </service>
-    <service id="twig.exception_listener" class="Symfony\Component\HttpKernel\EventListener\ExceptionListener" public="false">
-      <tag name="kernel.event_subscriber"/>
-      <tag name="monolog.logger" channel="request"/>
-      <argument>twig.controller.exception::showAction</argument>
-      <argument type="service" id="monolog.logger.request" on-invalid="null"/>
-      <argument>true</argument>
-    </service>
-    <service id="twig.controller.exception" class="Symfony\Bundle\TwigBundle\Controller\ExceptionController" public="true">
-      <argument type="service" id="twig"/>
-      <argument>true</argument>
-    </service>
-    <service id="twig.controller.preview_error" class="Symfony\Bundle\TwigBundle\Controller\PreviewErrorController" public="true">
-      <argument type="service" id="http_kernel"/>
-      <argument>twig.controller.exception::showAction</argument>
-    </service>
-    <service id="twig.configurator.environment" class="Symfony\Bundle\TwigBundle\DependencyInjection\Configurator\EnvironmentConfigurator" public="false">
-      <argument>F j, Y H:i</argument>
-      <argument>%d days</argument>
-      <argument>null</argument>
-      <argument>0</argument>
-      <argument>.</argument>
-      <argument>,</argument>
-    </service>
-    <service id="twig.runtime_loader" class="Twig\RuntimeLoader\ContainerRuntimeLoader" public="false">
-      <argument type="service" id=".service_locator.uxa.tru"/>
-    </service>
-    <service id="twig.extension.form" class="Symfony\Bridge\Twig\Extension\FormExtension" public="false">
-      <tag name="twig.extension"/>
-      <argument type="collection">
-        <argument type="service" id="service_container"/>
-        <argument>twig.form.renderer</argument>
-      </argument>
-    </service>
-    <service id="twig.form.engine" class="Symfony\Bridge\Twig\Form\TwigRendererEngine" public="false">
-      <argument>%twig.form.resources%</argument>
-      <argument type="service" id="twig"/>
-    </service>
-    <service id="twig.form.renderer" class="Symfony\Component\Form\FormRenderer" public="false">
-      <tag name="twig.runtime"/>
-      <argument type="service" id="twig.form.engine"/>
-      <argument type="service" id="security.csrf.token_manager" on-invalid="null"/>
-    </service>
-    <service id="twig.command.debug" class="Symfony\Bridge\Twig\Command\DebugCommand" public="false">
-      <tag name="console.command" command="debug:twig"/>
-      <argument type="service" id="twig"/>
-      <argument>C:\xampp\htdocs\proyectoviajes</argument>
-      <argument>%kernel.bundles_metadata%</argument>
-      <argument>C:\xampp\htdocs\proyectoviajes/templates</argument>
-      <argument>C:\xampp\htdocs\proyectoviajes\src</argument>
-      <argument type="service" id="debug.file_link_formatter" on-invalid="null"/>
-      <call method="setName">
-        <argument>debug:twig</argument>
-      </call>
-    </service>
-    <service id="twig.command.lint" class="Symfony\Bundle\TwigBundle\Command\LintCommand" public="false">
-      <tag name="console.command" command="lint:twig"/>
-      <argument type="service" id="twig"/>
-      <call method="setName">
-        <argument>lint:twig</argument>
-      </call>
-    </service>
     <service id=".2_HtmlDumper~ciet8q5" class="Symfony\Component\VarDumper\Dumper\HtmlDumper" public="false">
       <argument>null</argument>
       <argument>UTF-8</argument>
@@ -4336,120 +4479,6 @@
         <argument>server:dump</argument>
       </call>
     </service>
-    <service id="maker.file_manager" class="Symfony\Bundle\MakerBundle\FileManager" public="false">
-      <argument type="service" id="filesystem"/>
-      <argument type="service" id="maker.autoloader_util"/>
-      <argument>C:\xampp\htdocs\proyectoviajes</argument>
-      <argument>C:\xampp\htdocs\proyectoviajes/templates</argument>
-    </service>
-    <service id="maker.autoloader_finder" class="Symfony\Bundle\MakerBundle\Util\ComposerAutoloaderFinder" public="false">
-      <argument>App</argument>
-    </service>
-    <service id="maker.autoloader_util" class="Symfony\Bundle\MakerBundle\Util\AutoloaderUtil" public="false">
-      <argument type="service" id="maker.autoloader_finder"/>
-    </service>
-    <service id="maker.event_registry" class="Symfony\Bundle\MakerBundle\EventRegistry" public="false">
-      <argument type="service" id="debug.event_dispatcher"/>
-    </service>
-    <service id="maker.console_error_listener" class="Symfony\Bundle\MakerBundle\Event\ConsoleErrorSubscriber" public="false">
-      <tag name="kernel.event_subscriber"/>
-    </service>
-    <service id="maker.doctrine_helper" class="Symfony\Bundle\MakerBundle\Doctrine\DoctrineHelper" public="false">
-      <argument>App\Entity</argument>
-      <argument type="service" id="doctrine" on-invalid="ignore"/>
-    </service>
-    <service id="maker.auto_command.abstract" class="Symfony\Bundle\MakerBundle\Command\MakerCommand" public="false" abstract="true">
-      <argument></argument>
-      <argument type="service" id="maker.file_manager"/>
-      <argument type="service" id="maker.generator"/>
-    </service>
-    <service id="maker.generator" class="Symfony\Bundle\MakerBundle\Generator" public="false">
-      <argument type="service" id="maker.file_manager"/>
-      <argument>App</argument>
-    </service>
-    <service id="maker.entity_class_generator" class="Symfony\Bundle\MakerBundle\Doctrine\EntityClassGenerator" public="false">
-      <argument type="service" id="maker.generator"/>
-    </service>
-    <service id="maker.user_class_builder" class="Symfony\Bundle\MakerBundle\Security\UserClassBuilder" public="false"/>
-    <service id="maker.security_config_updater" class="Symfony\Bundle\MakerBundle\Security\SecurityConfigUpdater" public="false"/>
-    <service id="maker.renderer.form_type_renderer" class="Symfony\Bundle\MakerBundle\Renderer\FormTypeRenderer" public="false">
-      <argument type="service" id="maker.generator"/>
-    </service>
-    <service id="maker.maker.make_authenticator" class="Symfony\Bundle\MakerBundle\Maker\MakeAuthenticator" public="false">
-      <tag name="maker.command"/>
-      <argument type="service" id="maker.file_manager"/>
-      <argument type="service" id="maker.security_config_updater"/>
-      <argument type="service" id="maker.generator"/>
-      <argument type="service" id="maker.doctrine_helper"/>
-    </service>
-    <service id="maker.maker.make_command" class="Symfony\Bundle\MakerBundle\Maker\MakeCommand" public="false">
-      <tag name="maker.command"/>
-    </service>
-    <service id="maker.maker.make_controller" class="Symfony\Bundle\MakerBundle\Maker\MakeController" public="false">
-      <tag name="maker.command"/>
-      <argument type="service" id="maker.file_manager"/>
-    </service>
-    <service id="maker.maker.make_crud" class="Symfony\Bundle\MakerBundle\Maker\MakeCrud" public="false">
-      <tag name="maker.command"/>
-      <argument type="service" id="maker.doctrine_helper"/>
-      <argument type="service" id="maker.renderer.form_type_renderer"/>
-    </service>
-    <service id="maker.maker.make_entity" class="Symfony\Bundle\MakerBundle\Maker\MakeEntity" public="false">
-      <tag name="maker.command"/>
-      <argument type="service" id="maker.file_manager"/>
-      <argument type="service" id="maker.doctrine_helper"/>
-      <argument>C:\xampp\htdocs\proyectoviajes</argument>
-      <argument type="service" id="maker.generator"/>
-    </service>
-    <service id="maker.maker.make_fixtures" class="Symfony\Bundle\MakerBundle\Maker\MakeFixtures" public="false">
-      <tag name="maker.command"/>
-    </service>
-    <service id="maker.maker.make_form" class="Symfony\Bundle\MakerBundle\Maker\MakeForm" public="false">
-      <tag name="maker.command"/>
-      <argument type="service" id="maker.doctrine_helper"/>
-      <argument type="service" id="maker.renderer.form_type_renderer"/>
-    </service>
-    <service id="maker.maker.make_functional_test" class="Symfony\Bundle\MakerBundle\Maker\MakeFunctionalTest" public="false">
-      <tag name="maker.command"/>
-    </service>
-    <service id="maker.maker.make_registration_form" class="Symfony\Bundle\MakerBundle\Maker\MakeRegistrationForm" public="false">
-      <tag name="maker.command"/>
-      <argument type="service" id="maker.file_manager"/>
-      <argument type="service" id="maker.renderer.form_type_renderer"/>
-      <argument type="service" id="router.default"/>
-    </service>
-    <service id="maker.maker.make_serializer_encoder" class="Symfony\Bundle\MakerBundle\Maker\MakeSerializerEncoder" public="false">
-      <tag name="maker.command"/>
-    </service>
-    <service id="maker.maker.make_serializer_normalizer" class="Symfony\Bundle\MakerBundle\Maker\MakeSerializerNormalizer" public="false">
-      <tag name="maker.command"/>
-    </service>
-    <service id="maker.maker.make_subscriber" class="Symfony\Bundle\MakerBundle\Maker\MakeSubscriber" public="false">
-      <tag name="maker.command"/>
-      <argument type="service" id="maker.event_registry"/>
-    </service>
-    <service id="maker.maker.make_twig_extension" class="Symfony\Bundle\MakerBundle\Maker\MakeTwigExtension" public="false">
-      <tag name="maker.command"/>
-    </service>
-    <service id="maker.maker.make_unit_test" class="Symfony\Bundle\MakerBundle\Maker\MakeUnitTest" public="false">
-      <tag name="maker.command"/>
-    </service>
-    <service id="maker.maker.make_validator" class="Symfony\Bundle\MakerBundle\Maker\MakeValidator" public="false">
-      <tag name="maker.command"/>
-    </service>
-    <service id="maker.maker.make_voter" class="Symfony\Bundle\MakerBundle\Maker\MakeVoter" public="false">
-      <tag name="maker.command"/>
-    </service>
-    <service id="maker.maker.make_user" class="Symfony\Bundle\MakerBundle\Maker\MakeUser" public="false">
-      <tag name="maker.command"/>
-      <argument type="service" id="maker.file_manager"/>
-      <argument type="service" id="maker.user_class_builder"/>
-      <argument type="service" id="maker.security_config_updater"/>
-    </service>
-    <service id="maker.maker.make_migration" class="Symfony\Bundle\MakerBundle\Maker\MakeMigration" public="false">
-      <tag name="maker.command"/>
-      <argument>C:\xampp\htdocs\proyectoviajes</argument>
-    </service>
     <service id="web_server.command.server_run" class="Symfony\Bundle\WebServerBundle\Command\ServerRunCommand" public="false">
       <tag name="console.command" command="server:run"/>
       <argument>C:\xampp\htdocs\proyectoviajes/public</argument>
@@ -4488,6 +4517,15 @@
         <argument>server:log</argument>
       </call>
     </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\BuscadorController" class="App\Controller\BuscadorController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\BuscadorController" class="App\Controller\BuscadorController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\BuscadorController" class="App\Controller\BuscadorController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PackDentroController" class="App\Controller\PackDentroController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PackDentroController" class="App\Controller\PackDentroController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\PackDentroController" class="App\Controller\PackDentroController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PackagesController" class="App\Controller\PackagesController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PackagesController" class="App\Controller\PackagesController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\PackagesController" class="App\Controller\PackagesController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PaquetesgrupoController" class="App\Controller\PaquetesgrupoController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PaquetesgrupoController" class="App\Controller\PaquetesgrupoController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\PaquetesgrupoController" class="App\Controller\PaquetesgrupoController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -4952,6 +4990,24 @@
         <argument key="twig" type="service" id="twig" on-invalid="ignore"/>
       </argument>
     </service>
+    <service id=".service_locator.CDOTD6..App\Controller\BuscadorController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\BuscadorController"/>
+      <argument>App\Controller\BuscadorController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.CDOTD6." method="withContext"/>
+    </service>
+    <service id=".service_locator.CDOTD6..App\Controller\PackDentroController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\PackDentroController"/>
+      <argument>App\Controller\PackDentroController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.CDOTD6." method="withContext"/>
+    </service>
+    <service id=".service_locator.CDOTD6..App\Controller\PackagesController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\PackagesController"/>
+      <argument>App\Controller\PackagesController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.CDOTD6." method="withContext"/>
+    </service>
     <service id=".service_locator.CDOTD6..App\Controller\PaquetesgrupoController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\PaquetesgrupoController"/>
       <argument>App\Controller\PaquetesgrupoController</argument>
@@ -5087,6 +5143,8 @@
         <argument key="lint:xliff">console.command.xliff_lint</argument>
         <argument key="lint:yaml">console.command.yaml_lint</argument>
         <argument key="debug:form">console.command.form_debug</argument>
+        <argument key="debug:twig">twig.command.debug</argument>
+        <argument key="lint:twig">twig.command.lint</argument>
         <argument key="doctrine:database:create">doctrine.database_create_command</argument>
         <argument key="doctrine:database:drop">doctrine.database_drop_command</argument>
         <argument key="doctrine:generate:entities">doctrine.generate_entities_command</argument>
@@ -5111,8 +5169,6 @@
         <argument key="debug:swiftmailer">swiftmailer.command.debug</argument>
         <argument key="swiftmailer:email:send">swiftmailer.command.new_email</argument>
         <argument key="swiftmailer:spool:send">swiftmailer.command.send_email</argument>
-        <argument key="debug:twig">twig.command.debug</argument>
-        <argument key="lint:twig">twig.command.lint</argument>
         <argument key="server:dump">var_dumper.command.server_dump</argument>
         <argument key="server:run">web_server.command.server_run</argument>
         <argument key="server:start">web_server.command.server_start</argument>
@@ -5362,6 +5418,8 @@
     <service id="Symfony\Component\PropertyInfo\PropertyListExtractorInterface" alias="property_info" public="false"/>
     <service id="Symfony\Component\PropertyInfo\PropertyInitializableExtractorInterface" alias="property_info" public="false"/>
     <service id="Symfony\Contracts\HttpClient\HttpClientInterface" alias="http_client"/>
+    <service id="Twig_Environment" alias="twig" public="false"/>
+    <service id="Twig\Environment" alias="twig" public="false"/>
     <service id="sensio_framework_extra.converter.doctrine.orm.expression_language" alias="sensio_framework_extra.converter.doctrine.orm.expression_language.default" public="false"/>
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default" public="false"/>
     <service id="Doctrine\DBAL\Driver\Connection" alias="doctrine.dbal.default_connection" public="false"/>
@@ -5410,8 +5468,6 @@
     <service id="Swift_Mailer" alias="swiftmailer.mailer.default" public="false"/>
     <service id="Swift_Transport" alias="swiftmailer.mailer.default.transport.spool" public="false"/>
     <service id="mailer" alias="swiftmailer.mailer.default" public="true"/>
-    <service id="Twig_Environment" alias="twig" public="false"/>
-    <service id="Twig\Environment" alias="twig" public="false"/>
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger" public="false"/>
     <service id="argument_resolver.controller_locator" alias=".service_locator.9_yeNH1"/>
