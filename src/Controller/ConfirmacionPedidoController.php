@@ -13,7 +13,7 @@ class ConfirmacionPedidoController extends AbstractController
     public function index()
     {
         return $this->render('confirmacion_pedido/index.html.twig', [
-            'controller_name' => 'ConfirmacionPedidoController',
+            'controller_name' => 'confirmacionPedidoController',
         ]);
     }
 }
