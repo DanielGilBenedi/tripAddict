@@ -21,5 +21,4 @@ return [
     'paquetesgrupo' => [[], ['_controller' => 'App\\Controller\\PaquetesgrupoController::index'], [], [['text', '/paquetesgrupo']], [], []],
     'index' => [[], ['_controller' => 'App\\Controller\\TAController::index'], [], [['text', '/']], [], []],
     'contacto' => [[], ['_controller' => 'App\\Controller\\TAController::contacto'], [], [['text', '/contacto']], [], []],
-    'zzborrar2' => [[], ['_controller' => 'App\\Controller\\ZzborrarController::index'], [], [['text', '/zzborrar2']], [], []],
 ];

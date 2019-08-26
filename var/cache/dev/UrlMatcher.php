@@ -19,7 +19,6 @@ return [
         '/paquetesgrupo' => [[['_route' => 'paquetesgrupo', '_controller' => 'App\\Controller\\PaquetesgrupoController::index'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'index', '_controller' => 'App\\Controller\\TAController::index'], null, null, null, false, false, null]],
         '/contacto' => [[['_route' => 'contacto', '_controller' => 'App\\Controller\\TAController::contacto'], null, null, null, false, false, null]],
-        '/zzborrar2' => [[['_route' => 'zzborrar2', '_controller' => 'App\\Controller\\ZzborrarController::index'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
