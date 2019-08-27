@@ -12,23 +12,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class HotelServicio
 {
-    /**
+   /**
      * @var int
      *
-     * @ORM\Column(name="id_hotel", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idHotel;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_servicio", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     */
-    private $idServicio;
+    private $id;
 
     /**
      * @var string|null
@@ -37,16 +28,23 @@ class HotelServicio
      */
     private $anotacion;
 
-    public function getIdHotel(): ?int
-    {
-        return $this->idHotel;
-    }
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Hotel", inversedBy="hotelServicios")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $id_hotel;
 
-    public function getIdServicio(): ?int
-    {
-        return $this->idServicio;
-    }
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Servicio", inversedBy="hotelServicios")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $id_servicio;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+    
     public function getAnotacion(): ?string
     {
         return $this->anotacion;
@@ -55,6 +53,30 @@ class HotelServicio
     public function setAnotacion(?string $anotacion): self
     {
         $this->anotacion = $anotacion;
+
+        return $this;
+    }
+
+    public function getIdHotel(): ?Hotel
+    {
+        return $this->id_hotel;
+    }
+
+    public function setIdHotel(?Hotel $id_hotel): self
+    {
+        $this->id_hotel = $id_hotel;
+
+        return $this;
+    }
+
+    public function getIdServicio(): ?Servicio
+    {
+        return $this->id_servicio;
+    }
+
+    public function setIdServicio(?Servicio $id_servicio): self
+    {
+        $this->id_servicio = $id_servicio;
 
         return $this;
     }

@@ -15,30 +15,53 @@ class EstanciaPack
     /**
      * @var int
      *
-     * @ORM\Column(name="id_estancia", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idEstancia;
+    private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_pack", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Estancia", inversedBy="estanciaPacks")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $idPack;
+    private $id_estancia;
 
-    public function getIdEstancia(): ?int
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Pack", inversedBy="estanciaPacks")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $id_pack;
+
+    public function getId(): ?int
     {
-        return $this->idEstancia;
+        return $this->id;
     }
 
-    public function getIdPack(): ?int
+    public function getIdEstancia(): ?Estancia
     {
-        return $this->idPack;
+        return $this->id_estancia;
     }
+
+    public function setIdEstancia(?Estancia $id_estancia): self
+    {
+        $this->id_estancia = $id_estancia;
+
+        return $this;
+    }
+
+    public function getIdPack(): ?Pack
+    {
+        return $this->id_pack;
+    }
+
+    public function setIdPack(?Pack $id_pack): self
+    {
+        $this->id_pack = $id_pack;
+
+        return $this;
+    }
+
 
 
 }
