@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -104,6 +106,28 @@ class Hotel
      * @ORM\Column(name="imagen_portada", type="integer", nullable=true)
      */
     private $imagenPortada;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Estancia", mappedBy="id_hotel")
+     */
+    private $estancias;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ImagenesHotel", mappedBy="id_hotel")
+     */
+    private $imagenesHotels;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\HotelServicio", mappedBy="id_hotel")
+     */
+    private $hotelServicios;
+
+    public function __construct()
+    {
+        $this->estancias = new ArrayCollection();
+        $this->imagenesHotels = new ArrayCollection();
+        $this->hotelServicios = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -250,6 +274,99 @@ class Hotel
     public function setImagenPortada(?int $imagenPortada): self
     {
         $this->imagenPortada = $imagenPortada;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Estancia[]
+     */
+    public function getEstancias(): Collection
+    {
+        return $this->estancias;
+    }
+
+    public function addEstancia(Estancia $estancia): self
+    {
+        if (!$this->estancias->contains($estancia)) {
+            $this->estancias[] = $estancia;
+            $estancia->setIdHotel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEstancia(Estancia $estancia): self
+    {
+        if ($this->estancias->contains($estancia)) {
+            $this->estancias->removeElement($estancia);
+            // set the owning side to null (unless already changed)
+            if ($estancia->getIdHotel() === $this) {
+                $estancia->setIdHotel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ImagenesHotel[]
+     */
+    public function getImagenesHotels(): Collection
+    {
+        return $this->imagenesHotels;
+    }
+
+    public function addImagenesHotel(ImagenesHotel $imagenesHotel): self
+    {
+        if (!$this->imagenesHotels->contains($imagenesHotel)) {
+            $this->imagenesHotels[] = $imagenesHotel;
+            $imagenesHotel->setIdHotel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImagenesHotel(ImagenesHotel $imagenesHotel): self
+    {
+        if ($this->imagenesHotels->contains($imagenesHotel)) {
+            $this->imagenesHotels->removeElement($imagenesHotel);
+            // set the owning side to null (unless already changed)
+            if ($imagenesHotel->getIdHotel() === $this) {
+                $imagenesHotel->setIdHotel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|HotelServicio[]
+     */
+    public function getHotelServicios(): Collection
+    {
+        return $this->hotelServicios;
+    }
+
+    public function addHotelServicio(HotelServicio $hotelServicio): self
+    {
+        if (!$this->hotelServicios->contains($hotelServicio)) {
+            $this->hotelServicios[] = $hotelServicio;
+            $hotelServicio->setIdHotel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHotelServicio(HotelServicio $hotelServicio): self
+    {
+        if ($this->hotelServicios->contains($hotelServicio)) {
+            $this->hotelServicios->removeElement($hotelServicio);
+            // set the owning side to null (unless already changed)
+            if ($hotelServicio->getIdHotel() === $this) {
+                $hotelServicio->setIdHotel(null);
+            }
+        }
 
         return $this;
     }

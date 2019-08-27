@@ -21,19 +21,6 @@ class Pedido
      */
     private $id;
 
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="id_usuario", type="integer", nullable=true)
-     */
-    private $idUsuario;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="id_estancia", type="integer", nullable=true)
-     */
-    private $idEstancia;
 
     /**
      * @var float|null
@@ -63,33 +50,27 @@ class Pedido
      */
     private $fechaFin;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Pack", inversedBy="pedidos")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $id_pack;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="pedidos")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $id_usuario;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Estancia", inversedBy="pedidos")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $id_estancia;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdUsuario(): ?int
-    {
-        return $this->idUsuario;
-    }
-
-    public function setIdUsuario(?int $idUsuario): self
-    {
-        $this->idUsuario = $idUsuario;
-
-        return $this;
-    }
-
-    public function getIdEstancia(): ?int
-    {
-        return $this->idEstancia;
-    }
-
-    public function setIdEstancia(?int $idEstancia): self
-    {
-        $this->idEstancia = $idEstancia;
-
-        return $this;
     }
 
     public function getPrecio(): ?float
@@ -136,6 +117,42 @@ class Pedido
     public function setFechaFin(?\DateTimeInterface $fechaFin): self
     {
         $this->fechaFin = $fechaFin;
+
+        return $this;
+    }
+
+    public function getIdPack(): ?Pack
+    {
+        return $this->id_pack;
+    }
+
+    public function setIdPack(?Pack $id_pack): self
+    {
+        $this->id_pack = $id_pack;
+
+        return $this;
+    }
+
+    public function getIdUsuario(): ?User
+    {
+        return $this->id_usuario;
+    }
+
+    public function setIdUsuario(?User $id_usuario): self
+    {
+        $this->id_usuario = $id_usuario;
+
+        return $this;
+    }
+
+    public function getIdEstancia(): ?Estancia
+    {
+        return $this->id_estancia;
+    }
+
+    public function setIdEstancia(?Estancia $id_estancia): self
+    {
+        $this->id_estancia = $id_estancia;
 
         return $this;
     }

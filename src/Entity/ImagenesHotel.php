@@ -12,33 +12,38 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ImagenesHotel
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_hotel", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     */
-    private $idHotel;
+    
 
     /**
      * @var int
      *
-     * @ORM\Column(name="id_imagen", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idImagen;
+    private $id;
 
-    public function getIdHotel(): ?int
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Hotel", inversedBy="imagenesHotels")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $id_hotel;
+
+    public function getId(): ?int
     {
-        return $this->idHotel;
+        return $this->id;
     }
 
-    public function getIdImagen(): ?int
+    public function getIdHotel(): ?Hotel
     {
-        return $this->idImagen;
+        return $this->id_hotel;
     }
 
+    public function setIdHotel(?Hotel $id_hotel): self
+    {
+        $this->id_hotel = $id_hotel;
+
+        return $this;
+    }
 
 }

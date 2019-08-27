@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +37,16 @@ class Servicio
      */
     private $tipo;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\HotelServicio", mappedBy="id_servicio")
+     */
+    private $hotelServicios;
+
+    public function __construct()
+    {
+        $this->hotelServicios = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +72,37 @@ class Servicio
     public function setTipo(?string $tipo): self
     {
         $this->tipo = $tipo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|HotelServicio[]
+     */
+    public function getHotelServicios(): Collection
+    {
+        return $this->hotelServicios;
+    }
+
+    public function addHotelServicio(HotelServicio $hotelServicio): self
+    {
+        if (!$this->hotelServicios->contains($hotelServicio)) {
+            $this->hotelServicios[] = $hotelServicio;
+            $hotelServicio->setIdServicio($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHotelServicio(HotelServicio $hotelServicio): self
+    {
+        if ($this->hotelServicios->contains($hotelServicio)) {
+            $this->hotelServicios->removeElement($hotelServicio);
+            // set the owning side to null (unless already changed)
+            if ($hotelServicio->getIdServicio() === $this) {
+                $hotelServicio->setIdServicio(null);
+            }
+        }
 
         return $this;
     }
