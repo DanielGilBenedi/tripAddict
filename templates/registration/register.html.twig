@@ -3,13 +3,47 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    
+    <main class="login-form mt-4">
+        <div class="cotainer">
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-header text-center">Registro</div>
+                            <div class="card-body">
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword) }}
+                            
+                                {{ form_start(registrationForm) }}
+                                    <div class="input-group mb-2 ">
+    <div class="input-group-prepend "> 
+        <span class="input-group-text"><i class="fa fa-user-circle-o mr-1" aria-hidden="true"></i>
+        </span>  
+    </div>
+    {{ form_row(registrationForm.email) }}
+    <!--<input type="text" class="form-control" id="exampleInputEmail1"placeholder="Nombre Usuario">-->
+    
+</div>
+
+ <div class="input-group mb-2 ">
+    <div class="input-group-prepend "> 
+        <span class="input-group-text"><i class="fa fa-key mr-1" aria-hidden="true"></i>
+        </span>  
+    </div>
+      
+        {{ form_row(registrationForm.password) }}
+
+    <div>
         {{ form_row(registrationForm.agreeTerms) }}
 
-        <button class="btn">Register</button>
+        <button class="btn btn-primary btn-block mb-2">Regístrate</button>
     {{ form_end(registrationForm) }}
+
+    </div>    
+    </div>
+        </div>
+            </div>
+                </div>
+                    </div>
+                        </main>
+
 {% endblock %}
