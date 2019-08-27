@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,13 +22,6 @@ class Estancia
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="id_hotel", type="integer", nullable=true)
-     */
-    private $idHotel;
 
     /**
      * @var int|null
@@ -56,22 +51,34 @@ class Estancia
      */
     private $tipoPension;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Pedido", mappedBy="id_estancia")
+     */
+    private $pedidos;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\EstanciaPack", mappedBy="id_estancia")
+     */
+    private $estanciaPacks;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Hotel", inversedBy="estancias")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $id_hotel;
+
+    public function __construct()
+    {
+        $this->pedidos = new ArrayCollection();
+        $this->estanciaPacks = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdHotel(): ?int
-    {
-        return $this->idHotel;
-    }
-
-    public function setIdHotel(?int $idHotel): self
-    {
-        $this->idHotel = $idHotel;
-
-        return $this;
-    }
+    
 
     public function getNoches(): ?int
     {
@@ -117,6 +124,80 @@ class Estancia
     public function setTipoPension(?string $tipoPension): self
     {
         $this->tipoPension = $tipoPension;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Pedido[]
+     */
+    public function getPedidos(): Collection
+    {
+        return $this->pedidos;
+    }
+
+    public function addPedido(Pedido $pedido): self
+    {
+        if (!$this->pedidos->contains($pedido)) {
+            $this->pedidos[] = $pedido;
+            $pedido->setIdEstancia($this);
+        }
+
+        return $this;
+    }
+
+    public function removePedido(Pedido $pedido): self
+    {
+        if ($this->pedidos->contains($pedido)) {
+            $this->pedidos->removeElement($pedido);
+            // set the owning side to null (unless already changed)
+            if ($pedido->getIdEstancia() === $this) {
+                $pedido->setIdEstancia(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|EstanciaPack[]
+     */
+    public function getEstanciaPacks(): Collection
+    {
+        return $this->estanciaPacks;
+    }
+
+    public function addEstanciaPack(EstanciaPack $estanciaPack): self
+    {
+        if (!$this->estanciaPacks->contains($estanciaPack)) {
+            $this->estanciaPacks[] = $estanciaPack;
+            $estanciaPack->setIdEstancia($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEstanciaPack(EstanciaPack $estanciaPack): self
+    {
+        if ($this->estanciaPacks->contains($estanciaPack)) {
+            $this->estanciaPacks->removeElement($estanciaPack);
+            // set the owning side to null (unless already changed)
+            if ($estanciaPack->getIdEstancia() === $this) {
+                $estanciaPack->setIdEstancia(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getIdHotel(): ?Hotel
+    {
+        return $this->id_hotel;
+    }
+
+    public function setIdHotel(?Hotel $id_hotel): self
+    {
+        $this->id_hotel = $id_hotel;
 
         return $this;
     }
