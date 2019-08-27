@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FinCompraController!{% endblock %}
+
+    {% block stylesheets %}
+        <style>
+           
+        </style>
+    {% endblock %}
+
+{% block body %}
+
+    <div  class="container"> 
+
+        <div>
+            <ul class="list-group mb-2">
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <!-- [Contenedor de descripción del producto] -->
+                    <div>
+                        <h6 class="my-0"> Producto: </h6>
+                        <small class="text-muted"> Descripción </small>
+                    </div>
+
+                    <!-- [Contenedor de cantidad y precio] -->
+                    <div class="product-cart">
+                        <!-- [Cantidad] -->
+                        <div class="product-quantity">
+                            <div> Cantidad: </div>
+                            <input name="cantidad" value="1" class="input-text qty" type="hidden">
+                        </div>
+                        <!-- [Precio total] -->
+                        <div class="text-muted" value="1"> 19,90 € </div>
+                    </div>       
+                </li>
+
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label"> Nombre y apellidos: </label>
+                    <div class="col-sm-10">
+                    <p type="text" readonly class="form-control-plaintext" id="staticName"> Alejandro Daniel </p>
+                </div>
+
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label"> Email: </label>
+                <div class="col-sm-10">
+                <p type="text" readonly class="form-control-plaintext" id="staticName"> ponaquituemail@ejemplo.com </p>
+                </div>
+            </div>
+            </ul>
+        </div>
+    </div>
+
+    <div>
+        <div class="col-md-12 mb-5 mt-5">
+                <h4 class="mb-3 text-center"> Gracias. </h4>
+        </div>
+        
+        <div class="col-md-12 mb-5 mt-5">
+                <h4 class="mb-3 text-center"> Su compra ha sido procesada. En unos momentos recibirá un correo electrónico. </h4>
+        </div>
+    </div>
+
+{% endblock %}
