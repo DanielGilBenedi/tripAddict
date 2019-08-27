@@ -8,9 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class DetalleHotelController extends AbstractController
 {
     /**
-     * @Route("/detalle_hotel", name="detalle_hotel")
+     * @Route("/detalleHotel/{hotel}", name="detalleHotel")
      */
-    public function index()
+    public function index($hotel)
     {
         return $this->render('detalle_hotel/index.html.twig', [
             'controller_name' => 'DetalleHotelController',
