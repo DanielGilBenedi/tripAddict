@@ -9,3 +9,15 @@ composer update
 composer require symfony/maker-bundle --dev
 composer require doctrine/annotations --dev
 composer require symfony/twig-bundle
+
+BASE DE DATOS a incluir en el .env linea 27.
+
+Username: gYzJAgTW5s
+
+Database name: gYzJAgTW5s
+
+Password: BnMyFdLeVq
+
+Server: remotemysql.com
+
+Port: 3306
