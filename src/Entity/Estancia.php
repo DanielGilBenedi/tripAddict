@@ -51,10 +51,6 @@ class Estancia
      */
     private $tipoPension;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Pedido", mappedBy="id_estancia")
-     */
-    private $pedidos;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\EstanciaPack", mappedBy="id_estancia")
@@ -67,10 +63,16 @@ class Estancia
      */
     private $id_hotel;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\LineaPedido", mappedBy="id_estancia")
+     */
+    private $lineaPedidos;
+
     public function __construct()
     {
         $this->pedidos = new ArrayCollection();
         $this->estanciaPacks = new ArrayCollection();
+        $this->lineaPedidos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -128,36 +130,7 @@ class Estancia
         return $this;
     }
 
-    /**
-     * @return Collection|Pedido[]
-     */
-    public function getPedidos(): Collection
-    {
-        return $this->pedidos;
-    }
-
-    public function addPedido(Pedido $pedido): self
-    {
-        if (!$this->pedidos->contains($pedido)) {
-            $this->pedidos[] = $pedido;
-            $pedido->setIdEstancia($this);
-        }
-
-        return $this;
-    }
-
-    public function removePedido(Pedido $pedido): self
-    {
-        if ($this->pedidos->contains($pedido)) {
-            $this->pedidos->removeElement($pedido);
-            // set the owning side to null (unless already changed)
-            if ($pedido->getIdEstancia() === $this) {
-                $pedido->setIdEstancia(null);
-            }
-        }
-
-        return $this;
-    }
+   
 
     /**
      * @return Collection|EstanciaPack[]
@@ -198,6 +171,37 @@ class Estancia
     public function setIdHotel(?Hotel $id_hotel): self
     {
         $this->id_hotel = $id_hotel;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|LineaPedido[]
+     */
+    public function getLineaPedidos(): Collection
+    {
+        return $this->lineaPedidos;
+    }
+
+    public function addLineaPedido(LineaPedido $lineaPedido): self
+    {
+        if (!$this->lineaPedidos->contains($lineaPedido)) {
+            $this->lineaPedidos[] = $lineaPedido;
+            $lineaPedido->setIdEstancia($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLineaPedido(LineaPedido $lineaPedido): self
+    {
+        if ($this->lineaPedidos->contains($lineaPedido)) {
+            $this->lineaPedidos->removeElement($lineaPedido);
+            // set the owning side to null (unless already changed)
+            if ($lineaPedido->getIdEstancia() === $this) {
+                $lineaPedido->setIdEstancia(null);
+            }
+        }
 
         return $this;
     }

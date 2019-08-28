@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EstanciaPack index{% endblock %}
+
+{% block body %}
+    <h1>EstanciaPack index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for estancia_pack in estancia_packs %}
+            <tr>
+                <td>{{ estancia_pack.id }}</td>
+                <td>
+                    <a href="{{ path('estancia_pack_show', {'id': estancia_pack.id}) }}">show</a>
+                    <a href="{{ path('estancia_pack_edit', {'id': estancia_pack.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('estancia_pack_new') }}">Create new</a>
+{% endblock %}
