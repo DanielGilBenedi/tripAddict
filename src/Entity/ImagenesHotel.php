@@ -29,6 +29,11 @@ class ImagenesHotel
      */
     private $id_hotel;
 
+    /**
+     * @ORM\Column(type="string", length=1000)
+     */
+    private $url;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -42,6 +47,18 @@ class ImagenesHotel
     public function setIdHotel(?Hotel $id_hotel): self
     {
         $this->id_hotel = $id_hotel;
+
+        return $this;
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(string $url): self
+    {
+        $this->url = $url;
 
         return $this;
     }
