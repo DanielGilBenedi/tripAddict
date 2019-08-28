@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Estancia{% endblock %}
+
+{% block body %}
+    <h1>Create new Estancia</h1>
+
+    {{ include('estancia/_form.html.twig') }}
+
+    <a href="{{ path('estancia_index') }}">back to list</a>
+{% endblock %}

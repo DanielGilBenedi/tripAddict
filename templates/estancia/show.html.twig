@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Estancia{% endblock %}
+
+{% block body %}
+    <h1>Estancia</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ estancium.id }}</td>
+            </tr>
+            <tr>
+                <th>Noches</th>
+                <td>{{ estancium.noches }}</td>
+            </tr>
+            <tr>
+                <th>Personas</th>
+                <td>{{ estancium.personas }}</td>
+            </tr>
+            <tr>
+                <th>Habitacion</th>
+                <td>{{ estancium.habitacion }}</td>
+            </tr>
+            <tr>
+                <th>TipoPension</th>
+                <td>{{ estancium.tipoPension }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('estancia_index') }}">back to list</a>
+
+    <a href="{{ path('estancia_edit', {'id': estancium.id}) }}">edit</a>
+
+    {{ include('estancia/_delete_form.html.twig') }}
+{% endblock %}
