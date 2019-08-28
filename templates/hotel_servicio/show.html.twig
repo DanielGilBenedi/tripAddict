@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HotelServicio{% endblock %}
+
+{% block body %}
+    <h1>HotelServicio</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ hotel_servicio.id }}</td>
+            </tr>
+            <tr>
+                <th>Anotacion</th>
+                <td>{{ hotel_servicio.anotacion }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('hotel_servicio_index') }}">back to list</a>
+
+    <a href="{{ path('hotel_servicio_edit', {'id': hotel_servicio.id}) }}">edit</a>
+
+    {{ include('hotel_servicio/_delete_form.html.twig') }}
+{% endblock %}

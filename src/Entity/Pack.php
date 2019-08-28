@@ -58,20 +58,22 @@ class Pack
      */
     private $grupo;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Pedido", mappedBy="id_pack")
-     */
-    private $pedidos;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\EstanciaPack", mappedBy="id_pack")
      */
     private $estanciaPacks;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\LineaPedido", mappedBy="id_pack")
+     */
+    private $lineaPedidos;
+
     public function __construct()
     {
         $this->pedidos = new ArrayCollection();
         $this->estanciaPacks = new ArrayCollection();
+        $this->lineaPedidos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -140,37 +142,6 @@ class Pack
     }
 
     /**
-     * @return Collection|Pedido[]
-     */
-    public function getPedidos(): Collection
-    {
-        return $this->pedidos;
-    }
-
-    public function addPedido(Pedido $pedido): self
-    {
-        if (!$this->pedidos->contains($pedido)) {
-            $this->pedidos[] = $pedido;
-            $pedido->setIdPack($this);
-        }
-
-        return $this;
-    }
-
-    public function removePedido(Pedido $pedido): self
-    {
-        if ($this->pedidos->contains($pedido)) {
-            $this->pedidos->removeElement($pedido);
-            // set the owning side to null (unless already changed)
-            if ($pedido->getIdPack() === $this) {
-                $pedido->setIdPack(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|EstanciaPack[]
      */
     public function getEstanciaPacks(): Collection
@@ -195,6 +166,37 @@ class Pack
             // set the owning side to null (unless already changed)
             if ($estanciaPack->getIdPack() === $this) {
                 $estanciaPack->setIdPack(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|LineaPedido[]
+     */
+    public function getLineaPedidos(): Collection
+    {
+        return $this->lineaPedidos;
+    }
+
+    public function addLineaPedido(LineaPedido $lineaPedido): self
+    {
+        if (!$this->lineaPedidos->contains($lineaPedido)) {
+            $this->lineaPedidos[] = $lineaPedido;
+            $lineaPedido->setIdPack($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLineaPedido(LineaPedido $lineaPedido): self
+    {
+        if ($this->lineaPedidos->contains($lineaPedido)) {
+            $this->lineaPedidos->removeElement($lineaPedido);
+            // set the owning side to null (unless already changed)
+            if ($lineaPedido->getIdPack() === $this) {
+                $lineaPedido->setIdPack(null);
             }
         }
 
