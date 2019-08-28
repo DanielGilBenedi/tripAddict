@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,38 +25,13 @@ class Pedido
 
 
     /**
-     * @var float|null
-     *
-     * @ORM\Column(name="precio", type="float", precision=10, scale=0, nullable=true)
-     */
-    private $precio;
-
-    /**
-     * @var bool|null
-     *
-     * @ORM\Column(name="usado", type="boolean", nullable=true)
-     */
-    private $usado;
-
-    /**
      * @var \DateTime|null
      *
      * @ORM\Column(name="fecha", type="date", nullable=true)
      */
     private $fecha;
 
-    /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="fecha_fin", type="date", nullable=true)
-     */
-    private $fechaFin;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Pack", inversedBy="pedidos")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $id_pack;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="pedidos")
@@ -63,39 +40,23 @@ class Pedido
     private $id_usuario;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Estancia", inversedBy="pedidos")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToMany(targetEntity="App\Entity\LineaPedido", mappedBy="id_pedido")
      */
-    private $id_estancia;
+    private $lineaPedidos;
+
+    public function __construct()
+    {
+        $this->lineaPedidos = new ArrayCollection();
+    }
+
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getPrecio(): ?float
-    {
-        return $this->precio;
-    }
-
-    public function setPrecio(?float $precio): self
-    {
-        $this->precio = $precio;
-
-        return $this;
-    }
-
-    public function getUsado(): ?bool
-    {
-        return $this->usado;
-    }
-
-    public function setUsado(?bool $usado): self
-    {
-        $this->usado = $usado;
-
-        return $this;
-    }
+   
 
     public function getFecha(): ?\DateTimeInterface
     {
@@ -109,29 +70,6 @@ class Pedido
         return $this;
     }
 
-    public function getFechaFin(): ?\DateTimeInterface
-    {
-        return $this->fechaFin;
-    }
-
-    public function setFechaFin(?\DateTimeInterface $fechaFin): self
-    {
-        $this->fechaFin = $fechaFin;
-
-        return $this;
-    }
-
-    public function getIdPack(): ?Pack
-    {
-        return $this->id_pack;
-    }
-
-    public function setIdPack(?Pack $id_pack): self
-    {
-        $this->id_pack = $id_pack;
-
-        return $this;
-    }
 
     public function getIdUsuario(): ?User
     {
@@ -145,14 +83,33 @@ class Pedido
         return $this;
     }
 
-    public function getIdEstancia(): ?Estancia
+    /**
+     * @return Collection|LineaPedido[]
+     */
+    public function getLineaPedidos(): Collection
     {
-        return $this->id_estancia;
+        return $this->lineaPedidos;
     }
 
-    public function setIdEstancia(?Estancia $id_estancia): self
+    public function addLineaPedido(LineaPedido $lineaPedido): self
     {
-        $this->id_estancia = $id_estancia;
+        if (!$this->lineaPedidos->contains($lineaPedido)) {
+            $this->lineaPedidos[] = $lineaPedido;
+            $lineaPedido->setIdPedido($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLineaPedido(LineaPedido $lineaPedido): self
+    {
+        if ($this->lineaPedidos->contains($lineaPedido)) {
+            $this->lineaPedidos->removeElement($lineaPedido);
+            // set the owning side to null (unless already changed)
+            if ($lineaPedido->getIdPedido() === $this) {
+                $lineaPedido->setIdPedido(null);
+            }
+        }
 
         return $this;
     }
