@@ -15,18 +15,18 @@
         {% block stylesheets %}{% endblock %}
 
     </head>   
-    <body>
-        <div class="d-flex flex-column sticky-footer-wrapper">
-            <main id='main' role="main"  class="flex-fill">
+    <body >
+            <main id='main' role="main">
             
                 {{ include('menu.html.twig') }}
-            
-                {% block body %}{% endblock %}
+
+                <div class="container mt-4 mb-4" style='min-height:65vh;'  >
+                    {% block body %}{% endblock %}
+                </div>
             
                 {{ include('footer.html.twig') }}
 
             </main>
-        <div class="d-flex flex-column sticky-footer-wrapper">
    
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190827115052 extends AbstractMigration
+final class Version20190828094210 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,8 +22,7 @@ final class Version20190827115052 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('DROP TABLE imagen');
-        $this->addSql('ALTER TABLE imagenes_hotel ADD url VARCHAR(1000) NOT NULL');
+        $this->addSql('CREATE TABLE linea_pedido (id INT AUTO_INCREMENT NOT NULL, cantidad INT NOT NULL, precio DOUBLE PRECISION NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
     }
 
     public function down(Schema $schema) : void
@@ -31,7 +30,6 @@ final class Version20190827115052 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE imagen (id INT AUTO_INCREMENT NOT NULL, imagen VARCHAR(500) DEFAULT NULL COLLATE utf8mb4_unicode_ci, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB COMMENT = \'\' ');
-        $this->addSql('ALTER TABLE imagenes_hotel DROP url');
+        $this->addSql('DROP TABLE linea_pedido');
     }
 }
