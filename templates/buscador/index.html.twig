@@ -10,14 +10,13 @@
 
 {% block body %}
 
-<div class="mb-3 mt-3" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/9/9b/Cataratas_y_paisaje.jpg')">
+<div class="mb-3 mt-3" style="background-image:url('/images/cielo.jpg')">
     <div  class='p-2'>
         <div class="card-body panel-transparent">
             <div class='container'>
-                <form class="form-inline p-3 justify-content-around">
-
-                    <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect1">
+                <form class="form-inline p-3 justify-content-center row">
+                    <div class="form-group col-md-3">
+                            <select class="form-control w-100" id="exampleFormControlSelect1">
                                 <option> Tipo de estancia </option>
                                 <option> Tipo de estancia </option>
                                 <option> Tipo de estancia </option>
@@ -26,8 +25,8 @@
                             </select>
                     </div>
 
-                    <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect1">
+                    <div class="form-group col-md-3">
+                            <select class="form-control w-100" id="exampleFormControlSelect1">
                                 <option> Tema </option>
                                 <option> Tema </option>
                                 <option> Tema </option>
@@ -36,8 +35,8 @@
                             </select>
                     </div>
 
-                    <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect1">
+                    <div class="form-group col-md-3">
+                            <select class="form-control w-100" id="exampleFormControlSelect1">
                                 <option> ¿Precio? </option>
                                 <option> ¿Precio? </option>
                                 <option> ¿Precio? </option>
@@ -45,7 +44,9 @@
                                 <option> ¿Precio? </option>
                             </select>
                     </div>
-                    <button type="button" class="btn btn-info w-22"> ¡¡Encuentra tu viaje!! </button>
+                    <div class="form-group col-md-3">
+                        <button type="button" class="btn btn-info btn-block"> ¡¡Encuentra tu viaje!! </button>
+                    </div>
                 </form>
             </div>
         </div>   

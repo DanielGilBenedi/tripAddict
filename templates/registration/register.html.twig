@@ -5,19 +5,16 @@
 {% block body %}
 
 <main class="login-form">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header text-center">Formulario de registro</div>
-                            <div class="card-body">
-
-
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center">Formulario de registro</div>
+                    <div class="card-body">
                         {{ form_start(registrationForm) }}
                         <div class="input-group mb-2 ">
                             <div class="input-group-prepend ">
-                                <span class="input-group-text"><i class="fa fa-tag mr-1"
-                                        aria-hidden="true"></i>
+                                <span class="input-group-text"><i class="fa fa-tag mr-1" aria-hidden="true"></i>
                                 </span>
                             </div>
                             {{ form_widget(registrationForm.nombre) }}
@@ -26,19 +23,17 @@
                         </div>
                         <div class="input-group mb-2 ">
                             <div class="input-group-prepend ">
-                                <span class="input-group-text"><i class="fa fa-tag mr-1"
-                                        aria-hidden="true"></i>
+                                <span class="input-group-text"><i class="fa fa-tag mr-1" aria-hidden="true"></i>
                                 </span>
                             </div>
                             {{ form_widget(registrationForm.apellidos) }}
                             <!--<input type="text" class="form-control" id="exampleInputEmail1"placeholder="Nombre Usuario">-->
 
                         </div>
-                        
+
                         <div class="input-group mb-2 ">
                             <div class="input-group-prepend ">
-                                <span class="input-group-text"><i class="fa fa-envelope "
-                                        aria-hidden="true"></i>
+                                <span class="input-group-text"><i class="fa fa-envelope " aria-hidden="true"></i>
                                 </span>
                             </div>
                             {{ form_widget(registrationForm.email) }}
@@ -56,8 +51,7 @@
 
                         <div class="input-group mb-2 ">
                             <div class="input-group-prepend ">
-                                <span class="input-group-text"><i class="fa fa-map "
-                                        aria-hidden="true"></i>
+                                <span class="input-group-text"><i class="fa fa-map " aria-hidden="true"></i>
                                 </span>
                             </div>
                             {{ form_widget(registrationForm.direccion) }}
@@ -66,35 +60,29 @@
                         </div>
                         <div class="input-group mb-2 ">
                             <div class="input-group-prepend ">
-                                <span class="input-group-text"><i class="fa fa-globe "
-                                        aria-hidden="true"></i>
+                                <span class="input-group-text"><i class="fa fa-globe " aria-hidden="true"></i>
                                 </span>
                             </div>
                             {{ form_widget(registrationForm.ciudad) }}
                             <!--<input type="text" class="form-control" id="exampleInputEmail1"placeholder="Nombre Usuario">-->
-
                         </div>
 
-                        
+
                         <div class="input-group mb-2 ">
-                          
                             <div class="input-group-prepend ">
-                                <span class="input-group-text"><i class="fa fa-calendar"
-                                        aria-hidden="true"></i>
+                                <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i>
                                 </span>
                             </div>
                             {{ form_widget(registrationForm.fecha_nacimiento) }}
                             <!--<input type="text" class="form-control" id="exampleInputEmail1"placeholder="Nombre Usuario">-->
-
                         </div>
-                        
+
                         <div class="mt-2">
-                                {{ form_row(registrationForm.agreeTerms) }}
+                            {{ form_row(registrationForm.agreeTerms) }}
                         </div>
 
-                                <button class="btn btn-primary btn-block">Regístrate</button>
-                                {{ form_end(registrationForm) }}
-                            
+                        <button class="btn btn-primary btn-block">Regístrate</button>
+                        {{ form_end(registrationForm) }}
                     </div>
                 </div>
             </div>
