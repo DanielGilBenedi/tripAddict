@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTime;
+use App\Entity\Pedido;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -43,7 +45,6 @@ class User implements UserInterface
      * @ORM\Column(name="usuario", type="string", length=50, nullable=true)
      */
     private $usuario;
-
    
 
     /**
@@ -100,6 +101,7 @@ class User implements UserInterface
     public function __construct()
     {
         $this->pedidos = new ArrayCollection();
+        $this->fechaRegistro = new DateTime();
     }
 
     public function getId(): ?int
