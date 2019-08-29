@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PackAleatorio{% endblock %}
+
+{% block body %}
+    <h1>PackAleatorio</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pack_aleatorio.id }}</td>
+            </tr>
+            <tr>
+                <th>Precio</th>
+                <td>{{ pack_aleatorio.Precio }}</td>
+            </tr>
+            <tr>
+                <th>Titulo</th>
+                <td>{{ pack_aleatorio.Titulo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('pack_aleatorio_index') }}">back to list</a>
+
+    <a href="{{ path('pack_aleatorio_edit', {'id': pack_aleatorio.id}) }}">edit</a>
+
+    {{ include('pack_aleatorio/_delete_form.html.twig') }}
+{% endblock %}
