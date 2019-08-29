@@ -68,6 +68,8 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+
+
             ])
             ->add('direccion',TextType::class,[
                 'label' => false,
@@ -99,7 +101,7 @@ class RegistrationFormType extends AbstractType
                 ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-                'label' => "Terminos y condiciones",
+                'label' => false,
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Debe acepatar los términos y condiciones.',
@@ -107,6 +109,9 @@ class RegistrationFormType extends AbstractType
                         
                     ]),
                 ],
+                'attr' =>[
+                    'class'=>'form-check-input'
+                ]
                
             ])
         ;
