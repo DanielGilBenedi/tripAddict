@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class FinCompraController extends AbstractController
 {
     /**
-     * @Route("/fin/compra", name="fin_compra")
+     * @Route("/finCompra", name="finCompra")
      */
     public function index()
     {

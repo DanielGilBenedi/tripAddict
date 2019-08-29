@@ -9,7 +9,10 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
@@ -19,6 +22,24 @@ class RegistrationFormType extends AbstractType
     {
         $builder
         
+        ->add('nombre',TextType::class,[
+            'label' => false,
+            
+            'attr' =>[
+                'placeholder'=>'Nombre',
+                'class'=>"form-control"
+            ]
+            ])
+
+            ->add('apellidos',TextType::class,[
+                'label' => false,
+                
+                'attr' =>[
+                    'placeholder'=>'Apellidos',
+                    'class'=>"form-control"
+                ]
+                ])            
+
             ->add('email',EmailType::class,[
             'label' => false,
             
@@ -27,7 +48,7 @@ class RegistrationFormType extends AbstractType
                 'class'=>"form-control"
             ]
             ])
-            ->add('password', PasswordType::class, [
+            ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'label' => false,
@@ -38,7 +59,7 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Introduzca contraseña',
                     ]),
                     new Length([
                         'min' => 6,
@@ -48,13 +69,45 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('direccion',TextType::class,[
+                'label' => false,
+                
+                'attr' =>[
+                    'placeholder'=>'Dirección',
+                    'class'=>"form-control"
+                ]
+                ])
+            ->add('ciudad',TextType::class,[
+                    'label' => false,
+                    
+                    'attr' =>[
+                        'placeholder'=>'Ciudad',
+                        'class'=>"form-control"
+                ]
+                ])
+                ->add('fecha_nacimiento',DateType::class,[
+                    'label' => false,
+                    'widget' => 'single_text',
+               
+                    
+                    'attr' =>[
+                        
+                        'class'=>"form-control",
+                        
+                        
+                ]
+                ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                'label' => "Terminos y condiciones",
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Debe acepatar los términos y condiciones.',
+
+                        
                     ]),
                 ],
+               
             ])
         ;
     }
