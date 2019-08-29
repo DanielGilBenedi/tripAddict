@@ -39,7 +39,7 @@
                 <td>{{ user.fechaNacimiento ? user.fechaNacimiento|date('Y-m-d') : '' }}</td>
                 <td>{{ user.fechaRegistro ? user.fechaRegistro|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a class="btn btn-warning mb-2 mt-2" href="{{ path('user_show', {'id': user.id}) }}">mostrar</a>
+                    <a class="btn btn-info mb-2 mt-2" href="{{ path('user_show', {'id': user.id}) }}">mostrar</a>
                     <a class="btn btn-secondary mb-2 mt-2" href="{{ path('user_edit', {'id': user.id}) }}">editar</a>
                 </td>
             </tr>
