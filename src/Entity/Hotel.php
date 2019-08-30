@@ -103,7 +103,7 @@ class Hotel
     /**
      * @var int|null
      *
-     * @ORM\Column(name="imagen_portada", type="integer", nullable=true)
+     * @ORM\Column(name="imagen_portada", type="string", length=500, nullable=true)
      */
     private $imagenPortada;
 
@@ -266,12 +266,12 @@ class Hotel
         return $this;
     }
 
-    public function getImagenPortada(): ?int
+    public function getImagenPortada(): ?string
     {
         return $this->imagenPortada;
     }
 
-    public function setImagenPortada(?int $imagenPortada): self
+    public function setImagenPortada(?string $imagenPortada): self
     {
         $this->imagenPortada = $imagenPortada;
 

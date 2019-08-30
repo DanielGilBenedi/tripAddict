@@ -2,18 +2,22 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Hotel;
+use App\Entity\Estancia;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DetalleHotelController extends AbstractController
 {
     /**
-     * @Route("/detalleHotel/{hotel}", name="detalleHotel")
+     * @Route("/detalleHotel/{id}/{id2}", name="detalleHotel")
      */
-    public function index($hotel)
+    public function index(Hotel $hotel,Estancia $estancia)
     {
+        
         return $this->render('detalle_hotel/index.html.twig', [
-            'controller_name' => 'DetalleHotelController',
+            'hotel' => $hotel,
+            'estancia' => $estancia
         ]);
     }
 }
