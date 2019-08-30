@@ -64,7 +64,7 @@
   <div class="card-body">
     {% for estanciaPack in paquete.estanciaPacks %}
     <div class='col-md-5'>
-      <div class="card"><a href="/detalleHotel/{{estanciaPack.idEstancia.idHotel.id}}" style="text-decoration:none;">
+      <div class="card"><a href="/detalleHotel/{{estanciaPack.idEstancia.idHotel.id}}/{{estanciaPack.idEstancia.id}}" style="text-decoration:none;">
           <img src="/images/Hoteles/{{estanciaPack.idEstancia.idHotel.imagenPortada}}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">{{estanciaPack.idEstancia.idHotel.nombre}}</h5>
