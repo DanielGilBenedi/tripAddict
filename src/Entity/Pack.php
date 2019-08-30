@@ -48,7 +48,7 @@ class Pack
     /**
      * @var int|null
      *
-     * @ORM\Column(name="imagen_portada", type="integer", nullable=true)
+     * @ORM\Column(name="imagen_portada", type="string", length=1000, nullable=true)
      */
     private $imagenPortada;
 
@@ -117,12 +117,12 @@ class Pack
         return $this;
     }
 
-    public function getImagenPortada(): ?int
+    public function getImagenPortada(): ?string
     {
         return $this->imagenPortada;
     }
 
-    public function setImagenPortada(?int $imagenPortada): self
+    public function setImagenPortada(?string $imagenPortada): self
     {
         $this->imagenPortada = $imagenPortada;
 
