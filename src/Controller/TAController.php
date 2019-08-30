@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Grupo;
+use App\Repository\GrupoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -15,8 +17,12 @@ class TAController extends AbstractController
     */
     public function index()
     {
+        //cargar grupos de packs
+        $gruposRepo = $this->getDoctrine()->getRepository(Grupo::class);
+        $grupos = $gruposRepo->findAll();
+
         return $this->render('ta/index.html.twig', [
-            'controller_name' => 'TAController',
+            'grupos' => $grupos
         ]);
     }
 

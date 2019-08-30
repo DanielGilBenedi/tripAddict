@@ -43,96 +43,30 @@
   }
 </style>
 
-
-  <!-- GRUPO -->
+  {% for grupo in grupos if grupo.packs|length > 0 %}
+      <!-- GRUPO -->
   <div class="card mb-2 mt-4  text-primary">
     <div class="card-header ">
-      <h1 class="text-center">Pack Celeste</h1>
+      <h1 class="text-center">{{grupo.titulo |upper}}</h1>
     </div>
     <div class="card-body">
 
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;&quot;);">
-            <div class="card" style="width: 18rem;">
-              <img class="card-img-top"
-                src="\images\ImagenesPortadas\azul\portada2C.jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">Paquete 1</h5>
-                <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-                  of the card's content.</p>
-                <a href="/paquetes/1/1" class="card-link">Ver</a>
+          {% for paquete in grupo.packs %}
+            <div class="swiper-slide swiper-slide-active">
+              <div class="card">
+                <img class="card-img-top"
+                  src="\images\ImagenesPortadas\{{paquete.imagenPortada}}"
+                  alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{paquete.nombre}}</h5>
+                  <p class="card-text text-left">{{paquete.descripcion}}</p>
+                  <a href="/paquetes/{{grupo.id}}/{{paquete.id}}" class="card-link">Ver</a>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;&quot;);">
-            <div class="card" style="width: 18rem;">
-              <img class="card-img-top"
-                src="\images\ImagenesPortadas\azul\portada3C.png"
-                alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">Paquete 2</h5>
-                <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-                  of the card's content.</p>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;&quot;);">
-            <div class="card" style="width: 18rem;">
-              <img class="card-img-top"
-                src="\images\ImagenesPortadas\azul\portada4C.png"
-                alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">Paquete 3</h5>
-                <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-                  of the card's content.</p>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;&quot;);">
-            <div class="card" style="width: 18rem;">
-              <img class="card-img-top"
-                src="\images\ImagenesPortadas\azul\portada5C.jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">Paquete 4</h5>
-                <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-                  of the card's content.</p>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;&quot;);">
-            <div class="card" style="width: 18rem;">
-              <img class="card-img-top"
-                src="\images\ImagenesPortadas\azul\portada6C.png"
-                alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">Paquete 5</h5>
-                <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-                  of the card's content.</p>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;&quot;);">
-            <div class="card" style="width: 18rem;">
-              <img class="card-img-top"
-                src="\images\ImagenesPortadas\azul\portada2C.jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">Paquete 6</h5>
-                <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-                  of the card's content.</p>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div>
-          </div>
-
-          
+          {% endfor %}  
 
         </div>
         <!-- Add Pagination -->
@@ -140,225 +74,14 @@
         <!-- Add Arrows -->
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
-        <a href="/paquetes/1" class="btn btn-lg btn-success btn-block">Ver todos nuestros paquetes de grupo</a>
+        <a href="/paquetes/{{grupo.id}}" class="btn btn-lg btn-success btn-block">Ver todos nuestros paquetes de grupo</a>
       </div>
-
-
-
-
     </div>
   </div>
 
 <!-- FIN GRUPO-->
-
- <!-- GRUPO -->
- <div class="card mb-2 mt-4 bg-light text-primary">
-  <div class="card-header ">
-    <h1 class="text-center">Pack Dorado</h1>
-  </div>
-  <div class="card-body">
-
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;&quot;);">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top"
-              src="\images\ImagenesPortadas\dorado\amor1.jpg"
-              alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Paquete 1</h5>
-              <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-                of the card's content.</p>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;&quot;);">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top"
-              src="images\ImagenesPortadas\dorado\amor2.jpg"
-              alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Paquete 2</h5>
-              <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-                of the card's content.</p>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;&quot;);">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top"
-              src="images\ImagenesPortadas\dorado\amor3.jpg"
-              alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Paquete 3</h5>
-              <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-                of the card's content.</p>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;&quot;);">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top"
-              src="images\ImagenesPortadas\dorado\amor4.jpg"
-              alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Paquete 4</h5>
-              <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-                of the card's content.</p>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;&quot;);">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top"
-              src="images\ImagenesPortadas\dorado\amor5.jpg"
-              alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Paquete 5</h5>
-              <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-                of the card's content.</p>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;&quot;);">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top"
-              src="images\ImagenesPortadas\dorado\amor6.jpg"
-              alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Paquete 6</h5>
-              <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-                of the card's content.</p>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <!-- Add Pagination -->
-      <div class="swiper-pagination"></div>
-      <!-- Add Arrows -->
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-       <a href="/paquetes/1" class="btn btn-lg btn-success btn-block">Ver todos nuestros paquetes de grupo</a>
-    </div>
-
-
-
-
-  </div>
-</div>
-
-<!-- FIN GRUPO-->
-
- <!-- GRUPO -->
- <div class="card mb-2 mt-4 bg-light text-primary">
-  <div class="card-header  ">
-    <h1 class="text-center">Pack Plata</h1>
-  </div>
-  <div class="card-body ">
-
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;&quot;);">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top"
-              src="\images\ImagenesPortadas\plata\felicidades1.jpg"
-              alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Paquete 1</h5>
-              <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-                of the card's content.</p>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;&quot;);">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top"
-              src="\images\ImagenesPortadas\plata\felicidades2.jpg"
-              alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Paquete 2</h5>
-              <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-                of the card's content.</p>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;&quot;);">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top"
-              src="\images\ImagenesPortadas\plata\felicidades3.jpg"
-              alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Paquete 3</h5>
-              <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-                of the card's content.</p>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;&quot;);">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top"
-              src="\images\ImagenesPortadas\plata\felicidades4.jpg"
-              alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Paquete 4</h5>
-              <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-                of the card's content.</p>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;&quot;);">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top"
-              src="\images\ImagenesPortadas\plata\felicidades5.jpg"
-              alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Paquete  5</h5>
-              <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-                of the card's content.</p>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;&quot;);">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top"
-              src="\images\ImagenesPortadas\plata\felicidades1.jpg"
-              alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Paquete 6</h5>
-              <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-                of the card's content.</p>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <!-- Add Pagination -->
-      <div class="swiper-pagination"></div>
-      <!-- Add Arrows -->
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-       <a href="/paquetes/1" class="btn btn-lg btn-success btn-block">Ver todos nuestros paquetes de grupo</a>
-    </div>
-
-  </div>
-</div>
-
-<!-- FIN GRUPO-->
-
-
+  {% endfor %}
+  
 <script src=" \node_modules\swiper\dist\js\swiper.min.js"></script>
 
 <!-- Initialize Swiper -->

@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Grupo;
+use App\Entity\Pack;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PaquetesController extends AbstractController
 {
@@ -29,8 +31,12 @@ class PaquetesController extends AbstractController
     /**
      * @Route("/paquetes/{grupo}/{idPaquete}", name="infoPaquete")
      */
-    public function infoPaquete(int $grupo, int $idPaquete)
+    public function infoPaquete(Grupo $grupo, Pack $paquete)
     {
-        return $this->render('paquetes/index.html.twig');
+
+        return $this->render('paquetes/index.html.twig',[
+            'paquete' => $paquete,
+            'grupo' => $grupo
+        ]);
     }
 }
