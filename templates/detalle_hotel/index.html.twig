@@ -42,6 +42,7 @@
     <div class="col-md-8">
       <div class="card-body">
         <h3 class="card-title">{{hotel.nombre}}</h3>
+        {% if estancia != null %}
         <h4 class="card-text">Oferta</h4>
         <p></p>
                 <ul>
@@ -49,6 +50,7 @@
                     <li>Número de noches: {{estancia.noches}}</li>
                     <li>Pensión: {{estancia.tipoPension}}</li>
                 </ul>
+         {% endif %}       
       </div>
     </div>
   </div>
@@ -70,6 +72,7 @@
       </div>
     </div>
   </div>
+ 
   <div class="card">
     <div class="card-header" id="headingTwo">
       <h2 class="mb-0">
@@ -77,14 +80,18 @@
           Servicios
         </button>
       </h2>
-    </div>
+  </div>
+  
+  
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
       <div class="card-body">
         <ul>
-            <li>Servicio 1</li>
-            <li>Servicio 2</li>
-            <li>Servicio 3</li>
-            <li>Servicio 4</li>
+         {% for hotelServicio in hotel.hotelServicios %}
+            <li>{{hotelServicio.idServicio.nombre}}</li>
+          {% else %}
+            <li> No hay servicios </li>
+          {% endfor %}
+
         </ul>
       </div>
     </div>
@@ -99,13 +106,13 @@
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
       <div class="card-body">
-       <ul>
-            <li>Dirección</li>
-            <li>Ciudad</li>
-            <li>Provincia</li>
-            <li>Sitio Web</li>
-            <li>Email</li>
-            <li>Teléfono</li>
+       <ul style="list-style-type: none;">
+            <li><b>Dirección:</b> {{hotel.direccion}}</li>
+            <li><b>Ciudad:</b> {{hotel.ciudad}}</li>
+            <li><b>Provincia:</b> {{hotel.provincia}}</li>
+            <li><b>Sitio Web:</b> <a href={{hotel.web}} target="_blank"> {{hotel.web}}</a></li>
+            <li><b>Email:</b> {{hotel.email}}</li>
+            <li><b>Teléfono:</b> {{hotel.telefono}}</li>
         </ul>
       </div>
     </div>
