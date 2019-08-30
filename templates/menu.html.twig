@@ -10,21 +10,19 @@
     
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/">Inicio <span class="sr-only">(current)</span></a>
+        <li class="nav-item {{ app.request.get('_route') == 'index' ? 'active' }}">
+          <a class="nav-link" href="/">Inicio</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ app.request.get('_route') == 'paquetesAleatorios' ? 'active' }}">
           <a class="nav-link" href="/paquetesAleatorios">Viaje Sorpresa</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ app.request.get('_route') == 'contacto' ? 'active' }}">
           <a class="nav-link" href="/contacto">Contacto</a>
         </li>        
       </ul>
-  
-      <ul class="navbar-nav ml-auto">
-        
-  
 
+
+      <ul class="navbar-nav ml-auto">
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             
             <!-- si ha iniciado -->
@@ -49,16 +47,16 @@
             <!-- si no ha iniciado -->
 
             <!-- SI NO HA INICIADO SESIÓN-->
-            <li class="nav-item">
+            <li class="nav-item {{ app.request.get('_route') == 'app_login' ? 'active' }}">
               <a class="nav-link" href="/login">Accede a tu cuenta</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{ app.request.get('_route') == 'app_register' ? 'active' }}">
               <a class="nav-link" href="/register">Regístrate</a>
             </li>
         {% endif %}
 
 
-        <li class="nav-item">
+        <li class="nav-item {{ app.request.get('_route') == 'carrito' ? 'active' }}">
           <a class="nav-link" href="/carrito"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i></a>
         </li>
       </ul>
