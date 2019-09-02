@@ -22,10 +22,13 @@ class PaquetesController extends AbstractController
     /**
      * @Route("/paquetes/{grupo}", name="paquetesGrupo")
      */
-    public function paquetesGrupo(int $grupo)
-    {
+    public function paquetesGrupo(Grupo $grupo)
+    {   
 
-        return $this->render('paquetes/paquetesGrupo.html.twig');
+        return $this->render('paquetes/paquetesGrupo.html.twig',[
+            'grupo'=> $grupo
+        ]
+        );
     }
 
     /**
