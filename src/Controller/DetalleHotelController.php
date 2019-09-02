@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class DetalleHotelController extends AbstractController
 {
     /**
-     * @Route("/detalleHotel/{id}/{id2?null}", name="detalleHotel")
+     * @Route("/detalleHotel/{hotel}/{estancia?null}", name="detalleHotel")
      */
     public function index(Hotel $hotel,Estancia $estancia=null)
     {
