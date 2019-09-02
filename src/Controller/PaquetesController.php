@@ -29,11 +29,10 @@ class PaquetesController extends AbstractController
     }
 
     /**
-     * @Route("/paquetes/{grupo}/{idPaquete}", name="infoPaquete")
+     * @Route("/paquetes/{grupo}/{paquete}", name="infoPaquete")
      */
     public function infoPaquete(Grupo $grupo, Pack $paquete)
     {
-
         return $this->render('paquetes/index.html.twig',[
             'paquete' => $paquete,
             'grupo' => $grupo
