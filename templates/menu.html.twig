@@ -30,7 +30,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-lg" aria-hidden="true"> </i>  {{ app.user.nombre |upper }}</a>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Mi cuenta</a>
+                  <a class="dropdown-item" href="/micuenta">Mi cuenta</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#">Mis packs</a>
                   
@@ -45,7 +45,7 @@
 
         {% else %}
             <!-- si no ha iniciado -->
-
+            
             <!-- SI NO HA INICIADO SESIÓN-->
             <li class="nav-item {{ app.request.get('_route') == 'app_login' ? 'active' }}">
               <a class="nav-link" href="/login">Accede a tu cuenta</a>

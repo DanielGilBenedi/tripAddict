@@ -12,6 +12,9 @@ class CarritoController extends AbstractController
      */
     public function index()
     {
+        
+
+       
         return $this->render('carrito/index.html.twig', [
             'controller_name' => 'CarritoController',
         ]);
