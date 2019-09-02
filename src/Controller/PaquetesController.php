@@ -22,18 +22,20 @@ class PaquetesController extends AbstractController
     /**
      * @Route("/paquetes/{grupo}", name="paquetesGrupo")
      */
-    public function paquetesGrupo(int $grupo)
-    {
+    public function paquetesGrupo(Grupo $grupo)
+    {   
 
-        return $this->render('paquetes/paquetesGrupo.html.twig');
+        return $this->render('paquetes/paquetesGrupo.html.twig',[
+            'grupo'=> $grupo
+        ]
+        );
     }
 
     /**
-     * @Route("/paquetes/{grupo}/{idPaquete}", name="infoPaquete")
+     * @Route("/paquetes/{grupo}/{paquete}", name="infoPaquete")
      */
     public function infoPaquete(Grupo $grupo, Pack $paquete)
     {
-
         return $this->render('paquetes/index.html.twig',[
             'paquete' => $paquete,
             'grupo' => $grupo
