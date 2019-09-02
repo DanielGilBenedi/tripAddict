@@ -15,10 +15,11 @@ class MiCuentaController extends AbstractController
     public function index()
     {
         $user=new User();
-        $form=$this->createForm(UserType::class, $user);
+        $form=$this->createForm(UserType::class, $this->getUser());
         return $this->render('micuenta/index.html.twig', [
             'controller_name' => 'MiCuentaController',
-            'form' => $form->createView()
+         
+            'form' => $form->createView(),
         ]);
     }
 }
