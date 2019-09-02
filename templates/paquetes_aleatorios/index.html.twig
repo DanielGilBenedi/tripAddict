@@ -7,9 +7,9 @@
 <section class="jumbotron text-center">
   <div class="container">
     <h1 class="jumbotron-heading">Paquetes Aleatorios TripAddict</h1>
-    <p class="lead text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non, alias error. Aperiam,
-      necessitatibus eligendi deserunt doloremque nemo modi. Dolorum minima repudiandae commodi vero, eveniet nulla!
-      Quia ab suscipit culpa dolorum.</p>
+    <p class="lead text-muted">En TripAddict te proporcionamos una estancia para dos personas de forma aleatoria.
+     Solo tienes que elegir entre los diferentes packs (oro, plata y bronce) y disfrutar de tu estancia elegida
+     aleatoriamente.</p>
     <p>
       <a href="/comoFunciona" class="btn btn-primary my-2">¿Como funciona?</a>
     </p>
@@ -17,113 +17,46 @@
 </section>
 
 <div class='row d-flex justify-content-center'>
+
+{% for paquetealeatorio in paquetesaleatorios %}
 <!-- GRUPO -->
 <div class='col-md-6'>
   <div class="card mb-2 mt-4 bg-light text-primary">
     <div class="card-header ">
-      <h1 class="text-center">Pack Aleatorio Oro</h1>
+      <h1 class="text-center">Pack Aleatorio</h1>
     </div>
     <div class="card-body row">
       <div class="card col-6" style="width: 18rem;">
-        <img class="card-img-top" src="\images\ImagenesPortadas\azul\portada2C.jpg" alt="Card image cap">
+        <img class="card-img-top" src="\images\ImagenesPortadas\{{paquetealeatorio.idPack1.imagenPortada}}" alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title">Paquete 1</h5>
-          <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-            of the card's content.</p>
+          <h5 class="card-title">{{paquetealeatorio.idPack1.nombre}}</h5>
+          <p class="card-text text-left">{{paquetealeatorio.idPack1.descripcion|length > 150 ? paquetealeatorio.idPack1.descripcion|slice(0, 150) ~ '...' : paquetealeatorio.idPack1.descripcion  }}</p>
 
           <a href="/paquetes/1/1" class="btn-block btn btn-primary">Ver Pack</a>
         </div>
       </div>
 
       <div class="card col-6" style="width: 18rem;">
-        <img class="card-img-top" src="\images\ImagenesPortadas\azul\portada5C.jpg" alt="Card image cap">
+        <img class="card-img-top" src="\images\ImagenesPortadas\{{paquetealeatorio.idPack2.imagenPortada}}" alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title">Paquete 1</h5>
-          <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-            of the card's content.</p>
+          <h5 class="card-title">{{paquetealeatorio.idPack2.nombre}}</h5>
+          <p class="card-text text-left">{{paquetealeatorio.idPack2.descripcion|length > 150 ? paquetealeatorio.idPack2.descripcion|slice(0, 150) ~ '...' : paquetealeatorio.idPack2.descripcion  }}</p>
           <a href="/paquetes/1/1" class="btn-block btn btn-primary">Ver Pack</a>
         </div>
       </div>
     </div>
     <div class="card-footer">
-      <h1 class='text-center'>190€</h1>
-      <a href="/carrito" class="btn btn-lg btn-success btn-block">Comprar Pack</a>
-    </div>
-  </div>
-</div>
-<!-- FIN GRUPO-->
-
-<!-- GRUPO -->
-<div class='col-md-6'>
-  <div class="card mb-2 mt-4 bg-light text-primary">
-    <div class="card-header ">
-      <h1 class="text-center">Pack Aleatorio Plata</h1>
-    </div>
-    <div class="card-body row">
-      <div class="card col-6">
-        <img class="card-img-top" src="\images\ImagenesPortadas\plata\felicidades1.jpg" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Paquete 1</h5>
-          <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-            of the card's content.</p>
-          <a href="/paquetes/1/1" class="btn-block btn btn-primary">Ver Pack</a>
-        </div>
-      </div>
-
-      <div class="card col-6">
-        <img class="card-img-top" src="\images\ImagenesPortadas\plata\felicidades2.jpg" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Paquete 1</h5>
-          <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-            of the card's content.</p>
-          <a href="/paquetes/1/1" class="btn-block btn btn-primary">Ver Pack</a>
-        </div>
-      </div>
-    </div>
-    <div class="card-footer">
-      <h1 class='text-center'>142€</h1>
+      <h1 class='text-center'>{{paquetealeatorio.precio}} €</h1>
       <a href="/carrito" class="btn btn-lg btn-success btn-block">Comprar Pack</a>
     </div>
   </div>
 </div>
 
-<!-- FIN GRUPO-->
+{% else %}
 
+<p>No hay paquetes.
 
-<!-- GRUPO -->
-<div class='col-md-6'>
-  <div class="card mb-2 mt-4 bg-light text-primary">
-    <div class="card-header ">
-      <h1 class="text-center">Pack Aleatorio Bronce</h1>
-    </div>
-    <div class="card-body row">
-      <div class="card col-6">
-        <img class="card-img-top" src="\images\ImagenesPortadas\dorado\amor1.jpg" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Paquete 1</h5>
-          <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-            of the card's content.</p>
-          <a href="/paquetes/1/1" class="btn-block btn btn-primary">Ver Pack</a>
-        </div>
-      </div>
-
-      <div class="card col-6">
-        <img class="card-img-top" src="\images\ImagenesPortadas\dorado\amor3.jpg" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Paquete 1</h5>
-          <p class="card-text text-left">Some quick example text to build on the card title and make up the bulk
-            of the card's content.</p>
-          <a href="/paquetes/1/1" class="btn-block btn btn-primary">Ver Pack</a>
-        </div>
-      </div>
-    </div>
-    <div class="card-footer">
-      <h1 class='text-center'>90€</h1>
-      <a href="/carrito" class="btn btn-lg btn-success btn-block">Comprar Pack</a>
-    </div>
-  </div>
-</div>
-<!-- FIN GRUPO-->
+{% endfor %}
 
 </div>
 
