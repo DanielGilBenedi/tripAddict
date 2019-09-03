@@ -36,6 +36,7 @@ class PaquetesController extends AbstractController
      */
     public function infoPaquete(Grupo $grupo, Pack $paquete)
     {
+                
         return $this->render('paquetes/index.html.twig',[
             'paquete' => $paquete,
             'grupo' => $grupo
