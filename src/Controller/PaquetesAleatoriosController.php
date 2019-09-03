@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\PackAleatorio;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PaquetesAleatoriosController extends AbstractController
 {
@@ -12,8 +13,11 @@ class PaquetesAleatoriosController extends AbstractController
      */
     public function index()
     {
+        $paqueterepo = $this->getDoctrine()->getRepository(PackAleatorio::class);
+        $paquetesaleatorios = $paqueterepo->findAll();
+
         return $this->render('paquetes_aleatorios/index.html.twig', [
-            'controller_name' => 'PaquetesAleatoriosController',
+            'paquetesaleatorios' => $paquetesaleatorios,
         ]);
     }
 }
