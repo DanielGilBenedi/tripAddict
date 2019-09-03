@@ -27,4 +27,22 @@ class MiCuentaController extends AbstractController
         }
         
     }
+
+     /**
+     * @Route("/mispedidos", name="mispedidos")
+     */
+    public function mispedidos()
+    {
+        if ($this->getUser() != null){
+            $form=$this->createForm(UserType::class, $this->getUser());
+            return $this->render('micuenta/mispedidos.html.twig', [
+                
+            ]);
+        }
+
+
+         else {
+            return $this->redirect($this->generateUrl('index'));
+        }
+    }
 }
