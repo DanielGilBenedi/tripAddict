@@ -36,11 +36,11 @@
                             <tr>
 
                                 <td scope="col"> {{elemento['producto'].nombre}} {{key}}</td>
-                                <td scope="col">{{elemento['cantidad']}} </td>
+                                <td scope="col">{{elemento['cantidad']}}  </td>
                                 <td scope="col">{{elemento['producto'].precio}} €</td>
                                 <td scope="col">{{subtotal}} €</td>
                                 <td scope="col"><a href="/carrito/delete/{{elemento['producto'].id}}" class='btn btn-danger'><i class="fa fa-trash"></i></a></td>
-
+                               
                             </tr>
                         {% endfor %}
                         <tr>

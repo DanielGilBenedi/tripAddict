@@ -44,28 +44,7 @@ class CarritoController extends AbstractController
             'carrito' => $carrito
         ]);
     }
+   
+   
 
-    /**
-     * @Route("/carrito/delete/{id}", name="carrito_delete")
-     */
-    public function delete( Pack $paquete ,SessionInterface $session)
-    {
-       
-        $session->set('carrito',[]);
-
-        
-            $carrito = $session->get('carrito',[]);
-            $elemento = [
-                'producto' => $pack,   //Hay que mirar si hay que serializar
-                'cantidad' => $request->request->get('cantidad')
-            ];
-            array_push($carrito, $elemento);    
-            $session->set('carrito',$carrito);  //Si no funcionase, poner.
-        
-           
-        return $this->render('carrito/index.html.twig', [
-            'controller_name' => 'CarritoController',
-            'carrito' => $carrito
-        ]);
-    }
 }
