@@ -27,36 +27,6 @@
     </div>
 
 
-<<<<<<< HEAD
-
-    <div class="card col-3   align-items-stretch align-self-start ">
-      <div class="card-body text-right">
-
-        <p class="validity"> Validez: 30 Noviembre 2011 </p>
-        <label for="quantity">Cantidad</label>
-        <select id="quantity" name="qty" tittle="Cantidad">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-        </select>
-
-        <h2> {{paquete.precio}}€</h2>
-          <p class="text-center"> <strong> <i class="fa fa-envelope-o" aria-hidden="true"></i> e-cofre enviado por e-mail</strong> Inmediatamente
-            <button type="button" class="mt-3 btn btn-block btn-primary">Comprar</button>
-          </p>
-      </div>
-    </div>
-  </div>
-
-
-=======
   {% if paquete.estanciaPacks|length > 0 %}
   <div class="card col-3   align-items-stretch align-self-start ">
     <div class="card-body text-right">
@@ -88,39 +58,10 @@
   </div>
   {% endif %}
 </div>
->>>>>>> b56ab58822003d065f793eaa22938716b2c95d3e
 
 <div class="card">
   <h2 class="card-header">Estancias</h2>
   <div class="card-body">
-<<<<<<< HEAD
-  <div class="row">
-    {% for estanciaPack in paquete.estanciaPacks %}
-    <div class='col-md-5'>
-            <div class="card">
-              <a href="/detalleHotel/{{estanciaPack.idEstancia.idHotel.id}}/{{estanciaPack.idEstancia.id}}" style="text-decoration:none;">
-                <img src="/images/Hoteles/{{estanciaPack.idEstancia.idHotel.imagenPortada}}" class="card-img-top" alt="..." >
-
-                    <div class="card-body">
-                      <h5 class="card-title">{{estanciaPack.idEstancia.idHotel.nombre}}</h5>
-                      <ul class="card-text">
-                        <li>Habitación: {{estanciaPack.idEstancia.habitacion}}</li>
-                        <li>Número de noches: {{estanciaPack.idEstancia.noches}}</li>
-                        <li>Pensión: {{estanciaPack.idEstancia.tipoPension}}</li>
-                      </ul>
-                    </div>
-              </a>
-            </div>
-            </div>
-
-              {% else %}
-                Este pack todavía no tiene estancias añadidas.
-              
-              {% endfor %}
-          </div>
-      </div>
-  </div>
-=======
     <div class='row'>
       {% for estanciaPack in paquete.estanciaPacks %}
       <div class='col-md-5'>
@@ -147,7 +88,6 @@
   </div>
 </div>
 </div>
->>>>>>> b56ab58822003d065f793eaa22938716b2c95d3e
 
 
 

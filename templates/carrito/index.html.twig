@@ -54,8 +54,16 @@
                             </tr>
                     </tbody>
                 </table>
-                <a href='/confirmacionPedido' class='btn-lg mt-4 btn btn-block btn-success'>Realizar Pedido</a>
 
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <a href='/confirmacionPedido' class='btn-lg mt-4 btn btn-block btn-success'>Realizar Pedido</a>
+                {% else %}
+                    <div class="alert alert-info" role="alert">
+                            Debe iniciar sesión para continuar.
+                    </div>
+                    <a href='/login' class='btn-lg mt-4 btn btn-block btn-success'>Iniciar Sesión</a>
+                {% endif %}
+                
             {% else %}
                 Aun no has realizado ningun pedido    
             {% endif %}   
