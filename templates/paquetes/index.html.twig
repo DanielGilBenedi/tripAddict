@@ -31,11 +31,11 @@
   {% if paquete.estanciaPacks|length > 0 %}
   <div class="card col-3   align-items-stretch align-self-start ">
     <div class="card-body text-right">
-      <form action='/carrito/add' method='POST'>
+      <form name="formularioCompra" action='/carrito/add' method='POST'>
       <p class="validity">
         Validez: 30 Noviembre 2011 </p>
       <label for="cantidad">Cantidad</label>
-      <select class='form-control' id="cantidad" name="cantidad" tittle="Cantidad">
+      <select class='form-control'  id="cantidad" name="cantidad" tittle="Cantidad">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
