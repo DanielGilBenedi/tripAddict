@@ -13,11 +13,14 @@ class DetalleHotelController extends AbstractController
      * @Route("/detalleHotel/{hotel}/{estancia?null}", name="detalleHotel")
      */
     public function index(Hotel $hotel,Estancia $estancia=null)
-    {
-        
+    {        
+        if (!$hotel->getEstancias()->contains($estancia)){
+            $estancia = null;
+        }
+
         return $this->render('detalle_hotel/index.html.twig', [
             'hotel' => $hotel,
             'estancia' => $estancia
-        ]);
+        ]);        
     }
 }
