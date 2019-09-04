@@ -8,7 +8,7 @@
   <div class="container">
     <h1 class="jumbotron-heading">Paquetes Aleatorios TripAddict</h1>
     <p class="lead text-muted">En TripAddict te proporcionamos una estancia para dos personas de forma aleatoria.
-     Solo tienes que elegir entre los diferentes packs (oro, plata y bronce) y disfrutar de tu estancia elegida
+     Solo tienes que elegir el precio (25€, 50€ o 100€) y disfrutar de tu estancia.
      aleatoriamente.</p>
     <p>
       <a href="/comoFunciona" class="btn btn-primary my-2">¿Como funciona?</a>
@@ -16,38 +16,41 @@
   </div>
 </section>
 
+
+
 <div class='row d-flex justify-content-center'>
 
 {% for paquetealeatorio in paquetesaleatorios %}
 <!-- GRUPO -->
 <div class='col-md-6'>
+
   <div class="card mb-2 mt-4 bg-light text-primary">
     <div class="card-header ">
       <h1 class="text-center">Pack Aleatorio</h1>
     </div>
     <div class="card-body row">
-      <div class="card col-6" style="width: 18rem;">
-        <img class="card-img-top" src="\images\ImagenesPortadas\{{paquetealeatorio.idPack1.imagenPortada}}" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{paquetealeatorio.idPack1.nombre}}</h5>
-          <p class="card-text text-left">{{paquetealeatorio.idPack1.descripcion|length > 150 ? paquetealeatorio.idPack1.descripcion|slice(0, 150) ~ '...' : paquetealeatorio.idPack1.descripcion  }}</p>
-
-          <a href="/paquetes/1/1" class="btn-block btn btn-primary">Ver Pack</a>
+      <div class="card col-12" style="width: 18rem;">
+        <img class="card-img-top" src="\images\ImagenesPortadas\portada6C.png" alt="Card image cap">
+        <form method="POST" action="/carrito/aleatorio">
+        <div class="form-group">
+          <div class='row  justify-content-center text-center'>
+            <label for="exampleFormControlSelect1"><h4>Elige un precio</h4></label>
+            </div>
+           <div class='row  justify-content-center text-center'>
+          <select name="paquetealeatorio" class="form-control col-md-3 " id="exampleFormControlSelect1">
+            <option value="25">25€</option>
+            <option value="50" selected>50€</option>
+            <option value="100" >100€</option>
+          </select>
+          </div>
         </div>
-      </div>
-
-      <div class="card col-6" style="width: 18rem;">
-        <img class="card-img-top" src="\images\ImagenesPortadas\{{paquetealeatorio.idPack2.imagenPortada}}" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{paquetealeatorio.idPack2.nombre}}</h5>
-          <p class="card-text text-left">{{paquetealeatorio.idPack2.descripcion|length > 150 ? paquetealeatorio.idPack2.descripcion|slice(0, 150) ~ '...' : paquetealeatorio.idPack2.descripcion  }}</p>
-          <a href="/paquetes/1/1" class="btn-block btn btn-primary">Ver Pack</a>
-        </div>
+   
       </div>
     </div>
     <div class="card-footer">
-      <h1 class='text-center'>{{paquetealeatorio.precio}} €</h1>
-      <a href="/carrito" class="btn btn-lg btn-success btn-block">Comprar Pack</a>
+
+      <button type="submit" class="btn btn-lg btn-success btn-block mt-2">Comprar</button>
+     </form>
     </div>
   </div>
 </div>
