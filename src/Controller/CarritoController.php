@@ -35,6 +35,7 @@ class CarritoController extends AbstractController
             
             //si no existe
             $elemento = [
+                'tipo' => 'normal',
                 'producto' => $pack,   //Hay que mirar si hay que serializer
                 'cantidad' => $request->request->get('cantidad')
             ];
