@@ -2,11 +2,7 @@
 
 {% block title %}Hello FinCompraController!{% endblock %}
 
-    {% block stylesheets %}
-        <style>
-           
-        </style>
-    {% endblock %}
+    
 
 {% block body %}
 
@@ -20,69 +16,51 @@
         </div>
     </div>
 
-    <div>
-        <div class="container">
-            <div class="row">
-                <div class="mx-auto col-md-12 m-1">
-                    <h4 class="d-flex justify-content-between align-items-center">
-                        <span class="text-muted"> Descripción </span>
-                        <span class="badge badge-secondary badge-pill"> 3 productos </span>
-                    </h4>
+    {% if carrito|length > 0 %}
+                {% set total=0 %}
 
-                    <ul class="list-group m-1">
-                        <li class="m-1 d-flex justify-content-between lh-condensed">
-                            <div>
-                                <h6 class="my-0"> Producto 1 </h6>
-                                <small class="text-muted"> Descripción </small>
-                            </div>
-
-                            <div class="product-cart">
-                                <div class="product-quantity">
-                                    <div> Cantidad: 1 </div>
-                                    <input name="cantidad" value="1" class="input-text qty" type="hidden">
-                                </div>
-                                <div class="text-muted"> 0 € </div>
-                            </div>
-                        </li>
-
-                        <li class="m-1 d-flex justify-content-between lh-condensed">
-                            <div>
-                                <h6 class="my-0"> Producto 2 </h6>
-                                <small class="text-muted"> Descripción </small>
-                            </div>
-                                
-                            <div class="product-cart"> 
-                                <div class="product-quantity">
-                                    <div> Cantidad: 1 </div>
-                                    <input name="cantidad" value="1" class="input-text qty" type="hidden">
-                                </div>
-                                <div class="text-muted"> 0 € </div>
-                            </div>
-                        </li>
-
-                        <li class="m-1 d-flex justify-content-between lh-condensed">
-                            <div>
-                                <h6 class="my-0"> Producto 3 </h6>
-                                <small class="text-muted"> Descripción </small>
-                            </div>
-                            
-                            <div class="product-cart"> 
-                                <div class="product-quantity">
-                                    <div> Cantidad: 1 </div>
-                                    <input name="cantidad" value="1" class="input-text qty" type="hidden">
-                                </div>
-                                <div class="text-muted"> 0 € </div>
-                            </div>
-                        </li>
-
-                        <li class="m-1 list-group-item d-flex justify-content-between">
-                            <span> Total (€) </span>
-                            <strong> 20€ </strong>
-                        </li>
-                    </ul>
+                <div class=" d-flex flex-row-reverse mb-2 mt-2 ml-auto">
+                <span class="badge badge-secondary badge-pill">{{carrito|length}}</span>
                 </div>
-            </div>
-        </div>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Unidades</th>
+                            <th scope="col">Precio unidad</th>
+                            <th scope="col">Subtotal</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for key, elemento in carrito %}
+
+                            {% set subtotal=elemento['producto'].precio * elemento['cantidad'] %}
+                            {% set total=subtotal+total %}
+
+                            <tr>
+
+                                <td scope="col"> {{elemento['producto'].nombre}} {{key}}</td>
+                                <td scope="col">{{elemento['cantidad']}} </td>
+                                <td scope="col">{{elemento['producto'].precio}} €</td>
+                                <td scope="col">{{subtotal}} €</td>
+                                
+
+                            </tr>
+                        {% endfor %}
+                        <tr>
+
+                                <td scope="col"></td>
+                                <td scope="col"></td>
+                                <td scope="col"></td>
+                                <td scope="col">Total</td>
+                                <td scope="col">{{total}} €</td>
+
+                            </tr>
+                    </tbody>
+                </table>
+                {% endif %}
 
         <div class="container">
         
@@ -92,18 +70,42 @@
                 </div>                     
             </div>
 
-            <div class="container">
-                <div class="col-md-4 m-2 form-group row">
-                    <label for="staticEmail" class="col-form-label mr-2"> Nombre: </label>
-                    <div> <p type="text" readonly class="form-control-plaintext" id="staticName"> Alejandro Daniel </p> </div>
-                </div>
+                <div class="row">
+                
+                        <div class="col-md-6 mb-3">
+                                <label for="firstName"> Nombre: </label>
+                                <input type="text" class="form-control" id="firstName" placeholder= {{ form_widget(form.nombre ) }}
+                                
+                        </div>
 
-                <div class="col-md-4 m-2 form-group row">
-                    <label for="staticEmail" class="col-form-label mr-2"> Email: </label>
-                    <div> <p type="text" readonly class="form-control-plaintext" id="staticName"> ponaquituemail@ejemplo.com </p> </div>
-                </div>
+                        <div class="col-md-6 mb-3">
+                                <label for="lastName"> Apellidos: </label>
+                                <input type="text" class="form-control" id="lastName" placeholder={{ form_widget(form.apellidos ) }}
+                               
+                        </div>
+                        
+
+                    
+                        <div class="mb-3">
+                            <label for="email"> Email <span class="text-muted"></span></label>
+                            <input type="email" class="form-control" id="email" placeholder={{ form_widget(form.email ) }}
+                           
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                                <label for="firstName"> Direccion: </label>
+                                <input type="text" class="form-control" id="firstName" placeholder= {{ form_widget(form.direccion ) }}
+                                
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                                <label for="lastName"> Ciudad: </label>
+                                <input type="text" class="form-control" id="lastName" placeholder={{ form_widget(form.ciudad ) }}
+                               
+                        </div>
+                        
+                        
             </div>
-        </div>
-    </div>  
+        </div>  
 
 {% endblock %}
