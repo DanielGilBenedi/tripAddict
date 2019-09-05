@@ -32,15 +32,18 @@
 
                             {% set subtotal=elemento['producto'].precio * elemento['cantidad'] %}
                             {% set total=subtotal+total %}
-
                             <tr>
-
-                                <td scope="col"> {{elemento['producto'].nombre}} {{key}}</td>
-                                <td scope="col">{{elemento['cantidad']}} </td>
-                                <td scope="col">{{elemento['producto'].precio}} €</td>
-                                <td scope="col">{{subtotal}} €</td>
-                                <td scope="col"><a href="/carrito/delete/{{elemento['producto'].id}}" class='btn btn-danger'><i class="fa fa-trash"></i></a></td>
-
+                                <form action='/carrito/editar' method='POST'>
+                                    <input type='hidden' value="{{key}}" id='key' name='key'/>
+                                    <td scope="col"> {{elemento['producto'].nombre}}</td>
+                                    <td scope="col"> 
+                                            <input name="cantidad" id="cantidad" type="number" min='0' max='10' value="{{elemento['cantidad']}}" />
+                                            <button type='submit' name='enviar' class='btn btn-info ml-2'><i class="fa fa-edit"></i></button>
+                                    </td>
+                                    <td scope="col">{{elemento['producto'].precio}} €</td>
+                                    <td scope="col">{{subtotal}} €</td>
+                                    <td scope="col"><a href="/carrito/borrar/{{elemento['producto'].id}}" class='btn btn-danger'><i class="fa fa-trash"></i></a></td>
+                                </form>
                             </tr>
                         {% endfor %}
                         <tr>
@@ -51,9 +54,13 @@
                                 <td scope="col">Total</td>
                                 <td scope="col">{{total}} €</td>
 
-                            </tr>
+                        </tr>
                     </tbody>
                 </table>
+
+                <div class=" d-flex flex-row-reverse mb-2 mt-2 ml-auto">
+                    <a href='/carrito/vaciar' class='btn btn-danger m-4 ml-auto'>Vaciar Carrito</a>
+                </div>
 
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                     <a href='/confirmacionPedido' class='btn-lg mt-4 btn btn-block btn-success'>Realizar Pedido</a>
