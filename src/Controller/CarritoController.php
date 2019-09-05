@@ -28,44 +28,73 @@ class CarritoController extends AbstractController
     {
         $pack=$packR->find($request->request->get('idPack'));
        
-
         if ($pack){
             $carrito = $session->get('carrito',[]);
+
+            //buscar si ya existe elemento con pack
+            
+            //si no existe
             $elemento = [
+                'tipo' => 'normal',
                 'producto' => $pack,   //Hay que mirar si hay que serializer
                 'cantidad' => $request->request->get('cantidad')
             ];
+
             array_push($carrito, $elemento);    
             $session->set('carrito',$carrito);  //Si no funcionase, poner.
         }
            
-        return $this->render('carrito/index.html.twig', [
-            'controller_name' => 'CarritoController',
-            'carrito' => $carrito
-        ]);
+            return $this->redirect($this->generateUrl('carrito'));
     }
 
     /**
-     * @Route("/carrito/delete/{id}", name="carrito_delete")
+     * @Route("/carrito/editar", name="carrito_editar")
      */
-    public function delete( Pack $paquete ,SessionInterface $session)
+    public function editar(Request $request, SessionInterface $session)
     {
-       
-        $session->set('carrito',[]);
+        $key = $request->request->get('key');
+        $numero = $request->request->get('cantidad');
 
+        $carrito = $session->get('carrito',[]);
+        if($numero>0){
+            
+
+            $carrito[$key]['cantidad'] = $numero; 
+            
+            $session->set('carrito',$carrito); 
+        }else{
+            //borrar elemento
+            array_splice($carrito, 1, $key);
         
-            $carrito = $session->get('carrito',[]);
-            $elemento = [
-                'producto' => $pack,   //Hay que mirar si hay que serializar
-                'cantidad' => $request->request->get('cantidad')
-            ];
-            array_push($carrito, $elemento);    
-            $session->set('carrito',$carrito);  //Si no funcionase, poner.
-        
-           
-        return $this->render('carrito/index.html.twig', [
-            'controller_name' => 'CarritoController',
-            'carrito' => $carrito
-        ]);
+        $session->set('carrito',$carrito); 
+        }
+     
+        return $this->redirect($this->generateUrl('carrito'));
     }
+
+    /**
+     * @Route("/carrito/borrar/{key}", name="carrito_borrar")
+     */
+    public function borrar(int $key, SessionInterface $session)
+    {
+        $carrito = $session->get('carrito',[]);
+        
+        //borrar
+        array_splice($carrito, 1, $key);
+        
+        $session->set('carrito',$carrito); 
+
+        return $this->redirect($this->generateUrl('carrito'));
+    }
+
+    /**
+     * @Route("/carrito/vaciar", name="carrito_vaciar")
+     */
+    public function vaciar(SessionInterface $session){
+        $session->set('carrito',[]);         
+        return $this->redirect($this->generateUrl('carrito'));
+    }
+   
+   
+
 }

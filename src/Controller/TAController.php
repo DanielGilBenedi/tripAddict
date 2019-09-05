@@ -5,7 +5,12 @@ namespace App\Controller;
 use App\Entity\Grupo;
 use App\Repository\GrupoRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -28,18 +33,31 @@ class TAController extends AbstractController
     }
 
     /**
-    * @Route("/{idGrupo}/{precio}", name="index2")
+    * @Route("/buscar", name="buscar")
     */
-    public function index2($idGrupo, $precio, EntityManagerInterface $em)
+    public function buscar( EntityManagerInterface $em, Request $request)
     {
-        $dql = "select p from \App\Entity\Pack p join p.grupo g where p.precio < :precio and g.id = :grupo";
+        $idGrupo = $request->request->get('grupo');
+        $precio = $request->request->get('precio');
+
+        $dql = "select p.id, p.nombre, p.descripcion, p.precio, p.imagenPortada from \App\Entity\Pack p join p.grupo g where p.precio < :precio and g.id = :grupo";
         $query=$em->createQuery($dql);
         $query->setParameter('precio', $precio);
-        $query->setParameter('grupo', $grupo);
+        $query->setParameter('grupo', $idGrupo);
         
         $packs=$query->execute();
-        
-        return $this->json($packs);
+
+        // $encoders = [new JsonEncoder()]; // If no need for XmlEncoder
+        // $normalizers = [new ObjectNormalizer()];
+        // $serializer = new Serializer($normalizers, $encoders);
+
+        // $jsonObject = $serializer->serialize($packs, 'json', [
+        //     'circular_reference_handler' => function ($object) {
+        //         return $object->getId();
+        //     }
+        // ]);
+
+        return $this->json($packs);        
     }
 
     /**
