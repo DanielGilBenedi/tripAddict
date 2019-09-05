@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CanjearPaqueteController!{% endblock %}
+
+{% block body %}
+
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">Canjear un pack TripAddict</h1>
+    </div>
+</section>
+
+<div class='row justify-content-center'>
+        
+    <div class="col-md-6">
+        <img src="\images\funcionamiento\cajaderegalo2.jpg" class="card-img-top " alt="...">
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="pt-5 mt-5">
+            <label for="js_product_dcs">Número de cheque regalo: </label>
+            <input type="text" id="js_product_dcs" class="form-control required-entry validate-dcs mt-2" name="product_dcs" value=""
+                title="Gift number:">
+                <a href="" class='btn btn-block btn-primary btn-lg mt-2  '>Validar</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
