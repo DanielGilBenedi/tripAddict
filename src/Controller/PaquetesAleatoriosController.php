@@ -42,7 +42,7 @@ class PaquetesAleatoriosController extends AbstractController
         if ($pack){
             $carrito = $session->get('carrito',[]);
             $elemento = [
-                'tipo' => 'aleatorio',
+                'tipo' => 'Pack Aleatorio',
                 'producto' => $pack,   //Hay que mirar si hay que serializer
                 'cantidad' => 1
             ];
@@ -50,7 +50,7 @@ class PaquetesAleatoriosController extends AbstractController
             $session->set('carrito',$carrito);  //Si no funcionase, poner.
         }
 
-        $obj="ok";
+        return $this->redirect($this->generateUrl('carrito'));
         
         //redireccionar al carrito
 
