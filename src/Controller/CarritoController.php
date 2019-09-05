@@ -62,10 +62,9 @@ class CarritoController extends AbstractController
             $session->set('carrito',$carrito); 
         }else{
             //borrar elemento
-            array_splice($carrito, $key, 1);
+            array_splice($carrito, 1, $key);
         
-            $session->set('carrito',$carrito); 
-    
+        $session->set('carrito',$carrito); 
         }
      
         return $this->redirect($this->generateUrl('carrito'));

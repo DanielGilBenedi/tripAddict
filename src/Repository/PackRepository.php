@@ -22,19 +22,23 @@ class PackRepository extends ServiceEntityRepository
     // /**
     //  * @return Pack[] Returns an array of Pack objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function sortearPack($min, $max)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+        //$fields = array('p.id', 'p.precio');
+        //->select($fields)
+
+        $vector= $this->createQueryBuilder('p')
+            ->andWhere('p.precio between :min and :max')
+            ->setParameter('max', $max)
+            ->setParameter('min', $min)
             ->getQuery()
             ->getResult()
         ;
+        $index=rand(0, count($vector));
+        return array($vector[$index]);
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Pack
