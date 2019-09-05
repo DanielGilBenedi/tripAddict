@@ -61,8 +61,7 @@ class CarritoController extends AbstractController
             ];
             array_push($carrito, $elemento);    
             $session->set('carrito',$carrito);  //Si no funcionase, poner.
-        
-           
+                   
         return $this->render('carrito/index.html.twig', [
             'controller_name' => 'CarritoController',
             'carrito' => $carrito

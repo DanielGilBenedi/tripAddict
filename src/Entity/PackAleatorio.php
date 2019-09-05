@@ -15,19 +15,6 @@ class PackAleatorio
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Pack")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $id_pack1;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Pack")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $id_pack2;
-
     /**
      * @ORM\Column(type="float")
      */
@@ -38,33 +25,24 @@ class PackAleatorio
      */
     private $Titulo;
 
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $maximo;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $minimo;
+
+    /**
+     * @ORM\Column(type="string", length=1000)
+     */
+    private $imagenPortada;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdPack1(): ?Pack
-    {
-        return $this->id_pack1;
-    }
-
-    public function setIdPack1(?Pack $id_pack1): self
-    {
-        $this->id_pack1 = $id_pack1;
-
-        return $this;
-    }
-
-    public function getIdPack2(): ?Pack
-    {
-        return $this->id_pack2;
-    }
-
-    public function setIdPack2(?Pack $id_pack2): self
-    {
-        $this->id_pack2 = $id_pack2;
-
-        return $this;
     }
 
     public function getPrecio(): ?float
@@ -87,6 +65,42 @@ class PackAleatorio
     public function setTitulo(string $Titulo): self
     {
         $this->Titulo = $Titulo;
+
+        return $this;
+    }
+
+    public function getMaximo(): ?float
+    {
+        return $this->maximo;
+    }
+
+    public function setMaximo(float $maximo): self
+    {
+        $this->maximo = $maximo;
+
+        return $this;
+    }
+
+    public function getMinimo(): ?float
+    {
+        return $this->minimo;
+    }
+
+    public function setMinimo(float $minimo): self
+    {
+        $this->minimo = $minimo;
+
+        return $this;
+    }
+
+    public function getImagenPortada(): ?string
+    {
+        return $this->imagenPortada;
+    }
+
+    public function setImagenPortada(string $imagenPortada): self
+    {
+        $this->imagenPortada = $imagenPortada;
 
         return $this;
     }
