@@ -54,14 +54,18 @@ class CarritoController extends AbstractController
         $key = $request->request->get('key');
         $numero = $request->request->get('cantidad');
 
+        $carrito = $session->get('carrito',[]);
         if($numero>0){
-            $carrito = $session->get('carrito',[]);
+            
             $carrito[$key]['cantidad'] = $numero; 
             
             $session->set('carrito',$carrito); 
         }else{
             //borrar elemento
-            return $this->redirect($this->generateUrl('carrito_borrar/'. $key));
+            array_splice($carrito, $key, 1);
+        
+            $session->set('carrito',$carrito); 
+    
         }
      
         return $this->redirect($this->generateUrl('carrito'));
@@ -73,9 +77,9 @@ class CarritoController extends AbstractController
     public function borrar(int $key, SessionInterface $session)
     {
         $carrito = $session->get('carrito',[]);
-        
+       
         //borrar
-        array_splice($carrito, 1, $key);
+        array_splice($carrito, $key, 1);
         
         $session->set('carrito',$carrito); 
 

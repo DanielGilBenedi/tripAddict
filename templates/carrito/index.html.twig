@@ -42,7 +42,7 @@
                                     </td>
                                     <td scope="col">{{elemento['producto'].precio}} €</td>
                                     <td scope="col">{{subtotal}} €</td>
-                                    <td scope="col"><a href="/carrito/borrar/{{elemento['producto'].id}}" class='btn btn-danger'><i class="fa fa-trash"></i></a></td>
+                                    <td scope="col"><a href="/carrito/borrar/{{key}}" class='btn btn-danger'><i class="fa fa-trash"></i></a></td>
                                 </form>
                             </tr>
                         {% endfor %}
@@ -75,20 +75,7 @@
                 Aun no has realizado ningun pedido    
             {% endif %}   
 
-<<<<<<< HEAD
-             {% block javascripts %}
-                <script>
-            $("input[name='demo1']").TouchSpin({
-                min: 0,
-                max: 100,
-                
-             
-            });
-        </script>
-            {% endblock %}
-=======
             
->>>>>>> 792c4c4e29d2aaea13a4054aab1d75dbdd97a207
         </div>
         </div>
         {% endblock %}
