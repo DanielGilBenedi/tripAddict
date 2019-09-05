@@ -40,24 +40,33 @@ class TAController extends AbstractController
         $idGrupo = $request->request->get('grupo');
         $precio = $request->request->get('precio');
 
-        $dql = "select p.id, p.nombre, p.descripcion, p.precio, p.imagenPortada from \App\Entity\Pack p join p.grupo g where p.precio < :precio and g.id = :grupo";
-        $query=$em->createQuery($dql);
-        $query->setParameter('precio', $precio);
-        $query->setParameter('grupo', $idGrupo);
+        $gruposRepo = $this->getDoctrine()->getRepository(Grupo::class);
+        $grupos = $gruposRepo->findAll();
+
+        if($idGrupo == 0 and $precio == 1000){
+            return $this->redirect($this->generateUrl('index'));
+        }
+
+        if($idGrupo == 0 and $precio != 1000){
+            $dql = "select p.id, p.nombre, p.descripcion, p.precio, p.imagenPortada, g.id as grupo_id from \App\Entity\Pack p join p.grupo g where p.precio < :precio";
+            $query=$em->createQuery($dql);
+            $query->setParameter('precio', $precio);
+        }
+
+        else {
+            $dql = "select p.id, p.nombre, p.descripcion, p.precio, p.imagenPortada, g.id as grupo_id from \App\Entity\Pack p join p.grupo g where p.precio < :precio and g.id = :grupo";
+            $query=$em->createQuery($dql);
+            $query->setParameter('precio', $precio);
+            $query->setParameter('grupo', $idGrupo);
+        }
         
-        $packs=$query->execute();
+            $packs=$query->execute();
+            return $this->render('ta/index.html.twig', [
+                'packs' => $packs,
+                'grupos' => $grupos
+            ]);   
 
-        // $encoders = [new JsonEncoder()]; // If no need for XmlEncoder
-        // $normalizers = [new ObjectNormalizer()];
-        // $serializer = new Serializer($normalizers, $encoders);
-
-        // $jsonObject = $serializer->serialize($packs, 'json', [
-        //     'circular_reference_handler' => function ($object) {
-        //         return $object->getId();
-        //     }
-        // ]);
-
-        return $this->json($packs);        
+            
     }
 
     /**

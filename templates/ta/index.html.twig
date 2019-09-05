@@ -6,7 +6,32 @@
 
   {{ include('carousel.html.twig') }}
   {{ include('buscador/index.html.twig') }}
-  {{ include('paquetesgrupo/index.html.twig') }}
-
+  {% if packs is defined %}
+  
+<div class="card mb-2 mt-4  text-primary">
+  <div class="card-header ">
+    <h2 class="text-center">Resultados</h2>
+  </div>
+  <div class="card-body">
+    <div class="row mb-3 d-flex">
+  {% for paquete in packs %}
+      <div class='col-md-3 mb-5'>
+        <div class="card">
+          <img class="card-img-top" src="\images\ImagenesPortadas\{{paquete.imagenPortada}}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{paquete.nombre}}</h5>
+            <p class="card-text text-left">
+              {{ paquete.descripcion|length > 150 ? paquete.descripcion|slice(0, 150) ~ '...' : paquete.descripcion  }}
+            </p>
+            <p class='text-primary'><strong>{{paquete.precio}}€</strong></p>
+            <a href="/paquetes/{{paquete.grupo_id}}/{{paquete.id}}" class="btn btn-info btn-block card-link">Ver Pack</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+</div></div></div>
+  {% else %}
+    {{ include('paquetesgrupo/index.html.twig') }}
+    {% endif %}
                      
 {% endblock %}
