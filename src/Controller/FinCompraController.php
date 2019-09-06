@@ -12,6 +12,7 @@ use App\Form\UserType;
 use App\Entity\Estancia;
 use App\Entity\LineaPedido;
 use App\Repository\PackRepository;
+use App\Repository\PedidoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,64 +37,79 @@ class FinCompraController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($pedido);
         
+            foreach ($carrito as  $elemento) 
+            {
+                for ($i=0 ; $i<$elemento['cantidad'] ; $i++){
 
-       
+                    $linea=new LineaPedido();
+                    //$linea->setIdPack($elemento['producto']);
+                    $repoPack=$em->getRepository(Pack::class);
+                    $pack=$repoPack->find($elemento['producto']->getId());
+                    $linea->setIdPack($pack);
 
+                    $linea->setPrecio($elemento['producto']->getPrecio());
 
-            foreach ($carrito as  $elemento) {
+                    $fecha = new DateTime();
+                    $intervalo = new DateInterval('P2Y');
+                    $fecha->add($intervalo);
+                    $linea->setfechaFin($fecha);
+
                 
-                $linea=new LineaPedido();
-                //$linea->setIdPack($elemento['producto']);
-                $repoPack=$em->getRepository(Pack::class);
-                $pack=$repoPack->find($elemento['producto']->getId());
-                $linea->setIdPack($pack);
+                    $linea->setUsado(false);
+                    //$pedido->addLineaPedido($linea);
 
-                $linea->setPrecio($elemento['producto']->getPrecio());
+                    $linea->setIdPedido($pedido);
 
-                $fecha = new DateTime();
-                $intervalo = new DateInterval('P2Y');
-                $fecha->add($intervalo);
-                $linea->setfechaFin($fecha);
-
-               
-                $linea->setUsado(false);
-                $pedido->addLineaPedido($linea);
-
-
-                $linea->setIdPedido($pedido);
-
-                $repo=$em->getRepository(Estancia::class);
-                $estancia=$repo->find(2);
-                $linea->setIdEstancia($estancia);
-
-                $entityManager->persist($linea);
+                    $entityManager->persist($linea);
+                }                
             }
 
             $entityManager->flush();
-            //$session->set('carrito',[]);  
+            $session->set('carrito',[]);  
+            $session->set('pedido',$pedido->getId()); 
 
-        return $this->render('fin_compra/index.html.twig', [
-            'carrito' => $carrito,
-            'form' => $form->createView(),
-        ]);
-    }else {
-        return $this->redirect($this->generateUrl('index'));
+            return $this->redirect($this->generateUrl('resumenPedido'));
     }
+        else 
+        {
+            return $this->redirect($this->generateUrl('index'));
+        }
  }
- /**
+
+    /**
+     * @Route("/resumenPedido", name="resumenPedido")
+     */
+    public function resumenPedido(SessionInterface $session, PedidoRepository $repo)
+    {
+        if ($this->getUser() != null && $session->get('pedido') != null){
+            $idPedido = $session->get('pedido');
+            $pedido = $repo->find($idPedido);
+            $session->remove("pedido");
+            
+            return $this->render('fin_compra/index.html.twig', [
+                "pedido"=>$pedido,
+            ]);
+        }
+
+        else {
+            return $this->redirect($this->generateUrl('index'));
+        }
+    }
+
+    /**
      * @Route("/datosUser", name="datos_user")
      */
     public function datosUser()
     {
         if ($this->getUser() != null){
             $form=$this->createForm(UserType::class, $this->getUser());
+
             return $this->render('fin_compra/index.html.twig', [
                 
             ]);
         }
 
-
-         else {
+        else {
             return $this->redirect($this->generateUrl('index'));
         }
     }

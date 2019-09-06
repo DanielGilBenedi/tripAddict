@@ -102,7 +102,8 @@ class CarritoController extends AbstractController
     /**
      * @Route("/carrito/vaciar", name="carrito_vaciar")
      */
-    public function vaciar(SessionInterface $session){
+    public function vaciar(SessionInterface $session)
+    {
         $session->set('carrito',[]);         
         return $this->redirect($this->generateUrl('carrito'));
     }
