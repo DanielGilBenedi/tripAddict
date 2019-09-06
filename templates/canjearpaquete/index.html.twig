@@ -11,19 +11,43 @@
 </section>
 
 <div class='row justify-content-center'>
-        
-    <div class="col-md-6">
-        <img src="\images\funcionamiento\cajaderegalo2.jpg" class="card-img-top " alt="...">
-    </div>
 
-    <div class="col-md-6">
 
-        <div class="pt-5 mt-5">
-            <label for="js_product_dcs">Número de cheque regalo: </label>
-            <input type="text" id="js_product_dcs" class="form-control required-entry validate-dcs mt-2" name="product_dcs" value=""
-                title="Gift number:">
-                <a href="" class='btn btn-block btn-primary btn-lg mt-2  '>Validar</a>
+    {% if pedido is defined and pedido is not null %}
+        <div class='col-md-12 text-center'><h1>Disfruta de su estanacia</h1></div>
+        <div class='col-md-3 mb-5'>
+            <div class="card">
+                <img class="card-img-top" src="\images\ImagenesPortadas\{{pedido.idPack.imagenPortada}}"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{pedido.idPack.nombre}}</h5>
+                    <p class="card-text text-left">
+                        {{ pedido.idPack.descripcion|length > 150 ? pedido.idPack.descripcion|slice(0, 150) ~ '...' : pedido.idPack.descripcion  }}
+                    </p>
+                    <p class='text-primary'><strong>{{pedido.idPack.precio}}€</strong></p>
+                    <a href="/paquetes/{{pedido.idPack.grupo.id}}/{{pedido.idPack.id}}"
+                        class="btn btn-info btn-block card-link">Ver Pack</a>
+                </div>
+            </div>
+
+    {% else %}
+        {% if pedido is defined and pedido is null %}  <div class='col-md-12 text-center'><h1>Vuelve a intentarlo.</h1></div>{% endif %}
+        <div class="col-md-6">
+            <img src="\images\funcionamiento\cajaderegalo2.jpg" class="card-img-top " alt="...">
         </div>
+
+        <div class="col-md-6">
+            <div class="pt-5 mt-5">
+                <form action='/verificar' method='POST'>
+                    <label for="js_product_dcs">Número de cheque regalo: </label>
+
+                    <input type="text" id="codigo" class="form-control required-entry validate-dcs mt-2" name="codigo"
+                        value="">
+                    <button type:'submit' class='btn btn-block btn-primary btn-lg mt-2  '>Validar</button>
+                </form>
+            </div>
+        </div>
+    {% endif %}
     </div>
 </div>
 
