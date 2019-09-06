@@ -11,7 +11,7 @@ class LineaPedido
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -34,12 +34,12 @@ class LineaPedido
     private $usado;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Pedido", inversedBy="lineaPedidos")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Pedido", inversedBy="lineaPedidos", cascade={"persist"})
      */
     private $id_pedido;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Pack", inversedBy="lineaPedidos")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Pack", inversedBy="lineaPedidos" , cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $id_pack;

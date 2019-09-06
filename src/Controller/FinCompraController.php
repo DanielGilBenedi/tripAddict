@@ -4,12 +4,15 @@ namespace App\Controller;
 
 
 use DateTime;
+use DateInterval;
 use App\Entity\Pack;
 use App\Entity\User;
 use App\Entity\Pedido;
 use App\Form\UserType;
+use App\Entity\Estancia;
 use App\Entity\LineaPedido;
 use App\Repository\PackRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -20,7 +23,7 @@ class FinCompraController extends AbstractController
     /**
      * @Route("/finCompra", name="finCompra")
      */
-    public function index(SessionInterface $session)
+    public function index(SessionInterface $session, EntityManagerInterface $em)
     {
         
         if ($this->getUser() != null){
@@ -28,13 +31,23 @@ class FinCompraController extends AbstractController
         $form=$this->createForm(UserType::class, $this->getUser());
         $pedido= new Pedido();
         $pedido->setFecha(new DateTime());
-        $pedido->setUsuario($this->getUser());
+        $pedido->setIdUsuario($this->getUser());
 
-            foreach ($carrito as $key => $elemento) {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($pedido);
+        
+
+       
+
+
+            foreach ($carrito as  $elemento) {
                 
                 $linea=new LineaPedido();
-                $linea->setPedido($pedido);
-                $linea->setPack($elemento['producto']);
+                //$linea->setIdPack($elemento['producto']);
+                $repoPack=$em->getRepository(Pack::class);
+                $pack=$repoPack->find($elemento['producto']->getId());
+                $linea->setIdPack($pack);
+
                 $linea->setPrecio($elemento['producto']->getPrecio());
 
                 $fecha = new DateTime();
@@ -42,10 +55,22 @@ class FinCompraController extends AbstractController
                 $fecha->add($intervalo);
                 $linea->setfechaFin($fecha);
 
+               
                 $linea->setUsado(false);
-                
+                $pedido->addLineaPedido($linea);
 
+
+                $linea->setIdPedido($pedido);
+
+                $repo=$em->getRepository(Estancia::class);
+                $estancia=$repo->find(2);
+                $linea->setIdEstancia($estancia);
+
+                $entityManager->persist($linea);
             }
+
+            $entityManager->flush();
+            //$session->set('carrito',[]);  
 
         return $this->render('fin_compra/index.html.twig', [
             'carrito' => $carrito,
