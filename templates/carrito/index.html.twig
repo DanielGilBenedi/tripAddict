@@ -35,10 +35,32 @@
                             <tr>
                                 <form action='/carrito/editar' method='POST'>
                                     <input type='hidden' value="{{key}}" id='key' name='key'/>
-                                    <td scope="col"> {{elemento['producto'].nombre}}</td>
                                     <td scope="col"> 
-                                            <input name="cantidad" id="cantidad" type="number" min='0' max='10' value="{{elemento['cantidad']}}" />
-                                            <button type='submit' name='enviar' class='btn btn-info ml-2'><i class="fa fa-edit"></i></button>
+                                    
+                                    {% if elemento['tipo'] == 'normal' %}
+                                    
+                                    {{elemento['producto'].nombre}}
+                                    
+                                    {% else  %}
+
+                                        Paquete Aleatorio
+
+                                    {% endif %}
+                                    
+                                    
+                                    </td>
+
+
+                                    <td scope="col"> 
+                                           
+                                    {% if elemento['tipo'] == 'normal' %}
+                                    
+                                     <input name="cantidad" id="cantidad" type="number" min='0' max='10' value="{{elemento['cantidad']}}" />
+                                     <button type='submit' name='enviar' class='btn btn-info ml-2'><i class="fa fa-edit"></i></button>
+                                    
+
+                                    {% endif %}
+                                           
                                     </td>
                                     <td scope="col">{{elemento['producto'].precio}} €</td>
                                     <td scope="col">{{subtotal}} €</td>

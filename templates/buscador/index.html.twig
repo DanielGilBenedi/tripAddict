@@ -13,27 +13,28 @@
     <div  class=''>
         <div class="card-body panel-transparent">
             <div class='container'>
-                <form class="form-inline justify-content-center row">
+                <form class="form-inline justify-content-center row" action='/buscar'method='POST'>
                     <div class="form-group col-md-3">
-                        <select class="form-control w-100" id="exampleFormControlSelect1">
-                            <option> Cualquier Pack </option>
-                            <option> Pack estancia con desayuno </option>
-                            <option> Pack para dos </option>
-                            <option> Pack momentos unicos </option>
+                        <select class="form-control w-100" id="grupo" name='grupo'>
+                            <option value="0"> Cualquier Pack </option>
+                            {% for grupo in grupos %}
+                                <option value="{{grupo.id}}"> {{grupo.titulo}} </option>
+                            {% endfor %}
+                        </select >
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <select class="form-control w-100" id="precio" name='precio'>
+                            <option value="1000"> Cualquier Precio </option>
+                           
+                            <option value="50">Menos de 50€ </option>
+                            <option value="100">Menos de 100€ </option>
+                            <option value="150"> Menos de 150€ </option>
                         </select>
                     </div>
 
                     <div class="form-group col-md-3">
-                        <select class="form-control w-100" id="exampleFormControlSelect1">
-                            <option> Cualquier Precio </option>
-                            <option> 50€ - 100€ </option>
-                            <option> 100€ - 200€ </option>
-                            <option> Más de 200€ </option>
-                        </select>
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <button type="button" class="btn btn-info btn-block"> Encuentra tu Viaje </button>
+                        <button type="submit" class="btn btn-info btn-block"> Encuentra tu Viaje </button>
                     </div>
                 </form>
             </div>

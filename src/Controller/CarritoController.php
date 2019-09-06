@@ -30,17 +30,29 @@ class CarritoController extends AbstractController
        
         if ($pack){
             $carrito = $session->get('carrito',[]);
-
+            $cantidad=$request->request->get('cantidad');
+            $encontrado=false;
             //buscar si ya existe elemento con pack
-            
-            //si no existe
+            foreach ($carrito as $key => $elemento) {
+
+                if($pack->getId()==$elemento['producto']->getId() and $elemento['tipo']=='normal'){
+
+                    $carrito[$key]['cantidad']+=$cantidad;
+                    $encontrado=true;
+                }
+               
+            }
+            if(!$encontrado){
+                  //si no existe
             $elemento = [
                 'tipo' => 'normal',
                 'producto' => $pack,   //Hay que mirar si hay que serializer
-                'cantidad' => $request->request->get('cantidad')
+                'cantidad' => $cantidad
             ];
 
-            array_push($carrito, $elemento);    
+            array_push($carrito, $elemento); 
+            }
+           
             $session->set('carrito',$carrito);  //Si no funcionase, poner.
         }
            

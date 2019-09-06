@@ -40,7 +40,7 @@ class Pedido
     private $id_usuario;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\LineaPedido", mappedBy="id_pedido")
+     * @ORM\OneToMany(targetEntity="App\Entity\LineaPedido", mappedBy="id_pedido",  cascade={"persist"})
      */
     private $lineaPedidos;
 
