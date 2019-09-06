@@ -16,53 +16,46 @@
         </div>
     </div>
 
-    {% if carrito|length > 0 %}
-                {% set total=0 %}
+    {% if pedido.lineaPedidos|length > 0 %}
+        {% set total=0 %}
+            <div class=" d-flex flex-row-reverse mb-2 mt-2 ml-auto">                
+                <span class="badge badge-secondary badge-pill p-2"><h4>{{pedido.lineaPedidos|length}} Productos</h4></span>
+            </div>
 
-                <div class=" d-flex flex-row-reverse mb-2 mt-2 ml-auto">
-                <span class="badge badge-secondary badge-pill">{{carrito|length}}</span>
-                </div>
+            <table class="table">
+            
+                <thead>
+                    <tr>
+                        <th scope="col">Código del paquete</th>
+                        <th scope="col">Pack</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Fecha fin</th>
+                    </tr>
+                </thead>
 
-                <table class="table">
-                    <thead>
+                <tbody>
+
+                    {% for linea in pedido.lineaPedidos %}
+                    {% set total = total + linea.precio %}
+
                         <tr>
-                            <th scope="col">Producto</th>
-                            <th scope="col">Unidades</th>
-                            <th scope="col">Precio unidad</th>
-                            <th scope="col">Subtotal</th>
-                            <th scope="col">Subtotal</th>
-                            <th scope="col"></th>
+                            <td scope="col"> {{linea.id}} </td>
+                            <td scope="col"> {{linea.idpack.nombre}} </td>
+                            <td scope="col"> {{linea.precio}} € </td>
+                            <td scope="col"> {{linea.fechaFin|date("m/d/Y")}} </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {% for key, elemento in carrito %}
 
-                            {% set subtotal=elemento['producto'].precio * elemento['cantidad'] %}
-                            {% set total=subtotal+total %}
+                    {% endfor %}
 
-                            <tr>
-
-                                <td scope="col"> {{elemento['producto'].nombre}}</td>
-                                <td scope="col">{{elemento['cantidad']}} </td>
-                                <td scope="col">{{elemento['producto'].precio}} €</td>
-                                <td scope="col">{{subtotal}} €</td>
-                                
-
-                            </tr>
-                        {% endfor %}
                         <tr>
-
-                                <td scope="col"></td>
-                                <td scope="col"></td>
-                                <td scope="col"></td>
-                                <td scope="col">Total</td>
-                                <td scope="col">{{total}} €</td>
-
-                            </tr>
-                    </tbody>
-                </table>
-                {% endif %}
-
-        
+                            <td scope="col">Nº de pedido: #{{pedido.id}}</td>
+                            <td scope="col"></td>
+                            <td scope="col"><b>Total</b></td>
+                            <td scope="col"><b>{{total}} €</b></td>
+                        </tr>
+                </tbody>
+            </table>
+    {% endif %}
+  
 
 {% endblock %}
